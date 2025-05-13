@@ -115,7 +115,7 @@ public class BuscaTesoroPerdidoLegends {
 						
 						case "CAMBISES" :
 							System.out.println("Cambises tiene una vida de 600 y tiene estas 3 habilidades: básica "
-								+ "(espada - 40PA), Berserk (doble espada - 80PA) y Certero (aumenta el ataque +30PA).");
+								+ "(espada - 40PA), Berserk (doble espada - 120PA) y Certero (aumenta el ataque +30PA).");
 							vidaUsuario = 600;
 							ataqueBasico = 40;
 							ataqueFuerte = 120;
@@ -124,7 +124,7 @@ public class BuscaTesoroPerdidoLegends {
 							
 						case "BASTET":
 							System.out.println("Bastet tiene una vida de 700 y tiene  estas 3 habilidades: básica "
-								+ "(lanzar objetos - 30PA), Flor Fatal (hiedra venenosa - 70PA) y Alma Voraz (cura 40PV).");
+								+ "(lanzar objetos - 30PA), Flor Fatal (hiedra venenosa - 140PA) y Alma Voraz (cura 40PV).");
 							vidaUsuario = 700;
 							ataqueBasico = 30;
 							ataqueFuerte = 140;
@@ -174,7 +174,7 @@ public class BuscaTesoroPerdidoLegends {
 					
 				} else {
 						System.out.println("Has gastado todos tus intentos.");
-						System.out.println("Al haber fallado la prueba, te quedas sin un uso de tu ataque especial.");
+						System.out.println("Al haber fallado la prueba, te quedas sin un uso de tu ataque especial.");//No consigues un uso del ataque especial
 				}
 					
 			intentosR = 5;
@@ -220,7 +220,7 @@ public class BuscaTesoroPerdidoLegends {
 				} else {
 					System.out.println("Habeis gastado todos los intentos.");
 					System.out.println("Os permitiré la entrada, pero a cambio, al haber fallado la prueba te quedas sin un uso de tu ataque especial.");
-					System.out.println("");
+					System.out.println("");// al fallar podemos inventarnos otra ruta para cambiar la linea de juego, ej: romper una pared
 				}
 					
 			System.out.println("La esfinge os deja paso a la cámara.");
@@ -282,7 +282,7 @@ public class BuscaTesoroPerdidoLegends {
 			} else {
 				System.out.println(" ");
 				System.out.println("Habeis perdido la prueba, podéis pasar a la siguiente zona, pero a cambio de un uso de tu ataque especial " + personaje);
-			}
+			}// Lo mismo de antes podemos cambiar de camino al no poder pasar por ahí
 					
 			System.out.println("Los héroes pasan a la segunda cámara");
 			System.out.println(" ");
