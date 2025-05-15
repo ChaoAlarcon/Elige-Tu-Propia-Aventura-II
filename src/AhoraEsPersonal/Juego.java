@@ -52,28 +52,28 @@ public class Juego {
     private void runPuzzles() {
         // 1. Acertijo Esfinge
         Puzzle esfinge = new AcertijoEsfinge(sc);
-        if (esfinge.ejecutar(jugador)) jugador.ganarUsoEspecial();
+        if (esfinge.ejecutarPuzzle(jugador)) jugador.ganarUsoEspecial();
 
         // 2. Adivina número
         Puzzle num = new AdivinaNumero(sc);
-        if (num.ejecutar(jugador)) jugador.ganarUsoEspecial();
+        if (num.ejecutarPuzzle(jugador)) jugador.ganarUsoEspecial();
 
         // 3. Piedra Papel Tijera
         Puzzle ppt = new PiedraPapelTijera(sc);
-        if (ppt.ejecutar(jugador)) jugador.ganarUsoEspecial();
+        if (ppt.ejecutarPuzzle(jugador)) jugador.ganarUsoEspecial();
 
         // 4. Trivial Egipto
         Puzzle trivial = new TrivialEgipto(sc);
-        if (trivial.ejecutar(jugador)) jugador.ganarUsoEspecial();
+        if (trivial.ejecutarPuzzle(jugador)) jugador.ganarUsoEspecial();
 
         // 5. Ahorcado
         Puzzle ahorcado = new Ahorcado(sc);
-        if (ahorcado.ejecutar(jugador)) jugador.ganarUsoEspecial();
+        if (ahorcado.ejecutarPuzzle(jugador)) jugador.ganarUsoEspecial();
     }
 
     private void runDecisionFinal() {
         DecisionAmmit decision = new DecisionAmmit(sc, jugador);
-        juegoActivo = decision.ejecutar();
+        juegoActivo = decision.ejecutarPuzzle();
     }
 
     private void runCombateFinal() {

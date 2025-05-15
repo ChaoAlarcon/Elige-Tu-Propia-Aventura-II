@@ -1,24 +1,49 @@
 package AhoraEsPersonal;
 
-
 public class Enemigos {
-    private String nombre;
-    private int vida;
-    private int ataque;
+	// ATRIBUTOS
+	private String nombre;
+	private int vida;
+	private int ataque;
 
-    public Enemigos(String n, int v, int a) {
-        this.nombre = n;
-        this.vida = v;
-        this.ataque = a;
-    }
+	// CONSTRUCTORES
+	public Enemigos(String n, int v, int a) {
+		this.nombre = n;
+		this.vida = v;
+		this.ataque = a;
+	}
+	// GETTERS Y SETTERS
+	public String getNombre() {
+		return nombre;
+	}
 
-    public String getNombre() { return nombre; }
-    public int getVida()      { return vida; }
-    public boolean estaVivo() { return vida > 0; }
+	public int getVida() {
+		return vida;
+	}
 
-    public void recibirDanio(int d) {
-        vida = Math.max(0, vida - d);
-    }
+	public int getAtaque() {
+		return ataque;
+	}
 
-    public int getAtaque() { return ataque; }
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setVida(int vida) {
+		this.vida = vida;
+	}
+
+	public void setAtaque(int ataque) {
+		this.ataque = ataque;
+	}
+
+	// OTROS METODOS
+	public boolean estaVivo() {
+		return vida > 0;
+	}
+
+	public void recibirDanio(int d) {
+		vida = Math.max(0, vida - d);
+	}
+
 }

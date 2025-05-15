@@ -1,6 +1,5 @@
 package AhoraEsPersonal;
 
-
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,7 +7,7 @@ public class Ahorcado implements Puzzle {
     private Scanner sc;
     public Ahorcado(Scanner sc) { this.sc = sc; }
 
-    public boolean ejecutar(Jugador j) {
+    public boolean ejecutarPuzzle(Jugador j) {
         String[] palabras = {"Seth","Anubis","Horus","Osiris","Sekhmet"};
         String secreto = palabras[new Random().nextInt(palabras.length)];
         char[] vis = new char[secreto.length()];
