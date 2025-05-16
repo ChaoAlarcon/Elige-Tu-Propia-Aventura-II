@@ -17,10 +17,11 @@ public class AdivinaNumero implements Puzzle {
 		
 		System.out.println("Rompecabezas 2: Adivina el número (0–9).");
 		
-		while (intentos-- > 0) {
+		while (intentos >= 0) {
 			int respuesta = sc.nextInt();
 			if (respuesta == numeroAdivinar) {
 				System.out.println("¡Correcto!");
+				intentos--;
 				return true;
 			}
 			System.out.println(respuesta < numeroAdivinar ? "Más alto" : "Más bajo");
