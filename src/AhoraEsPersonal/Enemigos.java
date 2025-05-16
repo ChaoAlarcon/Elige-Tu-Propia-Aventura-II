@@ -7,10 +7,10 @@ public class Enemigos {
 	private int ataque;
 
 	// CONSTRUCTORES
-	public Enemigos(String n, int v, int a) {
-		this.nombre = n;
-		this.vida = v;
-		this.ataque = a;
+	public Enemigos(String nombre, int vida, int ataque) {
+		this.nombre = nombre;
+		this.vida = vida;
+		this.ataque = ataque;
 	}
 	// GETTERS Y SETTERS
 	public String getNombre() {
@@ -42,8 +42,8 @@ public class Enemigos {
 		return vida > 0;
 	}
 
-	public void recibirDanio(int d) {
-		vida = Math.max(0, vida - d);
+	public void recibirDanio(int danio) {
+		vida = Math.max(0, vida - danio);
 	}
 
 }

@@ -3,17 +3,19 @@ package AhoraEsPersonal;
 import java.util.Scanner;
 
 public class AcertijoEsfinge implements Puzzle {
-	private Scanner sc;
+	Scanner sc = new Scanner (System.in);
+	int intentos = 3;
+	String respuesta = "";
 
 	public AcertijoEsfinge(Scanner sc) {
 		this.sc = sc;
 	}
 
+
 	public boolean ejecutarPuzzle(Jugador j) {
 		System.out.println("Rompecabezas 1: Soy eterno… ¿Qué soy?");
-		int intentos = 3;
 		while (intentos >= 0) {
-			String respuesta = sc.nextLine();
+			respuesta = sc.nextLine();
 			if (respuesta.equalsIgnoreCase("Esfinge") || respuesta.equalsIgnoreCase("La esfinge")) {
 				System.out.println("¡Correcto!");
 				intentos--;

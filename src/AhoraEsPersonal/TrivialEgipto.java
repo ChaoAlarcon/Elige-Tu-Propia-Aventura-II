@@ -10,13 +10,14 @@ public class TrivialEgipto implements Puzzle {
 			"¿Animal de la Esfinge? \na)León \nb)Águila \nc)Serpiente \nd)Gato" };
 	String[] correctas = { "b", "b", "d", "a" };
 	String respuesta = "";
-	int puntuacion = 0;
+	private int puntuacion = 0;
+	private boolean juegoGanado = false;
 
 	public TrivialEgipto(Scanner sc) {
 		this.sc = sc;
 	}
 
-	public boolean ejecutarPuzzle(Jugador j) {
+	public boolean ejecutarPuzzle(Jugador jugador) {
 
 		for (int i = 0; i < 4; i++) {
 			System.out.println("Pregunta " + (i + 1) + ": " + preguntas[i]);
@@ -32,7 +33,7 @@ public class TrivialEgipto implements Puzzle {
 				System.out.println("Incorrecto.");
 			}
 		}
-		boolean juegoGanado = puntuacion == 4;
+		juegoGanado = puntuacion == 4;
 		System.out.println("Tu puntuación: " + puntuacion + "/4");
 		if (!juegoGanado)
 			System.out.println("Fallaste y pierdes especial.");
