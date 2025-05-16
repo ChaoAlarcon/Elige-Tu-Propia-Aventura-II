@@ -12,10 +12,11 @@ public class AcertijoEsfinge implements Puzzle {
 	public boolean ejecutarPuzzle(Jugador j) {
 		System.out.println("Rompecabezas 1: Soy eterno… ¿Qué soy?");
 		int intentos = 3;
-		while (intentos-- > 0) {
+		while (intentos >= 0) {
 			String respuesta = sc.nextLine();
 			if (respuesta.equalsIgnoreCase("Esfinge") || respuesta.equalsIgnoreCase("La esfinge")) {
 				System.out.println("¡Correcto!");
+				intentos--;
 				return true;
 			}
 			System.out.println("Incorrecto. Te quedan " + intentos);
