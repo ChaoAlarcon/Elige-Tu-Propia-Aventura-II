@@ -4,41 +4,45 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Combate {
-	private Scanner sc;
-	private Jugador j;
-	private Enemigos e;
+	Scanner sc = new Scanner(System.in);
 	private Random random = new Random();
+	private Jugador jugador;
+	private Enemigos enemigos;
+	private int eleccionAtaque;
+	private int acertar;
+	private int mitadDanio;
+	
 
-	public Combate(Scanner sc, Jugador j, Enemigos e) {
+	public Combate(Scanner sc, Jugador jugador, Enemigos enemigos) {
 		this.sc = sc;
-		this.j = j;
-		this.e = e;
+		this.jugador = jugador;
+		this.enemigos = enemigos;
 	}
 
 	public void iniciar() {
-		System.out.println("¡Comienza el combate contra " + e.getNombre() + "!");
-		while (j.estaVivo() && e.estaVivo()) {
+		System.out.println("¡Comienza el combate contra " + enemigos.getNombre() + "!");
+		while (jugador.estaVivo() && enemigos.estaVivo()) {
 			turnoJugador();
-			if (e.estaVivo())
+			if (enemigos.estaVivo())
 				turnoEnemigo();
 		}
-		if (j.estaVivo()) {
-			System.out.println("Has derrotado a " + e.getNombre());
+		if (jugador.estaVivo()) {
+			System.out.println("Has derrotado a " + enemigos.getNombre());
 		} else {
 			System.out.println("Has muerto. FIN DEL JUEGO.");
 		}
 	}
 
 	private void turnoJugador() {
-		System.out.println("Tu vida: " + j.getVida() + " | Vida enemigo: " + e.getVida());
-		System.out.println("1) Básico (" + j.getAtaqueBasico() + ")");
-		System.out.println("2) Especial (" + j.getHabilidadEspecial() + ")");
-		if (j.getUsosEspecial() > 0) {
-			System.out.println("3) Fuerte (" + j.getAtaqueFuerte() + ") usos: " + j.getUsosEspecial());
+		System.out.println("Tu vida: " + jugador.getVida() + " | Vida enemigo: " + enemigos.getVida());
+		System.out.println("1) Básico (" + jugador.getAtaqueBasico() + ")");
+		System.out.println("2) Especial (" + jugador.getHabilidadEspecial() + ")");
+		if (jugador.getUsosEspecial() > 0) {
+			System.out.println("3) Fuerte (" + jugador.getAtaqueFuerte() + ") usos: " + jugador.getUsosEspecial());
 		}
-		if (j.getUsosEspecial() == 5)
+		if (jugador.getUsosEspecial() == 5)
 			System.out.println("4) Favor Ammit");
-		int eleccionAtaque = sc.nextInt();
+		eleccionAtaque = sc.nextInt();
 		switch (eleccionAtaque) {
 		case 1:
 			ataqueBasico();
@@ -58,13 +62,13 @@ public class Combate {
 	}
 
 	private void ataqueBasico() {
-		int acertar = random.nextInt(100);
+		acertar = random.nextInt(100);
 		if (acertar > 50) {
-			e.recibirDanio(j.getAtaqueBasico());
-			System.out.println("Éxito: infliges " + j.getAtaqueBasico());
+			enemigos.recibirDanio(jugador.getAtaqueBasico());
+			System.out.println("Éxito: infliges " + jugador.getAtaqueBasico());
 		} else if (acertar > 25) {
-			int mitadDanio = j.getAtaqueBasico() / 2;
-			e.recibirDanio(mitadDanio);
+			mitadDanio = jugador.getAtaqueBasico() / 2;
+			enemigos.recibirDanio(mitadDanio);
 			System.out.println("Golpe débil: sólo " + mitadDanio);
 		} else {
 			System.out.println("Fallaste.");
@@ -72,45 +76,45 @@ public class Combate {
 	}
 
 	private void usarHabilidad() {
-		if (j.getNombre().equalsIgnoreCase("Bastet")) {
-			System.out.println("Bastet se cura " + j.getHabilidadEspecial());
-			j.recibirDanio(-j.getHabilidadEspecial());
-		} else if (j.getNombre().equalsIgnoreCase("Cambises")) {
-			System.out.println("Cambises potencia su arma en +" + j.getHabilidadEspecial());
+		if (jugador.getNombre().equalsIgnoreCase("Bastet")) {
+			System.out.println("Bastet se cura " + jugador.getHabilidadEspecial());
+			jugador.recibirDanio(-jugador.getHabilidadEspecial());
+		} else if (jugador.getNombre().equalsIgnoreCase("Cambises")) {
+			System.out.println("Cambises potencia su arma en +" + jugador.getHabilidadEspecial());
 			// Ajustar ataqueBasico/fuerte internamente si quieres...			
 		} else {
-			System.out.println("Ánuket reduce daño enemigo en " + j.getHabilidadEspecial());
+			System.out.println("Ánuket reduce daño enemigo en " + jugador.getHabilidadEspecial());
 			// Ajustar temporalmente…
 		}
 	}
 
 	private void ataqueFuerte() {
-		if (j.getUsosEspecial() == 0) {
+		if (jugador.getUsosEspecial() == 0) {
 			System.out.println("No tienes usos de ataque fuerte.");
 			return;
 		}
-		j.gastarUsoFuerte();
-		int acertar = random.nextInt(100);
+		jugador.gastarUsoFuerte();
+		acertar = random.nextInt(100);
 		if (acertar > 50) {
-			e.recibirDanio(j.getAtaqueFuerte());
-			System.out.println("Ataque fuerte: infliges " + j.getAtaqueFuerte());
+			enemigos.recibirDanio(jugador.getAtaqueFuerte());
+			System.out.println("Ataque fuerte: infliges " + jugador.getAtaqueFuerte());
 		} else {
 			System.out.println("Ataque fuerte fallido.");
 		}
 	}
 
 	private void favorAmmit() {
-		if (j.getUsosEspecial() == 0) {
+		if (jugador.getUsosEspecial() == 0) {
 			System.out.println("No tienes el favor de Ammit.");
 			return;
 		}
-		j.gastarUsoFuerte();
-		e.recibirDanio(999999999);
+		jugador.gastarUsoFuerte();
+		enemigos.recibirDanio(999999999);
 		System.out.println("¡Favor de Ammit desatado!");
 	}
 
 	private void turnoEnemigo() {
-		j.recibirDanio(e.getAtaque());
-		System.out.println(e.getNombre() + " ataca y te quita " + e.getAtaque());
+		jugador.recibirDanio(enemigos.getAtaque());
+		System.out.println(enemigos.getNombre() + " ataca y te quita " + enemigos.getAtaque());
 	}
 }
