@@ -13,12 +13,12 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 ![Portada](Portada.png)
 
 ## Integrantes del Grupo 👥️
-### -Álvaro Santos Calvo
-### -Nicolás García-Sampedro Docampo
-### -Chao An Alarcón Chen
+- Álvaro Santos Calvo
+- Nicolás García-Sampedro Docampo
+- Chao An Alarcón Chen
 
 ## Tecnologías 🛠
-### - Lenguaje: Java  
-### - Base de datos: MySQL 
-### - Herramientas: Visual Studio Code - Eclipse
+- Lenguaje: Java  
+- Base de datos: MySQL 
+- Herramientas: Visual Studio Code - Eclipse
 
