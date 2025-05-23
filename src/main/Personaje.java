@@ -1,29 +1,113 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Personaje {
 	Random random = new Random();
 	Scanner sc = new Scanner(System.in);
+
+	// ATRIBUTOS
 	private String nombre;
 	private int vida;
 	private int vidaMax;
-	private int ataque;
-	int opcion;
+	private int ataqueBasico;
+	private String nombreBasico;
+	private int ataqueFuerte;
+	private String nombreFuerte;
+	private int habilidadEspecial;
+	private String nombreHabilidad;
+	private int usosEspecial = 0;
+	private int opcion;
 
-	
+	ArrayList<Personaje> personajes = new ArrayList<Personaje>();
+	Personaje personaje1 = new Personaje("Ánuket", 600, "basico", 20, "fuerte", 30, "especial", 40);
+	Personaje personaje2 = new Personaje("Bastet", 600, "basico", 20, "fuerte", 30, "especial", 40);
+	Personaje personaje3 = new Personaje("Cambises", 600, "basico", 20, "fuerte", 30, "especial", 40);
 
-	public Personaje() {
-	}
-
-	public Personaje(String nombre, int vida, int ataque) {
-
+	// CONSTRUCTORES
+	public Personaje(String nombre, int vida, String nombreBasico, int ataqueBasico, 
+			String nombreFuerte, int ataqueFuerte, String nombreHabilidad, int habilidadEspecial) {
 		this.nombre = nombre;
 		this.vida = vida;
-		this.ataque = ataque;
-	
+		this.vidaMax = vida;
+		this.ataqueBasico = ataqueBasico;
+		this.nombreBasico = nombreBasico;
+		this.ataqueFuerte = ataqueFuerte;
+		this.nombreFuerte = nombreFuerte;
+		this.habilidadEspecial = habilidadEspecial;
+		this.nombreHabilidad = nombreHabilidad;
+		
+
 	}
+
+	// OTROS MÉTODOS
+
+	public void elegirPersonaje(Personaje personajeE) {
+
+		System.out.println("Elige a tu peronaje:");
+		System.out.println("1. Ánuket");
+		System.out.println("2. Bastet");
+		System.out.println("3. Cambises");
+		opcion = sc.nextInt();
+
+		while (opcion < 1 || opcion > 3) {
+			System.out.println("Opción no válida");
+			System.out.println("Elige a tu peronaje:");
+			System.out.println("1. Ánuket");
+			System.out.println("2. Bastet");
+			System.out.println("3. Cambises");
+			opcion = sc.nextInt();
+		}
+		if (opcion == 1) {
+			System.out.println("Has elegido a Ánuket");
+			personajeE.setNombre(personaje1.getNombre());
+			personaje1.getVida();
+			personaje1.getNombreBasico();
+			personaje1.getNombreFuerte();
+			personaje1.getNombreHabilidad();
+			personaje1.getAtaqueBasico();
+			personaje1.getAtaqueFuerte();
+			personaje1.getHabilidadEspecial();
+		}
+		if (opcion == 2) {
+			System.out.println("Has elegido a Bastet");
+			personaje2.getNombre();
+			personaje2.getVida();
+			personaje2.getNombreBasico();
+			personaje2.getNombreFuerte();
+			personaje2.getNombreHabilidad();
+			personaje2.getAtaqueBasico();
+			personaje2.getAtaqueFuerte();
+			personaje2.getHabilidadEspecial();
+			
+		}
+		if (opcion == 3) {
+			System.out.println("Has elegido a Cambises");
+			personaje3.getNombre();
+			personaje3.getVida();
+			personaje3.getNombreBasico();
+			personaje3.getNombreFuerte();
+			personaje3.getNombreHabilidad();
+			personaje3.getAtaqueBasico();
+			personaje3.getAtaqueFuerte();
+			personaje3.getHabilidadEspecial();
+
+		}
+		personajes.getVida();
+		personajes.setVidaMax(getVida());
+
+		imprimirInfo();
+
+		/*
+		 * Combate combate = new Combate(); combate.elegirEnemigos(personaje);
+		 */
+
+	}
+
+	// GETTERS Y SETTERS	
+	
 
 	public String getNombre() {
 		return nombre;
@@ -37,6 +121,10 @@ public class Personaje {
 		return vida;
 	}
 
+	public void setVida(int vida) {
+		this.vida = vida;
+	}
+
 	public int getVidaMax() {
 		return vidaMax;
 	}
@@ -45,80 +133,95 @@ public class Personaje {
 		this.vidaMax = vidaMax;
 	}
 
-	public void setVida(int vida) {
-		this.vida = vida;
+	public int getAtaqueBasico() {
+		return ataqueBasico;
 	}
 
-	public int getAtaque() {
-		return ataque;
+	public void setAtaqueBasico(int ataqueBasico) {
+		this.ataqueBasico = ataqueBasico;
 	}
 
-	public void setAtaque(int ataque) {
-		this.ataque = ataque;
+	public int getAtaqueFuerte() {
+		return ataqueFuerte;
 	}
 
-
-	public void atacar(Personaje defensor) {
-
-		if (defensor.getVida() > 0) {
-			int resultado = defensor.getVida() - this.ataque;
-
-			defensor.setVida(resultado);
-
-			defensor.imprimirInfo();
-
-		} else {
-			System.out.println(defensor.getNombre() + " está muerto/a");
-		}
-
+	public void setAtaqueFuerte(int ataqueFuerte) {
+		this.ataqueFuerte = ataqueFuerte;
 	}
 
-	public void elegirPersonaje(Personaje estudiante) {
+	public int getHabilidadEspecial() {
+		return habilidadEspecial;
+	}
 
-		System.out.println("Elige tu estudiante:");
-		System.out.println("1. Dimitri, Leones Azules");
-		System.out.println("2. Edelgard, Águilas Negras");
-		System.out.println("3. Claude, Ciervos Dorados");
-		opcion = sc.nextInt();
+	public void setHabilidadEspecial(int habilidadEspecial) {
+		this.habilidadEspecial = habilidadEspecial;
+	}
+	public String getNombreBasico() {
+		return nombreBasico;
+	}
 
-		while (opcion < 1 || opcion > 3) {
-			System.out.println("Opción no válida");
-			System.out.println("Elige tu estudiante:");
-			System.out.println("1. Dimitri, Leones Azules");
-			System.out.println("2. Edelgard, Águilas Negras");
-			System.out.println("3. Claude, Ciervos Dorados");
-			opcion = sc.nextInt();
-		}
-		if (opcion == 1) {
-			System.out.println("Has elegido a Dimitri");
-			estudiante.setNombre("Dimitri");
-		}
-		if (opcion == 2) {
-			System.out.println("Has elegido a Edelgard");
-			estudiante.setNombre("Edelgard");
-		}
-		if (opcion == 3) {
-			System.out.println("Has elegido a Claude");
-			estudiante.setNombre("Claude");
+	public void setNombreBasico(String nombreBasico) {
+		this.nombreBasico = nombreBasico;
+	}
 
-		}
-		estudiante.setVida(random.nextInt(21) + 40);
-		estudiante.setVidaMax(getVida());
-		estudiante.setAtaque(random.nextInt(6) + 7);
+	public String getNombreFuerte() {
+		return nombreFuerte;
+	}
 
-		imprimirInfo();
-		Combate combate = new Combate();
-		combate.elegirEnemigos(estudiante);
-		
+	public void setNombreFuerte(String nombreFuerte) {
+		this.nombreFuerte = nombreFuerte;
+	}
 
+	public String getNombreHabilidad() {
+		return nombreHabilidad;
+	}
+
+	public void setNombreHabilidad(String nombreHabilidad) {
+		this.nombreHabilidad = nombreHabilidad;
+	}
+
+	public int getUsosEspecial() {
+		return usosEspecial;
+	}
+
+	public void setUsosEspecial(int usosEspecial) {
+		this.usosEspecial = usosEspecial;
+	}
+
+	public int getOpcion() {
+		return opcion;
+	}
+
+	public void setOpcion(int opcion) {
+		this.opcion = opcion;
+	}
+	
+	
+	
+	// OTROS MÉTODOS
+	public void recibirDanio(int danio) {
+		vida = Math.max(0, vida - danio);
+	}
+
+	public void ganarUsoEspecial() {
+		usosEspecial++;
+	}
+
+	public void gastarUsoFuerte() {
+		if (usosEspecial > 0)
+			usosEspecial--;
 	}
 
 	public void imprimirInfo() {
-		String personaje = "Estudiante: " + nombre + "\nCasa: " + casa + "\nLema: " + casa.getLema() + "\nVida: " + vida
-				+ "\nAtaque: " + ataque + "\nDefensa: " + defensa;
-
-		System.out.println(personaje);
+		String infoPersonaje = "Nombre: " + nombre + "\n" + "Vida: " + vida + "\n" + "\n"
+				+ "Ataque básico: " + ataqueBasico + "\n" + "Ataque fuerte: " + ataqueFuerte + "\n"
+				+ "Habilidad especial: " + habilidadEspecial + "\n" + "Usos especiales: " + usosEspecial;
+		System.out.println(infoPersonaje);
 		System.out.println();
+	}
+
+	public boolean estaVivo() {
+		return vida > 0;
 	}
 
 }
