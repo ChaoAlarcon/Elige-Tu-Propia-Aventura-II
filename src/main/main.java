@@ -9,7 +9,6 @@ public class main {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection connect = DriverManager
 				.getConnection("jdbc:mysql://localhost:3306/etpa2_g25v2", "root", "");
-		System.out.println("Conexión establecida");
 		Menu menu = new Menu();	
 		menu.mostrarMenu();
 	}
