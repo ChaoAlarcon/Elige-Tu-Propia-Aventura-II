@@ -36,13 +36,13 @@ public class Usuarios {
 			nuevaContrasenia = sc.nextLine();
 			System.out.println("Confirmar nueva contraseña:");
 			confirmacionNuevaContrasenia = sc.nextLine();
-			if (contrasenia.equals(confirmacionNuevaContrasenia)) {
+			if (nuevaContrasenia.equals(confirmacionNuevaContrasenia)) {
 				confirmacionContrasenia = true;
 			} else {
 				System.out.println("Las contraseñas no coinciden, intente nuevamente.");
 			}
 		}
 		conectarBDD.insertarDatos("jugador", "usuario", nuevoUsuario);
-		conectarBDD.insertarDatos("jugador", "contrasenia", nuevaContrasenia);
+		conectarBDD.insertarDatos("jugador", "contrasena", nuevaContrasenia);
 	}
 }

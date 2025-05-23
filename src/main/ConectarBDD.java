@@ -76,5 +76,19 @@ public class ConectarBDD {
 			return false;
 		}
 	}
-
+// Método para consultar la tabla de puntuaciones
+	public boolean consultarPuntuaciones() {
+	    String consultarPuntuaciones = "SELECT nombre, puntos FROM jugador ORDER BY puntuacion DESC";
+	    try (Connection conn = conectarMySQL(); 
+	         PreparedStatement stmt = conn.prepareStatement(consultarPuntuaciones);
+	         ResultSet resultData = stmt.executeQuery()) {
+	        while (resultData.next()) {
+	            System.out.println(resultData.getString(1));
+	        }
+	        return true;
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        return false;
+	    }
+	}
 }
