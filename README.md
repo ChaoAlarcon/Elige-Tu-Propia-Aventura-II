@@ -17,6 +17,8 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 - Nicolás García-Sampedro Docampo
 - Chao An Alarcón Chen
 
+![Grupo-25](Grupo25.jpg)
+
 ## Tecnologías 🛠
 - **Lenguaje:** Java  
 - **Base de datos:** MySQL 
