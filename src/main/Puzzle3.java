@@ -17,7 +17,7 @@ public class Puzzle3 {
 	public Puzzle3(Scanner sc) {
 		this.sc = sc;
 	}
-//
+
 	public boolean ejecutarPuzzle(Personaje personaje) {
 
 		System.out.println(

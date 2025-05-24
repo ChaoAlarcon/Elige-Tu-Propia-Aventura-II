@@ -11,7 +11,7 @@ public class Combate {
 	private int eleccionAtaque;
 	private int acertar;
 	private int mitadDanio;
-//
+
 	public Combate(Scanner sc, Personaje personaje, Enemigos enemigos) {
 		this.sc = sc;
 		this.personaje = personaje;

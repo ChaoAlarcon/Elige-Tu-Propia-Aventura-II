@@ -17,7 +17,7 @@ public class Puzzle5 {
 	public Puzzle5(Scanner sc) {
 		this.sc = sc;
 	}
-//
+
 	public boolean ejecutarPuzzle(Personaje personaje) {
 
 		for (int i = 0; i < 4; i++) {
