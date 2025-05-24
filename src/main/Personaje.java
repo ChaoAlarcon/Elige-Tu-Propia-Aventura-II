@@ -20,7 +20,7 @@ public class Personaje {
 	private String nombreHabilidad;
 	private int usosEspecial = 0;
 	private int opcion;
-
+//
 	ArrayList<Personaje> personajes = new ArrayList<Personaje>();
 	Personaje personaje1 = new Personaje("Ánuket", 600, "basico", 20, "fuerte", 30, "especial", 40);
 	Personaje personaje2 = new Personaje("Bastet", 600, "basico", 20, "fuerte", 30, "especial", 40);

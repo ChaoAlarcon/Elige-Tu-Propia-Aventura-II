@@ -17,7 +17,7 @@ public class Puzzle1 implements  Puzzle{
 
 	public boolean ejecutarPuzzle(Personaje personaje) {
 		
-		
+		//
 		System.out.println("Rompecabezas 2: Adivina el número (0–9).");
 		
 		while (intentos >= 0) {

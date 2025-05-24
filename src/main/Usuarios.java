@@ -28,6 +28,7 @@ public class Usuarios {
 	        }
 	    }
 	}
+	//
 	public void registrarUsuario() {
 		System.out.println("Nombre de usuario a crear:");
 		nuevoUsuario = sc.nextLine();

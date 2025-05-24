@@ -6,7 +6,7 @@ public class Enemigos {
 	private String nombre;
 	private int vida;
 	private int ataque;
-
+//
 	// CONSTRUCTORES
 	public Enemigos(String nombre, int vida, int ataque) {
 		this.nombre = nombre;

@@ -76,6 +76,7 @@ public class ConectarBDD {
 			return false;
 		}
 	}
+	//
 // Método para consultar la tabla de puntuaciones
 	public boolean consultarPuntuaciones() {
 	    String consultarPuntuaciones = "SELECT nombre, puntos FROM jugador ORDER BY puntuacion DESC";

@@ -34,7 +34,7 @@ public class Menu {
 				System.out.println("Opción no válida");
 			}
 			if (opcionMenu == 1) {
-				
+				//
 			} else if (opcionMenu == 2) {
 				ConectarBDD.consultarPuntuaciones();
 			} else if (opcionMenu == 3) {

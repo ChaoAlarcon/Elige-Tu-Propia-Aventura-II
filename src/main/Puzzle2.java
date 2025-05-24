@@ -11,7 +11,7 @@ public class Puzzle2 {
 	public Puzzle2(Scanner sc) {
 		this.sc = sc;
 	}
-
+//
 	public boolean ejecutarPuzzle(Personaje personaje) {
 		System.out.println("Rompecabezas 1: Soy eterno… ¿Qué soy?");
 		while (intentos >= 0) {
