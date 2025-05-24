@@ -1,6 +1,7 @@
 package main;
 
 public class Enemigos {
+	
 	// ATRIBUTOS
 	private String nombre;
 	private int vida;
@@ -12,6 +13,7 @@ public class Enemigos {
 		this.vida = vida;
 		this.ataque = ataque;
 	}
+	
 	// GETTERS Y SETTERS
 	public String getNombre() {
 		return nombre;

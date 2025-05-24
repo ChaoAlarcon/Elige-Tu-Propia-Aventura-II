@@ -25,6 +25,7 @@ public class Personaje {
 	Personaje personaje1 = new Personaje("Ánuket", 600, "basico", 20, "fuerte", 30, "especial", 40);
 	Personaje personaje2 = new Personaje("Bastet", 600, "basico", 20, "fuerte", 30, "especial", 40);
 	Personaje personaje3 = new Personaje("Cambises", 600, "basico", 20, "fuerte", 30, "especial", 40);
+	
 
 	// CONSTRUCTORES
 	public Personaje(String nombre, int vida, String nombreBasico, int ataqueBasico, 
@@ -41,10 +42,14 @@ public class Personaje {
 		
 
 	}
+	public Personaje() {
+	}
 
-	// OTROS MÉTODOS
-
-	public void elegirPersonaje(Personaje personajeE) {
+	// OTROS MÉTODOS	
+	public void elegirPersonaje(Personaje personaje) {
+		personajes.add(personaje1);
+		personajes.add(personaje2);
+		personajes.add(personaje3);
 
 		System.out.println("Elige a tu peronaje:");
 		System.out.println("1. Ánuket");
@@ -62,46 +67,46 @@ public class Personaje {
 		}
 		if (opcion == 1) {
 			System.out.println("Has elegido a Ánuket");
-			personajeE.setNombre(personaje1.getNombre());
-			personaje1.getVida();
-			personaje1.getNombreBasico();
-			personaje1.getNombreFuerte();
-			personaje1.getNombreHabilidad();
-			personaje1.getAtaqueBasico();
-			personaje1.getAtaqueFuerte();
-			personaje1.getHabilidadEspecial();
+			/*personajeE.setNombre(personaje1.getNombre());
+			personajeE.setVida(personaje1.getVida());
+			personajeE.setNombreBasico(personaje1.getNombreBasico());
+			personajeE.setNombreFuerte(personaje1.getNombreFuerte());
+			personajeE.setNombreHabilidad(personaje1.getNombreHabilidad());
+			personajeE.setAtaqueBasico(personaje1.getAtaqueBasico());
+			personajeE.setAtaqueFuerte(personaje1.getAtaqueFuerte());
+			personajeE.setHabilidadEspecial(personaje1.getHabilidadEspecial());*/
 		}
 		if (opcion == 2) {
 			System.out.println("Has elegido a Bastet");
-			personaje2.getNombre();
-			personaje2.getVida();
-			personaje2.getNombreBasico();
-			personaje2.getNombreFuerte();
-			personaje2.getNombreHabilidad();
-			personaje2.getAtaqueBasico();
-			personaje2.getAtaqueFuerte();
-			personaje2.getHabilidadEspecial();
+			/*personajeE.setNombre(personaje2.getNombre());
+			personajeE.setVida(personaje2.getVida());
+			personajeE.setNombreBasico(personaje2.getNombreBasico());
+			personajeE.setNombreFuerte(personaje2.getNombreFuerte());
+			personajeE.setNombreHabilidad(personaje2.getNombreHabilidad());
+			personajeE.setAtaqueBasico(personaje2.getAtaqueBasico());
+			personajeE.setAtaqueFuerte(personaje2.getAtaqueFuerte());
+			personajeE.setHabilidadEspecial(personaje2.getHabilidadEspecial());*/
 			
 		}
 		if (opcion == 3) {
 			System.out.println("Has elegido a Cambises");
-			personaje3.getNombre();
-			personaje3.getVida();
-			personaje3.getNombreBasico();
-			personaje3.getNombreFuerte();
-			personaje3.getNombreHabilidad();
-			personaje3.getAtaqueBasico();
-			personaje3.getAtaqueFuerte();
-			personaje3.getHabilidadEspecial();
+			/*personajeE.setNombre(personaje3.getNombre());
+			personajeE.setVida(personaje3.getVida());
+			personajeE.setNombreBasico(personaje3.getNombreBasico());
+			personajeE.setNombreFuerte(personaje3.getNombreFuerte());
+			personajeE.setNombreHabilidad(personaje3.getNombreHabilidad());
+			personajeE.setAtaqueBasico(personaje3.getAtaqueBasico());
+			personajeE.setAtaqueFuerte(personaje3.getAtaqueFuerte());
+			personajeE.setHabilidadEspecial(personaje3.getHabilidadEspecial());*/
 
 		}
-		personajes.getVida();
-		personajes.setVidaMax(getVida());
-
+			
+		
 		imprimirInfo();
 
 		/*
-		 * Combate combate = new Combate(); combate.elegirEnemigos(personaje);
+		 * Combate combate = new Combate(); 
+		 * combate.elegirEnemigos(personaje);
 		 */
 
 	}
@@ -215,7 +220,7 @@ public class Personaje {
 	public void imprimirInfo() {
 		String infoPersonaje = "Nombre: " + nombre + "\n" + "Vida: " + vida + "\n" + "\n"
 				+ "Ataque básico: " + ataqueBasico + "\n" + "Ataque fuerte: " + ataqueFuerte + "\n"
-				+ "Habilidad especial: " + habilidadEspecial + "\n" + "Usos especiales: " + usosEspecial;
+				+ "Habilidad especial: " + habilidadEspecial + "\n";
 		System.out.println(infoPersonaje);
 		System.out.println();
 	}
