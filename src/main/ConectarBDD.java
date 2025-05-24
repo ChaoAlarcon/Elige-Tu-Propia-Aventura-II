@@ -4,39 +4,39 @@ import java.sql.*;
 
 public class ConectarBDD {
 
-    // Librería de MySQL
-    public String driver = "com.mysql.cj.jdbc.Driver";
+	// Librería de MySQL
+	public String driver = "com.mysql.cj.jdbc.Driver";
 
-    // Nombre de la base de datos
-    public String database = "etpa2_g25v2";
+	// Nombre de la base de datos
+	public String database = "etpa2_g25v2";
 
-    // Host
-    public String hostname = "localhost";
+	// Host
+	public String hostname = "localhost";
 
-    // Puerto
-    public String port = "3306";
+	// Puerto
+	public String port = "3306";
 
-    // Ruta de nuestra base de datos
-    public String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
+	// Ruta de nuestra base de datos
+	public String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database;
 
-    // Nombre de usuario
-    public String username = "root";
+	// Nombre de usuario
+	public String username = "root";
 
-    // Clave de usuario
-    public String password = "";
+	// Clave de usuario
+	public String password = "";
 
-    public Connection conectarMySQL() {
-        Connection conn = null;
+	public Connection conectarMySQL() {
+		Connection conn = null;
 
-        try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-        }
+		try {
+			Class.forName(driver);
+			conn = DriverManager.getConnection(url, username, password);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
 
-        return conn;
-    }
+		return conn;
+	}
 
 // Método para insertar datos
 	public boolean insertarDatos(String tabla, String columnas, String valores) {
@@ -61,14 +61,18 @@ public class ConectarBDD {
 			return false;
 		}
 	}
-	
+
 // Método para consultar datos
 	public boolean consultarDatos(String tabla, String columnas, String condicion) {
 		String query = "SELECT " + columnas + " FROM " + tabla + " WHERE " + condicion;
 		try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
 			ResultSet resultado = stmt.executeQuery();
+			ResultSetMetaData metaData = resultado.getMetaData();
+			int numColumnas = metaData.getColumnCount();
 			while (resultado.next()) {
-				System.out.println(resultado.getString(1));
+				for (int i = 1; i <= numColumnas; i++) {
+					System.out.print(resultado.getString(i) + "\n");
+				}
 			}
 			return true;
 		} catch (SQLException e) {
@@ -76,20 +80,20 @@ public class ConectarBDD {
 			return false;
 		}
 	}
-	
+
 // Método para consultar la tabla de puntuaciones
 	public boolean consultarPuntuaciones() {
-	    String consultarPuntuaciones = "SELECT nombre, puntos FROM jugador ORDER BY puntuacion DESC";
-	    try (Connection conn = conectarMySQL(); 
-	         PreparedStatement stmt = conn.prepareStatement(consultarPuntuaciones);
-	         ResultSet resultData = stmt.executeQuery()) {
-	        while (resultData.next()) {
-	            System.out.println(resultData.getString(1));
-	        }
-	        return true;
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	        return false;
-	    }
+		String consultarPuntuaciones = "SELECT usuario, puntuacion FROM jugador ORDER BY puntuacion DESC";
+		try (Connection conn = conectarMySQL();
+				PreparedStatement stmt = conn.prepareStatement(consultarPuntuaciones);
+				ResultSet resultData = stmt.executeQuery()) {
+			while (resultData.next()) {
+				System.out.println(resultData.getString(1)+ " - " + resultData.getInt(2) + " puntos\n");
+			}
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
