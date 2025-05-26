@@ -1,0 +1,5 @@
+Memoria ETPA ahora es personal
+
+1º cogimos el código del anterior ETPA y lo modificamos para pasarlo a clases
+2º Hicimos el diagrama de flujo para saber como íbamos a ordenar los eventos del juego
+3º Creamos la BDD
