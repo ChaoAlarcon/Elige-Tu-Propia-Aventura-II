@@ -24,3 +24,6 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 - **Base de datos:** MySQL 
 - **Herramientas:** Visual Studio Code - Eclipse
 
+## Notas 📝
+- NO TOCAR EL ARCHIVO "classpath"
+
