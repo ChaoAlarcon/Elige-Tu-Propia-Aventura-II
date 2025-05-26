@@ -67,13 +67,13 @@ public class ConectarBDD {
 		String query = "SELECT " + columnas + " FROM " + tabla + " WHERE " + condicion;
 		try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
 			ResultSet resultado = stmt.executeQuery();
-			ResultSetMetaData metaData = resultado.getMetaData();
+			/*ResultSetMetaData metaData = resultado.getMetaData();
 			int numColumnas = metaData.getColumnCount();
 			while (resultado.next()) {
 				for (int i = 1; i <= numColumnas; i++) {
 					System.out.print(resultado.getString(i) + "\n");
 				}
-			}
+			}*/
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
