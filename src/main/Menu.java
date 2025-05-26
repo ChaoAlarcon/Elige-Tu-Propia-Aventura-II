@@ -13,6 +13,7 @@ public class Menu {
 	public void mostrarMenu() {
 	while (juegoIniciado) {
 		while (!sesionIniciada) {
+			opcionUsuario = 0;
 			while (opcionUsuario > 2 || opcionUsuario < 1) {
 				System.out.println("1.Iniciar sesión");
 				System.out.println("2.Registrarse");
@@ -29,10 +30,11 @@ public class Menu {
 				sesionIniciada = true;
 			}
 		}
+		opcionMenu = 0;
 		while (opcionMenu > 4 || opcionMenu < 1) {
 			System.out.println("¿Que quieres hacer?");
 			System.out.println("1. Jugar");
-			System.out.println("2.Mostrar puntuaciones");
+			System.out.println("2. Mostrar puntuaciones");
 			System.out.println("3. Cambiar de usuario");
 			System.out.println("4. Salir");
 			opcionMenu = sc.nextInt();

@@ -2,8 +2,7 @@ package main;
 
 import java.sql.*;
 
-public class ConectarBDD {
-
+public class ConectarBDD{
 	// Librería de MySQL
 	public String driver = "com.mysql.cj.jdbc.Driver";
 
@@ -67,19 +66,35 @@ public class ConectarBDD {
 		String query = "SELECT " + columnas + " FROM " + tabla + " WHERE " + condicion;
 		try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
 			ResultSet resultado = stmt.executeQuery();
-			/*ResultSetMetaData metaData = resultado.getMetaData();
+			ResultSetMetaData metaData = resultado.getMetaData();
 			int numColumnas = metaData.getColumnCount();
 			while (resultado.next()) {
 				for (int i = 1; i <= numColumnas; i++) {
 					System.out.print(resultado.getString(i) + "\n");
 				}
-			}*/
+			}
 			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
+	
+// Método para iniciar sesión
+	public boolean iniciarSesionBDD(String condicion) {
+		String query = "SELECT * FROM jugador WHERE " + condicion;
+	    try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+	        ResultSet resultado = stmt.executeQuery();
+	        if (resultado.next()) {
+	            return true;
+	        } else {
+	        	return false;
+	        }
+	    } catch (SQLException e) {
+	    	return false;
+	    }
+	}
+
 
 // Método para consultar la tabla de puntuaciones
 	public boolean consultarPuntuaciones() {

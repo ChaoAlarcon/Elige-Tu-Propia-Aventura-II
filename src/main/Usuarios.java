@@ -23,12 +23,11 @@ public class Usuarios {
 			usuario = sc.nextLine();
 			System.out.println("Contraseña:");
 			contrasenia = sc.nextLine();
-			if (conectarBDD.consultarDatos("jugador", "usuario", "'" + usuario + "'")
-					&& conectarBDD.consultarDatos("jugador", "contrasena", "'" + contrasenia + "'")) {
+			if (conectarBDD.iniciarSesionBDD("usuario = '" + usuario + "' AND contrasena = '" + contrasenia + "'") == true) {
 				System.out.println("Bienvenido " + usuario);
 				inicioExitoso = true;
 			} else {
-				System.out.println("Usuario o contraseña incorrectos. Inténtalo de nuevo.");
+				System.out.println("Usuario o contraseña incorrectos, inténtalo de nuevo");
 			}
 		}
 	}
