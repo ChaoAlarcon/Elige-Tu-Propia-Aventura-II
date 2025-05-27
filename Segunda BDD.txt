@@ -82,8 +82,6 @@ CREATE TABLE Puzzles (
 CREATE TABLE Batallas (
     id_batallas INT AUTO_INCREMENT PRIMARY KEY,
     nombreBatalla VARCHAR(100),
-    escenario VARCHAR(100),
-    enemigo VARCHAR(100),
     id_enemigos INT,
     FOREIGN KEY (id_enemigos) REFERENCES Enemigos(id_enemigos)
 );
