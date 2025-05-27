@@ -11,7 +11,7 @@ public class BuscaTesoroPerdidoOrigins {
 		Random random = new Random ();
 			
 		//VARIABLES
-		
+		//nico me maltrata
 		//Inicio
 				
 		String contraseña;
