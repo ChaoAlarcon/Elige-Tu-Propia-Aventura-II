@@ -31,7 +31,7 @@ public class ConectarBDD{
 			Class.forName(driver);
 			conn = DriverManager.getConnection(url, username, password);
 		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+			System.out.println("Ha ocurrido un error al intentar conectar a la base de datos");
 		}
 
 		return conn;
@@ -44,7 +44,7 @@ public class ConectarBDD{
 			stmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Ha ocurrido un error al intentar insertar datos en la base de datos");
 			return false;
 		}
 	}
@@ -56,7 +56,7 @@ public class ConectarBDD{
 			stmt.executeUpdate();
 			return true;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Ha ocurrido un error al intentar actualizar datos en la base de datos");
 			return false;
 		}
 	}
@@ -107,7 +107,7 @@ public class ConectarBDD{
 			}
 			return true;
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Ha ocurrido un error al intentar consultar las puntuaciones");
 			return false;
 		}
 	}
