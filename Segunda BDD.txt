@@ -1,0 +1,124 @@
+//Segunda BDD\\
+-- Tabla: Jugador
+CREATE TABLE Jugador (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombreJugador VARCHAR(100),
+    contrasena VARCHAR(100),
+    puntos INT
+);
+-- Tabla: Personajes
+CREATE TABLE Personajes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombrePersonaje VARCHAR(100),
+    vida INT,
+    id_ataques INT,
+    final_1 TEXT,
+    final_2 TEXT,
+    final_3 TEXT,
+    final_4 TEXT,
+    final_5 TEXT,
+    FOREIGN KEY (id_ataques) REFERENCES Ataques(id_ataques)
+);
+-- Tabla: Enemigos
+CREATE TABLE Enemigos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombreEnemigo VARCHAR(100),
+    especie VARCHAR(100),
+    vida INT,
+    id_ataques INT,
+    FOREIGN KEY (id_ataques) REFERENCES Ataques(id_ataques)
+);
+
+-- Tabla: NPC
+CREATE TABLE NPC (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombreNPC VARCHAR(100),
+    especie VARCHAR(100),
+    frase_1 TEXT,
+    frase_2 TEXT,
+    frase_3 TEXT,
+    ayuda INT
+);
+
+-- Tabla: Ataques
+CREATE TABLE Ataques (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombreBasico VARCHAR(100),
+    danoBasico INT,
+    descripcionBasico TEXT,
+    nombreFuerte VARCHAR(100),
+    danoFuerte INT,
+    descripcionFuerte TEXT,
+    nombreHabilidad VARCHAR(100),
+    datosHabilidad INT,
+    descripcionHabilidad TEXT
+);
+
+-- Tabla: Puzzles
+CREATE TABLE Puzzles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombrePuzzle VARCHAR(100),
+    descripcion TEXT,
+    puntos INT
+);
+
+-- Tabla: Escenarios
+CREATE TABLE Escenarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombreEscenario VARCHAR(100),
+    nombreBatalla VARCHAR(100),
+    id_batallas INT,
+    nombrePuzzle VARCHAR(100),
+    id_puzzles INT,
+    terreno VARCHAR(100),
+    id_terrenos INT,
+    clima VARCHAR(100),
+    id_climas INT,
+    horaDelDia VARCHAR(100),
+    id_horasdeldia,
+    FOREIGN KEY (id_batallas) REFERENCES Batallas(id_batallas),
+    FOREIGN KEY (id_puzzles) REFERENCES Puzzles(id_puzzles),
+    FOREIGN KEY (id_terrenos) REFERENCES Terrenos(id_terrenos),
+    FOREIGN KEY (id_climas) REFERENCES Climas(id_climas),
+    FOREIGN KEY (id_horadeldia) REFERENCES HoraDelDia(id_horadedia)
+);
+
+-- Tabla: Batallas
+CREATE TABLE Batallas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombreBatalla VARCHAR(100),
+    escenario VARCHAR(100),
+    enemigo VARCHAR(100)
+    id_enemigos,
+    FOREIGN KEY (id_enemeigos) REFERENCES Enemigos(id_enemigos)
+);
+
+-- Tabla: Terrenos
+CREATE TABLE Terrenos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombreTerreno VARCHAR(100),
+    buff INT,
+    descripcionBuff TEXT,
+    penalizacion INT,
+    descripcionPenalizacion TEXT
+);
+
+-- Tabla: Climas
+CREATE TABLE Climas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombreClima VARCHAR(100),
+    buff INT,
+    descripcionBuff TEXT,
+    penalizacion INT,
+    descripcionPenalizacion TEXT
+);
+
+-- Tabla: HorasDelDia
+CREATE TABLE HorasDelDia (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombreHora VARCHAR(50),
+    buff INT,
+    descripcionBuff TEXT,
+    penalizacion INT,
+    descripcionPenalizacion TEXT
+);
