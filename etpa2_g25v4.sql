@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-05-2025 a las 10:02:21
+-- Tiempo de generación: 28-05-2025 a las 10:45:43
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -40,6 +40,15 @@ CREATE TABLE `ataques` (
   `descripcionHabilidad` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `ataques`
+--
+
+INSERT INTO `ataques` (`id_ataques`, `nombreBasico`, `danoBasico`, `descripcionBasico`, `nombreFuerte`, `danoFuerte`, `descripcionFuerte`, `nombreHabilidad`, `datosHabilidad`, `descripcionHabilidad`) VALUES
+(1, 'Cetro', 30, 'Bonk', 'Invocación de bestias', 130, 'Ánuket invoca dos hellhounds que muerden al enemigo', 'Aegis etéreo', 20, 'Invoca un escudo alrededor de Ánuket'),
+(2, 'Dagas', 30, 'Bastet lanza afiladas dagas contra su enemigo', 'Flor fatal', 140, 'Bastet lanza dagas impregnadas en veneno', 'Alma voraz', 40, 'Bastet lanza un hechizo que restaura algo de salud'),
+(3, 'Espada', 40, 'Slash', 'Doble espada', 120, 'Slash x2', 'Señal de Rhyon', 30, 'Gerald recibe un aumento de daño');
+
 -- --------------------------------------------------------
 
 --
@@ -59,6 +68,19 @@ CREATE TABLE `ataques_enemigos` (
   `descripcionHabilidad` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `ataques_enemigos`
+--
+
+INSERT INTO `ataques_enemigos` (`id_ataques_enemigos`, `nombreBasico`, `danoBasico`, `descripcionBasico`, `nombreFuerte`, `danoFuerte`, `descripcionFuerte`, `nombreHabilidad`, `datosHabilidad`, `descripcionHabilidad`) VALUES
+(1, 'Básico', 20, 'dano', 'Fuerte', 40, 'dano', 'Bonk', 60, 'dano'),
+(2, 'Básico', 30, 'dano', 'Fuerte', 60, 'dano', 'Cambio x1', 1, 'Cambia terreno'),
+(3, 'Básico', 30, 'dano', 'Fuerte', 60, 'dano', 'Cambio x1', 1, 'Cambia terreno'),
+(4, 'Básico', 40, 'dano', 'Fuerte', 80, 'dano', 'Cambio x1', 1, 'Cambia terreno'),
+(5, 'Básico', 50, 'dano', 'Fuerte', 100, 'dano', 'Cambio x2', 2, 'Cambia terreno y clima'),
+(6, 'Básico', 50, 'dano', 'Fuerte', 100, 'dano', 'Cambio x2', 2, 'Cambia terreno y clima'),
+(7, 'Básico', 70, 'dano', 'Fuerte', 140, 'dano', 'Cambio x3', 3, 'Cambia terreno clima y hora');
+
 -- --------------------------------------------------------
 
 --
@@ -68,10 +90,21 @@ CREATE TABLE `ataques_enemigos` (
 CREATE TABLE `batallas` (
   `id_batallas` int(11) NOT NULL,
   `nombreBatalla` varchar(100) DEFAULT NULL,
-  `escenario` varchar(100) DEFAULT NULL,
-  `enemigo` varchar(100) DEFAULT NULL,
   `id_enemigos` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `batallas`
+--
+
+INSERT INTO `batallas` (`id_batallas`, `nombreBatalla`, `id_enemigos`) VALUES
+(1, 'Batalla 1', 1),
+(2, 'Batalla 2', 2),
+(3, 'Batalla 3', 3),
+(4, 'Batalla 4', 4),
+(5, 'Batalla 5', 5),
+(6, 'Batalla 6', 6),
+(7, 'Batalla Final', 7);
 
 -- --------------------------------------------------------
 
@@ -88,6 +121,18 @@ CREATE TABLE `climas` (
   `descripcionPenalizacion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `climas`
+--
+
+INSERT INTO `climas` (`id_climas`, `nombreClima`, `buff`, `descripcionBuff`, `penalizacion`, `descripcionPenalizacion`) VALUES
+(1, 'Nublado', 10, '+defensa', 0, NULL),
+(2, 'Despejado', 20, '+defensa', 0, NULL),
+(3, 'Calor extremo', 0, NULL, 30, '-defensa'),
+(4, 'Frío extremo', 0, NULL, 20, '-defensa'),
+(5, 'Tormenta de arena', 0, NULL, 25, '-defensa'),
+(6, 'i0_io_0rr0r', 0, 'class~#descriptionBuff:notfound', 0, 'class~#descriptionDeBuff:notfound');
+
 -- --------------------------------------------------------
 
 --
@@ -102,6 +147,19 @@ CREATE TABLE `enemigos` (
   `id_ataques_enemigos` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `enemigos`
+--
+
+INSERT INTO `enemigos` (`id_enemigos`, `nombreEnemigo`, `especie`, `vida`, `id_ataques_enemigos`) VALUES
+(1, 'Uno', 'Uno', 200, 1),
+(2, 'Dos', 'Dos', 300, 2),
+(3, 'Tres', 'Tres', 500, 3),
+(4, 'Cuatro', 'Cuatro', 700, 4),
+(5, 'Cinco', 'Cinco', 1000, 5),
+(6, 'Seis', 'Seis', 1500, 6),
+(7, 'Taharka', 'Siete', 2000, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -111,18 +169,29 @@ CREATE TABLE `enemigos` (
 CREATE TABLE `escenarios` (
   `id_escenarios` int(11) NOT NULL,
   `nombreEscenario` varchar(100) DEFAULT NULL,
-  `nombreBatalla` varchar(100) DEFAULT NULL,
   `id_batallas` int(11) DEFAULT NULL,
-  `nombrePuzzle` varchar(100) DEFAULT NULL,
   `id_puzzles` int(11) DEFAULT NULL,
-  `terreno` varchar(100) DEFAULT NULL,
   `id_terrenos` int(11) DEFAULT NULL,
-  `clima` varchar(100) DEFAULT NULL,
   `id_climas` int(11) DEFAULT NULL,
-  `hora_del_dia` varchar(100) DEFAULT NULL,
   `id_horas_del_dia` int(11) DEFAULT NULL,
   `id_npc` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `escenarios`
+--
+
+INSERT INTO `escenarios` (`id_escenarios`, `nombreEscenario`, `id_batallas`, `id_puzzles`, `id_terrenos`, `id_climas`, `id_horas_del_dia`, `id_npc`) VALUES
+(1, 'Escenario 1', 1, NULL, 6, 6, 5, 1),
+(2, 'Escenario 2', 2, 1, 6, 6, 5, 1),
+(3, 'Escenario 3', NULL, 2, 6, 6, 5, 1),
+(4, 'Escenario 4', 3, NULL, 6, 6, 5, 1),
+(5, 'Escenario 5', 4, 3, 6, 6, 5, 1),
+(6, 'Escenario 6', NULL, 4, 6, 6, 5, 2),
+(7, 'Escenario 7', 5, NULL, 6, 6, 5, 1),
+(8, 'Escenario 8', 6, NULL, 6, 6, 5, 1),
+(9, 'Escenario 9', NULL, 5, 6, 6, 5, 3),
+(10, 'Escenario 10', 7, NULL, 6, 6, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -138,6 +207,17 @@ CREATE TABLE `horas_del_dia` (
   `penalizacion` int(11) DEFAULT NULL,
   `descripcionPenalizacion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `horas_del_dia`
+--
+
+INSERT INTO `horas_del_dia` (`id_horas_del_dia`, `nombreHora`, `buff`, `descripcionBuff`, `penalizacion`, `descripcionPenalizacion`) VALUES
+(1, 'Mañana', 20, '+ataque', 0, NULL),
+(2, 'Mediodía', 10, '+ataque', 0, NULL),
+(3, 'Tarde', 0, NULL, 5, '-ataque'),
+(4, 'Noche', 0, NULL, 10, '-ataque'),
+(5, 'crypt_id404', 0, 'class~#descriptionBuff:notfound', 0, 'class~#descriptionDeBuff:notfound');
 
 -- --------------------------------------------------------
 
@@ -170,6 +250,15 @@ CREATE TABLE `npc` (
   `ayuda_3` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `npc`
+--
+
+INSERT INTO `npc` (`id_npc`, `nombreNPC`, `especie`, `frase_1`, `frase_2`, `frase_3`, `ayuda_1`, `ayuda_2`, `ayuda_3`) VALUES
+(1, 'Compa', 'Humano', 'frase1_dano', 'frase2_dano', 'frase3_dano', 35, 75, 150),
+(2, 'Randi', 'Desconocida', 'frase1_vidaMax', 'frase2_vidaMax', 'frase3_vidaMax', 100, 150, 200),
+(3, 'Ammet', 'Dios', 'frase1_-vida', 'frase2_+def', 'frase3_+dano', 9999, 50, 9999);
+
 -- --------------------------------------------------------
 
 --
@@ -188,6 +277,15 @@ CREATE TABLE `personajes` (
   `id_ataques` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `personajes`
+--
+
+INSERT INTO `personajes` (`id_personajes`, `nombrePersonaje`, `vida`, `final_1`, `final_2`, `final_3`, `final_4`, `final_5`, `id_ataques`) VALUES
+(1, 'Ánuket', 650, 'texto final...', 'texto final...', 'texto final...', 'texto final...', 'texto final...', 1),
+(2, 'Bastet', 700, 'texto final...', 'texto final...', 'texto final...', 'texto final...', 'texto final...', 2),
+(3, 'Gerald', 600, 'texto final...', 'texto final...', 'texto final...', 'texto final...', 'texto final...', 3);
+
 -- --------------------------------------------------------
 
 --
@@ -200,6 +298,17 @@ CREATE TABLE `puzzles` (
   `descripcion` text DEFAULT NULL,
   `puntos` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `puzzles`
+--
+
+INSERT INTO `puzzles` (`id_puzzles`, `nombrePuzzle`, `descripcion`, `puntos`) VALUES
+(1, 'Puzzle1', 'Adivina el número', 10),
+(2, 'Puzzle2', 'Acertijo Esfinge', 10),
+(3, 'Puzzle3', 'Ahorcado', 10),
+(4, 'Puzzle4', 'Piedra papel o tijeras', 10),
+(5, 'Puzzle5', 'Trivial Egipto', 10);
 
 -- --------------------------------------------------------
 
@@ -215,6 +324,18 @@ CREATE TABLE `terrenos` (
   `penalizacion` int(11) DEFAULT NULL,
   `descripcionPenalizacion` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `terrenos`
+--
+
+INSERT INTO `terrenos` (`id_terrenos`, `nombreTerreno`, `buff`, `descripcionBuff`, `penalizacion`, `descripcionPenalizacion`) VALUES
+(1, 'Suelo de hierbas raras y brillantes', 5, '+vida', 0, NULL),
+(2, 'Suelo pixelado (rollo glitch digital)', 20, '+vida', 0, NULL),
+(3, 'Suelo mágico', 10, '+vida', 10, '-vida'),
+(4, 'Suelo de hielo', 0, NULL, 5, '-vida'),
+(5, 'Suelo de magma', 0, NULL, 15, '-vida'),
+(6, 'VOID999x_dump', 0, 'class~#descriptionBuff:notfound', 0, 'class~#descriptionDeBuff:notfound');
 
 --
 -- Índices para tablas volcadas
@@ -309,43 +430,43 @@ ALTER TABLE `terrenos`
 -- AUTO_INCREMENT de la tabla `ataques`
 --
 ALTER TABLE `ataques`
-  MODIFY `id_ataques` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ataques` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `ataques_enemigos`
 --
 ALTER TABLE `ataques_enemigos`
-  MODIFY `id_ataques_enemigos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ataques_enemigos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `batallas`
 --
 ALTER TABLE `batallas`
-  MODIFY `id_batallas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_batallas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `climas`
 --
 ALTER TABLE `climas`
-  MODIFY `id_climas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_climas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `enemigos`
 --
 ALTER TABLE `enemigos`
-  MODIFY `id_enemigos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_enemigos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `escenarios`
 --
 ALTER TABLE `escenarios`
-  MODIFY `id_escenarios` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_escenarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `horas_del_dia`
 --
 ALTER TABLE `horas_del_dia`
-  MODIFY `id_horas_del_dia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_horas_del_dia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `jugador`
@@ -357,25 +478,25 @@ ALTER TABLE `jugador`
 -- AUTO_INCREMENT de la tabla `npc`
 --
 ALTER TABLE `npc`
-  MODIFY `id_npc` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_npc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `personajes`
 --
 ALTER TABLE `personajes`
-  MODIFY `id_personajes` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_personajes` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `puzzles`
 --
 ALTER TABLE `puzzles`
-  MODIFY `id_puzzles` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_puzzles` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `terrenos`
 --
 ALTER TABLE `terrenos`
-  MODIFY `id_terrenos` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_terrenos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Restricciones para tablas volcadas
