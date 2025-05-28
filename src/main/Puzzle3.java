@@ -18,7 +18,7 @@ public class Puzzle3 {
 		this.sc = sc;
 	}
 
-	public boolean ejecutarPuzzle(Personaje personaje) {
+	public boolean ejecutarPuzzle(PersonajeOld personaje) {
 
 		System.out.println(
 				"Pasáis a la siguiente cámara, donde os encontráis con Imhotep, sabio sacerdote del Antigüo Egipto, guardián de las almas.");

@@ -15,7 +15,7 @@ public class Puzzle1 implements  Puzzle{
 		this.sc = sc;
 	}
 
-	public boolean ejecutarPuzzle(Personaje personaje) {
+	public boolean ejecutarPuzzle(PersonajeOld personaje) {
 		
 		System.out.println("Rompecabezas 2: Adivina el número (0–9).");
 		

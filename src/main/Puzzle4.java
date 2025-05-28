@@ -18,7 +18,7 @@ public class Puzzle4 {
 		this.sc = sc;
 	}
 
-	public boolean ejecutarPuzzle(Personaje personaje) {
+	public boolean ejecutarPuzzle(PersonajeOld personaje) {
 		
 		System.out.println("Rompecabezas 3: Piedra, Papel o Tijera (al mejor de 3).");
 

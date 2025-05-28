@@ -1,6 +1,6 @@
 package main;
 
 public interface Puzzle {
-	boolean ejecutarPuzzle(Personaje personaje);
+	boolean ejecutarPuzzle(PersonajeOld personaje);
 
 }

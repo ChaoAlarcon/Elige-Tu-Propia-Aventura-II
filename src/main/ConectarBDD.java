@@ -7,7 +7,7 @@ public class ConectarBDD{
 	public String driver = "com.mysql.cj.jdbc.Driver";
 
 	// Nombre de la base de datos
-	public String database = "etpa2_g25v2";
+	public String database = "etpa2_g25v4";
 
 	// Host
 	public String hostname = "localhost";
@@ -79,7 +79,39 @@ public class ConectarBDD{
 			return false;
 		}
 	}
-	
+
+// Método para consultar datos int
+public int consultarDatosint(String columnas, String tabla, String condicion) {
+    int resultado = 0;
+    String query = "SELECT " + columnas + " FROM " + tabla + " WHERE " + condicion;
+	try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+		ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            resultado = rs.getInt(columnas);
+        }
+    } catch (SQLException e) {
+		System.out.println("Ha ocurrido un error al intentar usar la base de datos");
+		resultado = -1; // Retorna -1 en caso de error
+    }
+    return resultado;
+}
+
+//Método para consultar datos String
+public String consultarDatosString(String columnas, String tabla, String condicion) {
+ String resultado = null;
+ String query = "SELECT " + columnas + " FROM " + tabla + " WHERE " + condicion;
+ try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+     ResultSet rs = stmt.executeQuery();
+     if (rs.next()) {
+         resultado = rs.getString(columnas);
+     }
+ } catch (SQLException e) {
+     System.out.println("Ha ocurrido un error al intentar usar la base de datos");
+     resultado = null; // Retorna null en caso de error
+ }
+ return resultado;
+}
+
 // Método para iniciar sesión
 	public boolean iniciarSesionBDD(String condicion) {
 		String query = "SELECT * FROM jugador WHERE " + condicion;

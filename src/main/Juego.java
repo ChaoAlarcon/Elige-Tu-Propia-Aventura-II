@@ -2,7 +2,7 @@ package main;
 
 public class Juego {
 	public void elegirPersonaje() {
-		Personaje personaje = new Personaje();
-		personaje.elegirPersonaje(personaje);
+		Personajes personaje = new Personajes();
+		personaje.ElegirPersonaje();
 	}
 }

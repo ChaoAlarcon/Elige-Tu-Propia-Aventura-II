@@ -18,7 +18,7 @@ public class Puzzle5 {
 		this.sc = sc;
 	}
 
-	public boolean ejecutarPuzzle(Personaje personaje) {
+	public boolean ejecutarPuzzle(PersonajeOld personaje) {
 
 		for (int i = 0; i < 4; i++) {
 			System.out.println("Pregunta " + (i + 1) + ": " + preguntas[i]);

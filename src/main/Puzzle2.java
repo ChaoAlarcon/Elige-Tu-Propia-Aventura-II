@@ -12,7 +12,7 @@ public class Puzzle2 {
 		this.sc = sc;
 	}
 
-	public boolean ejecutarPuzzle(Personaje personaje) {
+	public boolean ejecutarPuzzle(PersonajeOld personaje) {
 		System.out.println("Rompecabezas 1: Soy eterno… ¿Qué soy?");
 		while (intentos >= 0) {
 			respuesta = sc.nextLine();

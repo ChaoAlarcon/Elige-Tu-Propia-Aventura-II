@@ -10,6 +10,7 @@ public class Menu {
 	private boolean sesionIniciada = false;
 	ConectarBDD ConectarBDD = new ConectarBDD();
 	Usuarios Usuarios = new Usuarios();
+	Juego Juego = new Juego();
 	public void mostrarMenu() {
 	while (juegoIniciado) {
 		while (!sesionIniciada) {
@@ -42,7 +43,7 @@ public class Menu {
 				System.out.println("Opción no válida");
 			}
 			if (opcionMenu == 1) {
-				
+				Juego.elegirPersonaje();
 			} else if (opcionMenu == 2) {
 				ConectarBDD.consultarPuntuaciones();
 			} else if (opcionMenu == 3) {
