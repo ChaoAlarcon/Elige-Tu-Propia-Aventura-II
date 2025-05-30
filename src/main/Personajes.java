@@ -26,10 +26,10 @@ public class Personajes {
 	private String final3;
 	private String final4;
 	private String final5;
-	
+	private int ataqueEspecial = 0;
 	public Personajes(String nombrePersonaje, int vida, String nombreBasico, int danoBasico, String descripcionBasico,
 			String nombreFuerte, int danoFuerte, String descripcionFuerte, String nombreHabilidad, int datosHabilidad,
-			String descripcionHabilidad, String final1, String final2, String final3, String final4, String final5) {
+			String descripcionHabilidad, String final1, String final2, String final3, String final4, String final5, int ataqueEspecial) {
 		this.nombrePersonaje = nombrePersonaje;
 		this.vida = vida;
 		this.nombreBasico = nombreBasico;
@@ -46,6 +46,7 @@ public class Personajes {
 		this.final3 = final3;
 		this.final4 = final4;
 		this.final5 = final5;
+		this.ataqueEspecial = ataqueEspecial;
 	}
 	
 	public Personajes() {
@@ -181,6 +182,13 @@ public class Personajes {
 		this.final5 = final5;
 	}
 
+	public int getAtaqueEspecial() {
+		return ataqueEspecial;
+	}
+
+	public void setAtaqueEspecial(int ataqueEspecial) {
+		this.ataqueEspecial = ataqueEspecial;
+	}
 
 	public void ElegirPersonaje() {
 	    opcionPersonaje = 0;
