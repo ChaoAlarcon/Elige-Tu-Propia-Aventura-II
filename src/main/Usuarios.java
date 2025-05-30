@@ -23,7 +23,7 @@ public class Usuarios {
 			usuario = sc.nextLine();
 			System.out.println("Contraseña:");
 			contrasenia = sc.nextLine();
-			if (conectarBDD.iniciarSesionBDD("usuario = '" + usuario + "' AND contrasena = '" + contrasenia + "'") == true) {
+			if (conectarBDD.iniciarSesionBDD("nombreJugador = '" + usuario + "' AND contrasena = '" + contrasenia + "'") == true) {
 				System.out.println("Bienvenido " + usuario);
 				inicioExitoso = true;
 			} else {
@@ -47,6 +47,6 @@ public class Usuarios {
 			}
 		}
 		usuarioCompleto = "'" + nuevoUsuario + "','" + nuevaContrasenia + "'";
-		conectarBDD.insertarDatos("jugador", "usuario, contrasena", usuarioCompleto);
+		conectarBDD.insertarDatos("jugador", "nombreJugador, contrasena", usuarioCompleto);
 	}
 }

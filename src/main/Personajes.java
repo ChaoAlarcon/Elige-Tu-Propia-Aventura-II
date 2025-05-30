@@ -201,8 +201,8 @@ public class Personajes {
 				System.out.println("Estas seguro de que quieres jugar con Ánuket? (S para confirmar/ Cualquier otra tecla para cancelar)");
 				confirmacionSeleccionPersonaje = sc.nextLine();
 				if (confirmacionSeleccionPersonaje.equalsIgnoreCase("S")) {
-					System.out.println("¡Has elegido a Ánuket!");
-					nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 1");
+			    	nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 1");
+			        System.out.println("¡Has elegido a" + nombrePersonaje + "!");
 					vida = ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 1");
 					nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_personajes = 1");
 					danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_personajes = 1");
@@ -232,8 +232,8 @@ public class Personajes {
 			    System.out.println("Estas seguro de que quieres jugar con Bastet? (S para confirmar/ Cualquier otra tecla para cancelar)");
 			    confirmacionSeleccionPersonaje = sc.nextLine();
 			    if (confirmacionSeleccionPersonaje.equalsIgnoreCase("S")) {
-			        System.out.println("¡Has elegido a Bastet!");
-			        nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 2");
+			    	nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 2");
+			        System.out.println("¡Has elegido a" + nombrePersonaje + "!");
 			        vida = ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 2");
 			        nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_personajes = 2");
 			        danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_personajes = 2");
@@ -263,8 +263,8 @@ public class Personajes {
 			    System.out.println("Estas seguro de que quieres jugar con Gereald? (S para confirmar/ Cualquier otra tecla para cancelar)");
 			    confirmacionSeleccionPersonaje = sc.nextLine();
 			    if (confirmacionSeleccionPersonaje.equalsIgnoreCase("S")) {
-			        System.out.println("¡Has elegido a Gereald!");
-			        nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 3");
+			    	nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 3");
+			        System.out.println("¡Has elegido a" + nombrePersonaje + "!");
 			        vida = ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 3");
 			        nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_personajes = 3");
 			        danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_personajes = 3");
@@ -284,7 +284,6 @@ public class Personajes {
 			        opcionPersonaje = 0;
 			    }
 			}
-
 		}
 	}
 }
