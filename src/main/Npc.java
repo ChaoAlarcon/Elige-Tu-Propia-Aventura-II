@@ -3,7 +3,7 @@ package main;
 import java.sql.*;
 import main.ConectarBDD;
 
-public class npc {
+public class Npc {
     private String companero;
     private String npcRandom;
     private String npcDios;
@@ -28,10 +28,8 @@ public class npc {
     private int ayuda1_npcDios;
     private int ayuda2_npcDios;
     private int ayuda3_npcDios;
-
     ConectarBDD conectarBDD = new ConectarBDD();
-
-    public npc() {
+    public Npc() {
         this.companero = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 1");
         this.npcRandom = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 2");
         this.npcDios = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 3");
@@ -249,6 +247,9 @@ public class npc {
 	public void setAyuda3_npcDios(int ayuda3_npcDios) {
 		this.ayuda3_npcDios = ayuda3_npcDios;
 	}
-    
+	
+    public void presentacionCompanero() {
+    	System.out.println("Te acompañará " + companero + ", el cual te podrá ayudar en los combates.");
+    }
     
 }

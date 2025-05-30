@@ -1,8 +1,11 @@
 package main;
-
+import java.sql.*;
+import main.ConectarBDD;
 public class Juego {
-	public void elegirPersonaje() {
-		Personajes personaje = new Personajes();
+	Personajes personaje = new Personajes();
+	ConectarBDD conectarBDD = new ConectarBDD();
+	Npc npc = new Npc();
+	public void juego() {
 		personaje.ElegirPersonaje();
 	}
 }

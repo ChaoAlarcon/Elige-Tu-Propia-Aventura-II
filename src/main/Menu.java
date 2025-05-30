@@ -33,7 +33,7 @@ public class Menu {
 		}
 		opcionMenu = 0;
 		while (opcionMenu > 4 || opcionMenu < 1) {
-			System.out.println("¿Que quieres hacer?");
+			System.out.println("\n¿Que quieres hacer?");
 			System.out.println("1. Jugar");
 			System.out.println("2. Mostrar puntuaciones");
 			System.out.println("3. Cambiar de usuario");
@@ -43,7 +43,7 @@ public class Menu {
 				System.out.println("Opción no válida");
 			}
 			if (opcionMenu == 1) {
-				Juego.elegirPersonaje();
+				Juego.juego();
 			} else if (opcionMenu == 2) {
 				ConectarBDD.consultarPuntuaciones();
 			} else if (opcionMenu == 3) {
