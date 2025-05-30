@@ -186,9 +186,9 @@ public class Personajes {
 	    confirmacionSeleccionPersonaje = "";
 	    while (opcionPersonaje < 1 || opcionPersonaje > 3) {
 	        System.out.println("Elige a tu presonaje:");
-	        System.out.println("1. Ánuket");
-	        System.out.println("2. Bastet");
-	        System.out.println("3. Gereald");
+	        System.out.println("1. " + ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 1"));
+	        System.out.println("2. " + ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 2"));
+	        System.out.println("3. " + ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 3"));
 	        opcionPersonaje = sc.nextInt();
 	        if (opcionPersonaje < 1 || opcionPersonaje > 3) {
 	            System.out.println("Opción no válida, elige un personaje entre 1 y 3.");
@@ -220,9 +220,6 @@ public class Personajes {
 	                final3 = ConectarBDD.consultarDatosString("final_3", "personajes", "id_personajes = 1");
 	                final4 = ConectarBDD.consultarDatosString("final_4", "personajes", "id_personajes = 1");
 	                final5 = ConectarBDD.consultarDatosString("final_5", "personajes", "id_personajes = 1");
-				}
-				if (!confirmacionSeleccionPersonaje.equalsIgnoreCase("")) {
-					opcionPersonaje = 0;
 				}
 	            else {
 	                opcionPersonaje = 0;
