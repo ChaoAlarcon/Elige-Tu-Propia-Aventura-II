@@ -130,7 +130,7 @@ public String consultarDatosString(String columnas, String tabla, String condici
 
 // Método para consultar la tabla de puntuaciones
 	public boolean consultarPuntuaciones() {
-		String consultarPuntuaciones = "SELECT usuario, puntuacion FROM jugador ORDER BY puntuacion DESC";
+		String consultarPuntuaciones = "SELECT nombreJugador, puntos FROM jugador ORDER BY puntos DESC";
 		try (Connection conn = conectarMySQL();
 				PreparedStatement stmt = conn.prepareStatement(consultarPuntuaciones);
 				ResultSet resultData = stmt.executeQuery()) {

@@ -180,110 +180,118 @@ public class Personajes {
 		this.final5 = final5;
 	}
 
+
 	public void ElegirPersonaje() {
-		opcionPersonaje = 0;
-		confirmacionSeleccionPersonaje = "";
-		while (opcionPersonaje < 1 || opcionPersonaje > 3) {
-			System.out.println("Elige a tu presonaje:");
-			System.out.println("1. Ánuket");
-			System.out.println("2. Bastet");
-			System.out.println("3. Gereald");
-			opcionPersonaje = sc.nextInt();
-			if (opcionPersonaje < 1 || opcionPersonaje > 3) {
-				System.out.println("Opción no válida, elige un personaje entre 1 y 3.");
-			}
-			if (opcionPersonaje == 1) {
-				confirmacionSeleccionPersonaje = "";
-				System.out.println("Has elegido a " + ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 1")  +" que tiene " + ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 1") + " puntos de vida y los siguientes ataques:");
-				System.out.println("Ataque básico ("+ ConectarBDD.consultarDatosint("nombreBasico", "ataques", "id_personajes = 1") +"): " + ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_personajes = 1") +" puntos de daño. " + ConectarBDD.consultarDatosint("descripcionBasico", "ataques", "id_personajes = 1")+".");
-				System.out.println("Ataque fuerte ("+ ConectarBDD.consultarDatosint("nombreFuerte", "ataques", "id_personajes = 1") +"): " + ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_personajes = 1") +" puntos de daño. " + ConectarBDD.consultarDatosint("descripcionFuerte", "ataques", "id_personajes = 1")+".");
-				System.out.println("Habilidad especial ("+ ConectarBDD.consultarDatosint("nombreHabilidad", "ataques", "id_personajes = 1") +"): " + ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_personajes = 1") +" puntos de escudo. " + ConectarBDD.consultarDatosint("descripcionHabilidad", "ataques", "id_personajes = 1")+".");
-				System.out.println("Estas seguro de que quieres jugar con Ánuket? (S para confirmar/ Cualquier otra tecla para cancelar)");
-				confirmacionSeleccionPersonaje = sc.nextLine();
-				if (confirmacionSeleccionPersonaje.equalsIgnoreCase("S")) {
-			    	nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 1");
-			        System.out.println("¡Has elegido a" + nombrePersonaje + "!");
-					vida = ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 1");
-					nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_personajes = 1");
-					danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_personajes = 1");
-					descripcionBasico = ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_personajes = 1");
-					nombreFuerte = ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_personajes = 1");
-					danoFuerte = ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_personajes = 1");
-					descripcionFuerte = ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_personajes = 1");
-					nombreHabilidad = ConectarBDD.consultarDatosString("nombreHabilidad", "atques", "id_personajes = 1");
-					datosHabilidad = ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_personajes = 1");
-					descripcionHabilidad = ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_personajes = 1");
-					final1 = ConectarBDD.consultarDatosString("final_1", "personajes", "id_personajes = 1");
-					final2 = ConectarBDD.consultarDatosString("final_2", "personajes", "id_personajes = 1");
-					final3 = ConectarBDD.consultarDatosString("final_3", "personajes", "id_personajes = 1");
-					final4 = ConectarBDD.consultarDatosString("final_4", "personajes", "id_personajes = 1");
-					final5 = ConectarBDD.consultarDatosString("final_5", "personajes", "id_personajes = 1");
-				} else {
+	    opcionPersonaje = 0;
+	    confirmacionSeleccionPersonaje = "";
+	    while (opcionPersonaje < 1 || opcionPersonaje > 3) {
+	        System.out.println("Elige a tu presonaje:");
+	        System.out.println("1. Ánuket");
+	        System.out.println("2. Bastet");
+	        System.out.println("3. Gereald");
+	        opcionPersonaje = sc.nextInt();
+	        if (opcionPersonaje < 1 || opcionPersonaje > 3) {
+	            System.out.println("Opción no válida, elige un personaje entre 1 y 3.");
+	        }
+	        if (opcionPersonaje == 1) {
+	            confirmacionSeleccionPersonaje = "";
+	            sc.nextLine();
+	            System.out.println("Has elegido a " + ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 1") + " que tiene " + ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 1") + " puntos de vida y los siguientes ataques:");
+	            System.out.println("Ataque básico (" + ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_ataques = 1") + "): " + ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_ataques = 1") + " puntos de daño. " + ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_ataques = 1") + ".");
+	            System.out.println("Ataque fuerte (" + ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_ataques = 1") + "): " + ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_ataques = 1") + " puntos de daño. " + ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_ataques = 1") + ".");
+	            System.out.println("Habilidad especial (" + ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques = 1") + "): " + ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques = 1") + " puntos de escudo. " + ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques = 1") + ".");
+	            System.out.println("Estas seguro de que quieres jugar con Ánuket? (S para confirmar/ Cualquier otra tecla para cancelar)");
+	            confirmacionSeleccionPersonaje = sc.nextLine();
+	            if (confirmacionSeleccionPersonaje.equalsIgnoreCase("S")) {
+	                nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 1");
+	                System.out.println("¡Has elegido a " + nombrePersonaje + "!");
+	                vida = ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 1");
+	                nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_ataques = 1");
+	                danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_ataques = 1");
+	                descripcionBasico = ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_ataques = 1");
+	                nombreFuerte = ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_ataques = 1");
+	                danoFuerte = ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_ataques = 1");
+	                descripcionFuerte = ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_ataques = 1");
+	                nombreHabilidad = ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques = 1");
+	                datosHabilidad = ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques = 1");
+	                descripcionHabilidad = ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques = 1");
+	                final1 = ConectarBDD.consultarDatosString("final_1", "personajes", "id_personajes = 1");
+	                final2 = ConectarBDD.consultarDatosString("final_2", "personajes", "id_personajes = 1");
+	                final3 = ConectarBDD.consultarDatosString("final_3", "personajes", "id_personajes = 1");
+	                final4 = ConectarBDD.consultarDatosString("final_4", "personajes", "id_personajes = 1");
+	                final5 = ConectarBDD.consultarDatosString("final_5", "personajes", "id_personajes = 1");
+				}
+				if (!confirmacionSeleccionPersonaje.equalsIgnoreCase("")) {
 					opcionPersonaje = 0;
 				}
-			}
-
-			if (opcionPersonaje == 2) {
-			    confirmacionSeleccionPersonaje = "";
-			    System.out.println("Has elegido a " + ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 2")  +" que tiene " + ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 2") + " puntos de vida y los siguientes ataques:");
-			    System.out.println("Ataque básico ("+ ConectarBDD.consultarDatosint("nombreBasico", "ataques", "id_personajes = 2") +"): " + ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_personajes = 2") +" puntos de daño. " + ConectarBDD.consultarDatosint("descripcionBasico", "ataques", "id_personajes = 2")+".");
-			    System.out.println("Ataque fuerte ("+ ConectarBDD.consultarDatosint("nombreFuerte", "ataques", "id_personajes = 2") +"): " + ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_personajes = 2") +" puntos de daño. " + ConectarBDD.consultarDatosint("descripcionFuerte", "ataques", "id_personajes = 2")+".");
-			    System.out.println("Habilidad especial ("+ ConectarBDD.consultarDatosint("nombreHabilidad", "ataques", "id_personajes = 2") +"): " + ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_personajes = 2") +" puntos de curación. " + ConectarBDD.consultarDatosint("descripcionHabilidad", "ataques", "id_personajes = 2")+".");
-			    System.out.println("Estas seguro de que quieres jugar con Bastet? (S para confirmar/ Cualquier otra tecla para cancelar)");
-			    confirmacionSeleccionPersonaje = sc.nextLine();
-			    if (confirmacionSeleccionPersonaje.equalsIgnoreCase("S")) {
-			    	nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 2");
-			        System.out.println("¡Has elegido a" + nombrePersonaje + "!");
-			        vida = ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 2");
-			        nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_personajes = 2");
-			        danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_personajes = 2");
-			        descripcionBasico = ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_personajes = 2");
-			        nombreFuerte = ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_personajes = 2");
-			        danoFuerte = ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_personajes = 2");
-			        descripcionFuerte = ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_personajes = 2");
-			        nombreHabilidad = ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_personajes = 2");
-			        datosHabilidad = ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_personajes = 2");
-			        descripcionHabilidad = ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_personajes = 2");
-			        final1 = ConectarBDD.consultarDatosString("final_1", "personajes", "id_personajes = 2");
-			        final2 = ConectarBDD.consultarDatosString("final_2", "personajes", "id_personajes = 2");
-			        final3 = ConectarBDD.consultarDatosString("final_3", "personajes", "id_personajes = 2");
-			        final4 = ConectarBDD.consultarDatosString("final_4", "personajes", "id_personajes = 2");
-			        final5 = ConectarBDD.consultarDatosString("final_5", "personajes", "id_personajes = 2");
-			    } else {
-			        opcionPersonaje = 0;
-			    }
-			}
-			
-			if (opcionPersonaje == 3) {
-			    confirmacionSeleccionPersonaje = "";
-			    System.out.println("Has elegido a " + ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 3")  +" que tiene " + ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 3") + " puntos de vida y los siguientes ataques:");
-			    System.out.println("Ataque básico ("+ ConectarBDD.consultarDatosint("nombreBasico", "ataques", "id_personajes = 3") +"): " + ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_personajes = 3") +" puntos de daño. " + ConectarBDD.consultarDatosint("descripcionBasico", "ataques", "id_personajes = 3")+".");
-			    System.out.println("Ataque fuerte ("+ ConectarBDD.consultarDatosint("nombreFuerte", "ataques", "id_personajes = 3") +"): " + ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_personajes = 3") +" puntos de daño. " + ConectarBDD.consultarDatosint("descripcionFuerte", "ataques", "id_personajes = 3")+".");
-			    System.out.println("Habilidad especial ("+ ConectarBDD.consultarDatosint("nombreHabilidad", "ataques", "id_personajes = 3") +"): " + ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_personajes = 3") +" puntos de aumento de ataque. " + ConectarBDD.consultarDatosint("descripcionHabilidad", "ataques", "id_personajes = 3")+".");
-			    System.out.println("Estas seguro de que quieres jugar con Gereald? (S para confirmar/ Cualquier otra tecla para cancelar)");
-			    confirmacionSeleccionPersonaje = sc.nextLine();
-			    if (confirmacionSeleccionPersonaje.equalsIgnoreCase("S")) {
-			    	nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 3");
-			        System.out.println("¡Has elegido a" + nombrePersonaje + "!");
-			        vida = ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 3");
-			        nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_personajes = 3");
-			        danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_personajes = 3");
-			        descripcionBasico = ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_personajes = 3");
-			        nombreFuerte = ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_personajes = 3");
-			        danoFuerte = ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_personajes = 3");
-			        descripcionFuerte = ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_personajes = 3");
-			        nombreHabilidad = ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_personajes = 3");
-			        datosHabilidad = ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_personajes = 3");
-			        descripcionHabilidad = ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_personajes = 3");
-			        final1 = ConectarBDD.consultarDatosString("final_1", "personajes", "id_personajes = 3");
-			        final2 = ConectarBDD.consultarDatosString("final_2", "personajes", "id_personajes = 3");
-			        final3 = ConectarBDD.consultarDatosString("final_3", "personajes", "id_personajes = 3");
-			        final4 = ConectarBDD.consultarDatosString("final_4", "personajes", "id_personajes = 3");
-			        final5 = ConectarBDD.consultarDatosString("final_5", "personajes", "id_personajes = 3");
-			    } else {
-			        opcionPersonaje = 0;
-			    }
-			}
-		}
+	            else {
+	                opcionPersonaje = 0;
+	            }
+	        }
+	
+	        if (opcionPersonaje == 2) {
+	            confirmacionSeleccionPersonaje = "";
+	            sc.nextLine();
+	            System.out.println("Has elegido a " + ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 2") + " que tiene " + ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 2") + " puntos de vida y los siguientes ataques:");
+	            System.out.println("Ataque básico (" + ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_ataques = 2") + "): " + ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_ataques = 2") + " puntos de daño. " + ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_ataques = 2") + ".");
+	            System.out.println("Ataque fuerte (" + ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_ataques = 2") + "): " + ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_ataques = 2") + " puntos de daño. " + ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_ataques = 2") + ".");
+	            System.out.println("Habilidad especial (" + ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques = 2") + "): " + ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques = 2") + " puntos de curación. " + ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques = 2") + ".");
+	            System.out.println("Estas seguro de que quieres jugar con Bastet? (S para confirmar/ Cualquier otra tecla para cancelar)");
+	            confirmacionSeleccionPersonaje = sc.nextLine();
+	            if (confirmacionSeleccionPersonaje.equalsIgnoreCase("S")) {
+	                nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 2");
+	                System.out.println("¡Has elegido a " + nombrePersonaje + "!");
+	                vida = ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 2");
+	                nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_ataques = 2");
+	                danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_ataques = 2");
+	                descripcionBasico = ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_ataques = 2");
+	                nombreFuerte = ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_ataques = 2");
+	                danoFuerte = ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_ataques = 2");
+	                descripcionFuerte = ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_ataques = 2");
+	                nombreHabilidad = ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques = 2");
+	                datosHabilidad = ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques = 2");
+	                descripcionHabilidad = ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques = 2");
+	                final1 = ConectarBDD.consultarDatosString("final_1", "personajes", "id_personajes = 2");
+	                final2 = ConectarBDD.consultarDatosString("final_2", "personajes", "id_personajes = 2");
+	                final3 = ConectarBDD.consultarDatosString("final_3", "personajes", "id_personajes = 2");
+	                final4 = ConectarBDD.consultarDatosString("final_4", "personajes", "id_personajes = 2");
+	                final5 = ConectarBDD.consultarDatosString("final_5", "personajes", "id_personajes = 2");
+	            } else {
+	                opcionPersonaje = 0;
+	            }
+	        }
+	
+	        if (opcionPersonaje == 3) {
+	            confirmacionSeleccionPersonaje = "";
+	            sc.nextLine();
+	            System.out.println("Has elegido a " + ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 3") + " que tiene " + ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 3") + " puntos de vida y los siguientes ataques:");
+	            System.out.println("Ataque básico (" + ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_ataques = 3") + "): " + ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_ataques = 3") + " puntos de daño. " + ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_ataques = 3") + ".");
+	            System.out.println("Ataque fuerte (" + ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_ataques = 3") + "): " + ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_ataques = 3") + " puntos de daño. " + ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_ataques = 3") + ".");
+	            System.out.println("Habilidad especial (" + ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques = 3") + "): " + ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques = 3") + " puntos de aumento de ataque. " + ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques = 3") + ".");
+	            System.out.println("Estas seguro de que quieres jugar con Gereald? (S para confirmar/ Cualquier otra tecla para cancelar)");
+	            confirmacionSeleccionPersonaje = sc.nextLine();
+	            if (confirmacionSeleccionPersonaje.equalsIgnoreCase("S")) {
+	                nombrePersonaje = ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes = 3");
+	                System.out.println("¡Has elegido a " + nombrePersonaje + "!");
+	                vida = ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes = 3");
+	                nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_ataques = 3");
+	                danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_ataques = 3");
+	                descripcionBasico = ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_ataques = 3");
+	                nombreFuerte = ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_ataques = 3");
+	                danoFuerte = ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_ataques = 3");
+	                descripcionFuerte = ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_ataques = 3");
+	                nombreHabilidad = ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques = 3");
+	                datosHabilidad = ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques = 3");
+	                descripcionHabilidad = ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques = 3");
+	                final1 = ConectarBDD.consultarDatosString("final_1", "personajes", "id_personajes = 3");
+	                final2 = ConectarBDD.consultarDatosString("final_2", "personajes", "id_personajes = 3");
+	                final3 = ConectarBDD.consultarDatosString("final_3", "personajes", "id_personajes = 3");
+	                final4 = ConectarBDD.consultarDatosString("final_4", "personajes", "id_personajes = 3");
+	                final5 = ConectarBDD.consultarDatosString("final_5", "personajes", "id_personajes = 3");
+	            } else {
+	                opcionPersonaje = 0;
+	            }
+	        }
+	    }
 	}
 }
