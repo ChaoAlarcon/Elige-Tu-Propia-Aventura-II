@@ -11,7 +11,7 @@ public Puzzle2(Scanner sc) {
 
 // Método principal que ejecuta el puzzle
 public boolean ejecutarPuzzle(PersonajeOld personaje) {
-    System.out.println("\n🧩 Acertijo: \"Soy eterno... no tengo principio ni fin. ¿Qué soy?\"");
+    System.out.println("\n🧩 Acertijo: \"Cuanto más quitas, más grande se vuelve. ¿Qué es?\"");
     System.out.print("👉 Tu respuesta: ");
     String respuesta = sc.nextLine().trim();
 
@@ -26,7 +26,7 @@ public boolean ejecutarPuzzle(PersonajeOld personaje) {
 
 // Verifica si la respuesta ingresada es una de las correctas
 private boolean esRespuestaCorrecta(String respuesta) {
-    return respuesta.equalsIgnoreCase("esfinge") || respuesta.equalsIgnoreCase("la esfinge");
+    return respuesta.equalsIgnoreCase("agujero") || respuesta.equalsIgnoreCase("un agujero");
 }
 
 }
