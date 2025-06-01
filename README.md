@@ -26,4 +26,6 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 
 ## Notas 📝
 - NO TOCAR EL ARCHIVO "classpath"
+- ONTO: Reemplazas todo lo que tiene el main con lo tuyo(Lo tuyo tiene que estar bien) || Es cuando está en la misma línea en GitKraken
+- INTO: Se fusionan ambas Ramas || Es cuando está en una línea diferente en GitKraken
 
