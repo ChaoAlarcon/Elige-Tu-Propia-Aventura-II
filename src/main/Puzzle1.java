@@ -11,20 +11,24 @@ public class Puzzle1 {
 	private int respuestaUsuario;
 	private int solucionPuzzle1;
 	private String aceptarPista;
-	private boolean puzzleAcertado = false;
+	private boolean puzzle1Acertado = false;
 	
 	public boolean PuzzleAcertado() {
-		return puzzleAcertado;
+		return puzzle1Acertado;
 	}
 	
-	public void iniciarPuzzle1() {
+	public boolean iniciarPuzzle1() {
 		System.out.println("Puzzle 1: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 1"));
 		System.out.println("AQUÍ IRÍA EL TEXTO DE BIENVENIDA DEL PUZZLE 1");
 		System.out.println(conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 1"));
 		solucionPuzzle1 = random.nextInt(20) + 1;
 		while (intentosRestantes > 0) {
-			System.out.println("Tienes " + intentosRestantes + " intentos restantes.");
-			if (intentosRestantes != 8 && intentosRestantes >= 2) {
+			if (intentosRestantes > 1) {
+				System.out.println("Tienes " + intentosRestantes + " intentos restantes.");
+			} else if (intentosRestantes == 1) {
+				System.out.println("¡Solo te queda un intento más!");
+			}
+			if (intentosRestantes != 8 && intentosRestantes >= 3) {
 				aceptarPista = "";
 				sc.nextLine();
 				System.out.println("Tienes la posibilidad de pedir una pista. Esta te consumirá 2 intentos. ¿Quieres pedir una pista? ([S] para aceptar/Cualquier otra tecla para rechazar)");
@@ -44,12 +48,20 @@ public class Puzzle1 {
 			if (respuestaUsuario == solucionPuzzle1) {
 				System.out.println("¡Respuesta correcta! Has completado el Puzzle.");
 				intentosRestantes = 0;
-				puzzleAcertado = true;
+				puzzle1Acertado = true;
+				return true;
 			} else {
 				intentosRestantes--;
 				System.out.println("Respuesta incorrecta. Inténtalo de nuevo.");
 			}
+			if (intentosRestantes == 0 && !puzzle1Acertado) {
+				System.out.println("Has agotado todos tus intentos. No has podido resolver el puzzle.");
+				System.out.println("La solución era: " + solucionPuzzle1);
+				puzzle1Acertado = false;
+				return false;
+			}
 		}
+		return puzzle1Acertado;
 	}
 	
 }
