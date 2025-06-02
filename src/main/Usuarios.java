@@ -15,7 +15,12 @@ public class Usuarios {
 	private String usuarioCompleto;
 	Scanner sc = new Scanner(System.in);
 	ConectarBDD conectarBDD = new ConectarBDD();
-
+	
+	
+	public String getUsuario() {
+		return usuario;
+	}
+	
 	public void iniciarSesion() {
 		inicioExitoso = false;
 		while (!inicioExitoso) {
@@ -48,5 +53,6 @@ public class Usuarios {
 		}
 		usuarioCompleto = "'" + nuevoUsuario + "','" + nuevaContrasenia + "'";
 		conectarBDD.insertarDatos("jugador", "nombreJugador, contrasena", usuarioCompleto);
+		usuario = nuevoUsuario;
 	}
 }

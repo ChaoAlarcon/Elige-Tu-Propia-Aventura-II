@@ -1,110 +1,76 @@
 package main;
-
 import java.util.Scanner;
-
+import java.sql.*;
+import main.ConectarBDD;
+import java.util.Random;
 public class Puzzle3 {
-	// JUEGO DE ADIVINAR TEMÁTICA DE CIVILIZACIONES
 	Scanner sc = new Scanner(System.in);
-	private int intentosRestantes = 7; // Número de intentos disponibles
-	private boolean palabraAdivinada = false; // Indica si se ha adivinado la palabra
-	private boolean letraEncontrada = false; // Indica si la letra introducida está en la palabra
-	private String entrada = ""; // Entrada del usuario
-
-	// Categorías temáticas basadas en el viaje de los guerreros
-	private String[][] categorias = {
-		{ "Civilizaciones Antiguas", "Egipto", "Babilonia", "Sumeria", "Grecia", "Roma" },
-		{ "Civilizaciones Naturales", "Ents", "Druidas", "Silvanos", "Bosqueantiguo", "Dryadas" },
-		{ "Civilizaciones Elementales", "Pirokineticos", "HijosdelFuego", "Rocamagmatica", "Vulcanianos", "Lavamantes" },
-		{ "Civilizaciones Espirituales", "Espectros", "Fantasmas", "Almasperdidas", "GuardianesEter", "Sombras" },
-		{ "Civilizaciones Celestes", "Dioses", "Avatares", "Inmortales", "SeresdeLuz", "Astrales" },
-		{ "Civilizaciones Ficticias", "Eazimianos", "Atlantes", "Cyberarcanos", "Sablesluz", "Necrones" },
-		{ "Civilizaciones Corruptas", "AmmitOscura", "Cambises", "NoMuertos", "Corrompidos", "Falsosdioses" },
-		{ "Civilizaciones Glitch", "ClaseNoEncontrada", "Error404", "Pixelados", "CuadradosGrises", "Instables" }
-	};
-
-	// Variables que almacenan la categoría y palabra seleccionadas aleatoriamente
-	private String categoria;
-	private String palabraSecreta;
-	private int longitud; // Longitud de la palabra secreta
-	private char[] letrasAdivinadas; // Letras adivinadas por el jugador
-
-	// Constructor del juego
-	public Puzzle3(Scanner sc) {
-		this.sc = sc;
-		// Elegir aleatoriamente una categoría y una palabra dentro de ella
-		int categoriaIndex = (int) (Math.random() * categorias.length);
-		this.categoria = categorias[categoriaIndex][0];
-		this.palabraSecreta = categorias[categoriaIndex][1 + (int) (Math.random() * (categorias[categoriaIndex].length - 1))];
-		this.longitud = palabraSecreta.length();
-		this.letrasAdivinadas = new char[longitud];
-		// Inicializar las letras adivinadas con '-'
-		for (int i = 0; i < longitud; i++) letrasAdivinadas[i] = '-';
+	Random random = new Random();
+	ConectarBDD conectarBDD = new ConectarBDD();
+	Usuarios usuario = new Usuarios();
+	private int fallosDisponibles = 7;
+	private int puntosPuzzle;
+	private int puntosTotalesUsuario;
+	private boolean puzzle3Acertado = false;
+	private boolean acierto = false;
+	private String[] palabraSecreta = {"egipto", "babilonia", "sumeria", "grecia", "roma" };
+	private String palabraSecretaFinal;
+	private String[] letrasAdivinadas;
+	
+	public boolean PuzzleAcertado() {
+		return puzzle3Acertado;
 	}
-
-	// Método que ejecuta el minijuego
-	public boolean ejecutarPuzzle(PersonajeOld personaje) {
-		System.out.println("Te encuentras frente a una puerta que vibra con energía ancestral.");
-		System.out.println("Una inscripción aparece: 'Demuestra tu sabiduría sobre las civilizaciones para continuar.'");
-		System.out.println("Categoría: " + categoria);
-		System.out.println();
-
-		// Bucle principal del juego
-		while (intentosRestantes > 0 && !palabraAdivinada) {
-			System.out.println("Palabra: " + new String(letrasAdivinadas));
-			System.out.println("Intentos restantes: " + intentosRestantes);
-			System.out.print("Introduce una letra o la palabra completa: ");
-			entrada = sc.nextLine().trim();
-			letraEncontrada = false;
-
-			// Si el jugador introduce una sola letra
-			if (entrada.length() == 1) {
-				char letra = Character.toLowerCase(entrada.charAt(0));
-				// Comprobar si la letra está en la palabra
-				for (int i = 0; i < longitud; i++) {
-					if (Character.toLowerCase(palabraSecreta.charAt(i)) == letra) {
-						letrasAdivinadas[i] = palabraSecreta.charAt(i);
-						letraEncontrada = true;
-					}
-				}
-				if (!letraEncontrada) {
-					intentosRestantes--;
-					System.out.println("Letra incorrecta.");
-				} else {
-					System.out.println("¡Bien! Letra encontrada.");
-				}
+	
+	public boolean iniciarPuzzle3() {
+		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
+		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 3");
+		System.out.println("Puzzle 3: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 3"));
+		System.out.println("AQUÍ IRÍA EL TEXTO DE BIENVENIDA DEL PUZZLE 3");
+		System.out.println(conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 3"));
+		palabraSecretaFinal = palabraSecreta[random.nextInt(palabraSecreta.length)];
+	    letrasAdivinadas = new String[palabraSecretaFinal.length()];
+	    for (int i = 0; i < letrasAdivinadas.length; i++) {
+	        letrasAdivinadas[i] = "_ ";
+	    }
+	    System.out.println("Adivina la palabra: " + String.join("", letrasAdivinadas));
+	    while (fallosDisponibles > 0 && !puzzle3Acertado) {
+	        System.out.print("Introduce una letra: ");
+	        char letra = sc.nextLine().toLowerCase().charAt(0);
+	
+	        acierto = false;
+	        for (int i = 0; i < palabraSecretaFinal.length(); i++) {
+	            if (palabraSecretaFinal.charAt(i) == letra) {
+	                // Check if it's the first letter
+	                if (i == 0) {
+	                    letrasAdivinadas[i] = Character.toUpperCase(letra) + " ";
+	                } else {
+	                    letrasAdivinadas[i] = letra + " ";
+	                }
+	                acierto = true;
+	            }
+	        }
+	
+	        if (acierto) {
+	            System.out.println("¡Correcto! " + String.join("", letrasAdivinadas));
+	        } else {
+	            fallosDisponibles--;
+	            System.out.println("Letra incorrecta. Intentos restantes: " + fallosDisponibles + " " + String.join("", letrasAdivinadas));
+	        }
+	        
+			if (fallosDisponibles == 0) {
+				 System.out.println("¡Has perdido! La palabra era: " + palabraSecretaFinal);
+				 return false;
 			}
-			// Si el jugador intenta adivinar la palabra completa
-			else if (entrada.length() == palabraSecreta.length()) {
-				if (entrada.equalsIgnoreCase(palabraSecreta)) {
-					letrasAdivinadas = palabraSecreta.toCharArray();
-					palabraAdivinada = true;
-					System.out.println("¡Correcto! Has adivinado la palabra: " + palabraSecreta);
-					break;
-				} else {
-					intentosRestantes--;
-					System.out.println("Palabra incorrecta.");
-				}
-			}
-			// Si la entrada no es válida
-			else {
-				System.out.println("Entrada inválida. Introduce una sola letra o la palabra completa.");
-			}
-
-			// Comprobar si todas las letras han sido adivinadas
-			palabraAdivinada = true;
-			for (char c : letrasAdivinadas) {
-				if (c == '-') palabraAdivinada = false;
-			}
-			System.out.println();
-		}
-
-		// Resultado del juego
-		if (palabraAdivinada) {
-			System.out.println("La puerta se abre lentamente revelando el siguiente desafío.");
-			return true;
-		} else {
-			System.out.println("Las runas se apagan. La palabra era: " + palabraSecreta);
-			return false;
-		}
+	
+	        if (String.join("", letrasAdivinadas).replace(" ", "").equals(palabraSecretaFinal)) {
+	            System.out.println("¡Felicidades! Has adivinado la palabra: " + palabraSecretaFinal + " y has completado el Puzzle.");
+	            System.out.println("Has ganado " + puntosPuzzle + " puntos.");
+	            puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
+				conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
+	            puzzle3Acertado = true;
+	            return true;
+	        }
+	    }
+	    return puzzle3Acertado;
 	}
 }

@@ -1,95 +1,190 @@
 package main;
-
 import java.util.Scanner;
-
-/**
- * Clase Puzzle5 - Desafío de Conocimiento Universal
- * Implementa un sistema de preguntas y respuestas de cultura general
- * para evaluar el conocimiento del jugador en diferentes áreas
- */
+import java.sql.*;
+import main.ConectarBDD;
 public class Puzzle5 {
-	// Scanner para capturar la entrada del usuario
-	private Scanner sc;
+	Scanner sc = new Scanner(System.in);
+	ConectarBDD conectarBDD = new ConectarBDD();
+	Usuarios usuario = new Usuarios();
+	private boolean puzzle5Acertado = false;
+	private int puntosPuzzle;
+	private int puntosTotalesUsuario;
+	private int respuestaUsuario;
+	private int respuestasCorrectas = 0;
+	private boolean juegoPerdido = false;
 
-	// Array de preguntas de conocimiento general con opciones múltiples
-	// Cada pregunta incluye 4 opciones (a, b, c, d) en diferentes categorías:
-	// Astronomía, Historia, Geografía, Química, Literatura
-	String[] preguntas = {
-		"¿Cuál es el planeta más grande del sistema solar?\na)Júpiter\nb)Saturno\nc)Neptuno\nd)Urano",
-		"¿En qué año comenzó la Segunda Guerra Mundial?\na)1938\nb)1939\nc)1940\nd)1941",
-		"¿Cuál es la capital de Australia?\na)Sídney\nb)Melbourne\nc)Canberra\nd)Perth",
-		"¿Qué elemento químico tiene el símbolo 'Au'?\na)Plata\nb)Aluminio\nc)Oro\nd)Hierro",
-		"¿Quién escribió 'Cien años de soledad'?\na)Mario Vargas Llosa\nb)Gabriel García Márquez\nc)Jorge Luis Borges\nd)Pablo Neruda",
-		"¿Cuál es el océano más grande del mundo?\na)Atlántico\nb)Índico\nc)Ártico\nd)Pacífico",
-		"¿En qué continente se encuentra el desierto de Gobi?\na)África\nb)Asia\nc)América del Norte\nd)Australia"
-	};
-
-	// Array con las respuestas correctas correspondientes a cada pregunta
-	String[] correctas = { "a", "b", "c", "c", "b", "d", "b" };
-
-	// Variables para el control del juego
-	String respuesta = "";              // Almacena la respuesta actual del jugador
-	private int puntuacion = 0;         // Contador de respuestas correctas
-	private boolean juegoGanado = false; // Indica si el jugador ha superado el desafío
-
-	/**
-	 * Constructor de la clase Puzzle5
-	 * @param sc Scanner compartido para la entrada del usuario
-	 */
-	public Puzzle5(Scanner sc) {
-		this.sc = sc;
+	public boolean PuzzleAcertado() {
+		return puzzle5Acertado;
 	}
-
-	/**
-	 * Método principal que ejecuta el desafío de conocimiento
-	 * Presenta las preguntas una por una, valida las respuestas y calcula la puntuación final
-	 * @param personaje Objeto PersonajeOld que representa al jugador
-	 * @return boolean true si el jugador supera el desafío, false en caso contrario
-	 */
-	public boolean ejecutarPuzzle(PersonajeOld personaje) {
-		// Presentación del desafío
-		System.out.println("\n===== Desafío de Conocimiento: Sabiduría Universal =====\n");
-		System.out.println("Los antiguos sabios han puesto a prueba tu conocimiento del mundo...\n");
-
-		// Bucle principal: itera sobre todas las preguntas
-		for (int i = 0; i < preguntas.length; i++) {
-			// Mostrar pregunta actual
-			System.out.println("Pregunta " + (i + 1) + ": " + preguntas[i]);
-			respuesta = sc.nextLine().trim().toLowerCase();
-
-			// Validación de entrada: solo acepta opciones a, b, c, d
-			while (!respuesta.equals("a") && !respuesta.equals("b") && !respuesta.equals("c") && !respuesta.equals("d")) {
-				System.out.println("Respuesta inválida. Intenta de nuevo (a/b/c/d):");
-				respuesta = sc.nextLine().trim().toLowerCase();
-			}
-
-			// Evaluación de la respuesta
-			if (respuesta.equals(correctas[i])) {
-				puntuacion++; // Incrementar contador de aciertos
-				System.out.println("¡Correcto! Tu sabiduría brilla.\n");
-			} else {
-				System.out.println("Incorrecto. Los sabios murmuran desaprobación.\n");
-			}
+	
+	public boolean iniciarPuzzle5() {
+		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
+		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 5");
+		System.out.println("Puzzle 5: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 5"));
+		System.out.println("AQUÍ IRÍA EL TEXTO DE BIENVENIDA DEL PUZZLE 5");
+		System.out.println(conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 5"));
+		System.out.println("Primera pregunta: \n¿Cuál es el planeta más grande del sistema solar?");
+		System.out.println("1. Júpiter");
+		System.out.println("2. Saturno");
+		System.out.println("3. Neptuno");
+		System.out.println("4. Urano");
+		System.out.print("Introduce el número de tu respuesta: ");
+		respuestaUsuario = sc.nextInt();
+		while (respuestaUsuario < 1 || respuestaUsuario > 4) {
+			System.out.print("Respuesta no válida. Introduce un número entre 1 y 4: ");
+			respuestaUsuario = sc.nextInt();
 		}
-
-		// Mostrar puntuación final
-		System.out.println("Tu puntuación: " + puntuacion + "/" + preguntas.length);
-
-		// Evaluación final basada en la puntuación obtenida
-		if (puntuacion == preguntas.length) {
-			// Puntuación perfecta: 7/7
-			System.out.println("¡Perfecto! Tu conocimiento universal es extraordinario. Los dioses te bendicen.");
-			juegoGanado = true;
-		} else if (puntuacion >= 5) {
-			// Puntuación aceptable: 5 o más aciertos
-			System.out.println("Tu sabiduría es respetable. Has demostrado ser digno de continuar.");
-			juegoGanado = true;
+		if (respuestaUsuario == 1) {
+			System.out.println("¡Respuesta correcta!");
+			respuestasCorrectas++;
 		} else {
-			// Puntuación insuficiente: menos de 5 aciertos
-			System.out.println("Tu ignorancia decepciona a los antiguos. Deberás enfrentar las consecuencias.");
-			juegoGanado = false;
+			System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
+			juegoPerdido = true;
+			return false;
 		}
-
-		return juegoGanado; // Retorna el resultado del desafío
+		if (juegoPerdido = false) {
+			respuestaUsuario = 0;
+			System.out.println("Segunda pregunta: \n¿En qué año comenzó la Segunda Guerra Mundial?");
+			System.out.println("1. 1938");
+			System.out.println("2. 1939");
+			System.out.println("3. 1940");
+			System.out.println("4. 1941");
+			System.out.print("Introduce el número de tu respuesta: ");
+			respuestaUsuario = sc.nextInt();
+			while (respuestaUsuario < 1 || respuestaUsuario > 4) {
+				System.out.print("Respuesta no válida. Introduce un número entre 1 y 4: ");
+				respuestaUsuario = sc.nextInt();
+			}
+			if (respuestaUsuario == 2) {
+				System.out.println("¡Respuesta correcta!");
+				respuestasCorrectas++;
+			} else {
+				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
+				juegoPerdido = true;
+				return false;
+			}
+		}
+		if (juegoPerdido = false) {
+			respuestaUsuario = 0;
+			System.out.println("Tercera pregunta: \n¿Cuál es la capital de Australia?");
+			System.out.println("1. Sídney");
+			System.out.println("2. Melbourne");
+			System.out.println("3. Canberra");
+			System.out.println("4. Perth");
+			System.out.print("Introduce el número de tu respuesta: ");
+			respuestaUsuario = sc.nextInt();
+			while (respuestaUsuario < 1 || respuestaUsuario > 4) {
+				System.out.print("Respuesta no válida. Introduce un número entre 1 y 4: ");
+				respuestaUsuario = sc.nextInt();
+			}
+			if (respuestaUsuario == 3) {
+				System.out.println("¡Respuesta correcta!");
+				respuestasCorrectas++;
+			} else {
+				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
+				juegoPerdido = true;
+				return false;
+			}
+		}
+		if (juegoPerdido = false) {
+			respuestaUsuario = 0;
+			System.out.println("Cuarta pregunta: \n¿Qué elemento químico tiene el símbolo 'Au'?");
+			System.out.println("1. Plata");
+			System.out.println("2. Aluminio");
+			System.out.println("3. Oro");
+			System.out.println("4. Hierro");
+			System.out.print("Introduce el número de tu respuesta: ");
+			respuestaUsuario = sc.nextInt();
+			while (respuestaUsuario < 1 || respuestaUsuario > 4) {
+				System.out.print("Respuesta no válida. Introduce un número entre 1 y 4: ");
+				respuestaUsuario = sc.nextInt();
+			}
+			if (respuestaUsuario == 3) {
+				System.out.println("¡Respuesta correcta!");
+				respuestasCorrectas++;
+			} else {
+				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
+				juegoPerdido = true;
+				return false;
+			}
+		}
+		if (juegoPerdido = false) {
+			respuestaUsuario = 0;
+			System.out.println("Quinta pregunta: \n¿Quién escribió 'Cien años de soledad'?");
+			System.out.println("1. Mario Vargas Llosa");
+			System.out.println("2. Gabriel García Márquez");
+			System.out.println("3. Jorge Luis Borges");
+			System.out.println("4. Pablo Neruda");
+			System.out.print("Introduce el número de tu respuesta: ");
+			respuestaUsuario = sc.nextInt();
+			while (respuestaUsuario < 1 || respuestaUsuario > 4) {
+				System.out.print("Respuesta no válida. Introduce un número entre 1 y 4: ");
+				respuestaUsuario = sc.nextInt();
+			}
+			if (respuestaUsuario == 2) {
+				System.out.println("¡Respuesta correcta!");
+				respuestasCorrectas++;
+			} else {
+				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
+				juegoPerdido = true;
+				return false;
+			}
+		}
+		if (juegoPerdido = false) {
+			respuestaUsuario = 0;
+			System.out.println("Sexta pregunta: \n¿Cuál es el océano más grande del mundo?");
+			System.out.println("1. Atlántico");
+			System.out.println("2. Índico");
+			System.out.println("3. Ártico");
+			System.out.println("4. Pacífico");
+			System.out.print("Introduce el número de tu respuesta: ");
+			respuestaUsuario = sc.nextInt();
+			while (respuestaUsuario < 1 || respuestaUsuario > 4) {
+				System.out.print("Respuesta no válida. Introduce un número entre 1 y 4: ");
+				respuestaUsuario = sc.nextInt();
+			}
+			if (respuestaUsuario == 4) {
+				System.out.println("¡Respuesta correcta!");
+				respuestasCorrectas++;
+			} else {
+				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
+				juegoPerdido = true;
+				return false;
+			}
+		}
+		if (juegoPerdido = false) {
+			respuestaUsuario = 0;
+			System.out.println("Séptima pregunta y última pregunta: \n¿En qué continente se encuentra el desierto de Gobi?");
+			System.out.println("1. África");
+			System.out.println("2. Asia");
+			System.out.println("3. América del Norte");
+			System.out.println("4. Australia");
+			System.out.print("Introduce el número de tu respuesta: ");
+			respuestaUsuario = sc.nextInt();
+			while (respuestaUsuario < 1 || respuestaUsuario > 4) {
+				System.out.print("Respuesta no válida. Introduce un número entre 1 y 4: ");
+				respuestaUsuario = sc.nextInt();
+			}
+			if (respuestaUsuario == 2) {
+				System.out.println("¡Respuesta correcta!");
+				respuestasCorrectas++;
+			} else {
+				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
+				juegoPerdido = true;
+				return false;
+			}
+		}
+		if (respuestasCorrectas == 7) {
+			System.out.println(
+					"¡Felicidades! Has respondido correctamente a todas las preguntas y has completado el Puzzle.");
+			System.out.println("Has ganado " + puntosPuzzle + " puntos.");
+			puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
+			conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
+			puzzle5Acertado = true;
+			return true;
+		} else {
+			System.out.println("Has respondido correctamente a " + respuestasCorrectas + " preguntas de 7. Has perdido el puzzle.");
+			return false;
+		}
 	}
 }
