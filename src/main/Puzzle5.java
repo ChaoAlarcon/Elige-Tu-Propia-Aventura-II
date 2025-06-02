@@ -174,17 +174,17 @@ public class Puzzle5 {
 				return false;
 			}
 		}
-		if (respuestasCorrectas == 7) {
-			System.out.println(
-					"¡Felicidades! Has respondido correctamente a todas las preguntas y has completado el Puzzle.");
+		if (respuestasCorrectas <= 2) {
+			System.out.println("TEXTO DE MORIR TU Y EL COMPAÑERO");
+		} else if (respuestasCorrectas >= 3 && respuestasCorrectas <= 6) {
+			System.out.println("TEXTO DE MORIR EL COMPAÑERO Y TU TE CURAS");
+		} else if (respuestasCorrectas == 7) {
+			System.out.println("TEXTO DE HABER GANADO EL PUZZLE Y CURARTE A TI Y A TU COMPAÑERO");
 			System.out.println("Has ganado " + puntosPuzzle + " puntos.");
 			puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
-			conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
+			conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle,"nombreJugador= '" + usuario.getUsuario() + "'");
 			puzzle5Acertado = true;
 			return true;
-		} else {
-			System.out.println("Has respondido correctamente a " + respuestasCorrectas + " preguntas de 7. Has perdido el puzzle.");
-			return false;
 		}
 	}
 }
