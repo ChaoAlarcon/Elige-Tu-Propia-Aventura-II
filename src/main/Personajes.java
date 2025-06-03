@@ -1,10 +1,8 @@
 package main;
-import java.util.Random;
 import java.sql.*;
 import main.ConectarBDD;
 import java.util.Scanner;
 public class Personajes {
-	Random random = new Random();
 	Scanner sc = new Scanner(System.in);
 	ConectarBDD ConectarBDD = new ConectarBDD();
 	Npc npc = new Npc();
@@ -15,9 +13,11 @@ public class Personajes {
 	private String nombreBasico;
 	private int danoBasico;
 	private String descripcionBasico;
+	private int precisionBasico;
 	private String nombreFuerte;
 	private int danoFuerte;
 	private String descripcionFuerte;
+	private int precisionFuerte;
 	private String nombreHabilidad;
 	private int datosHabilidad;
 	private String descripcionHabilidad;
@@ -27,17 +27,19 @@ public class Personajes {
 	private String final4;
 	private String final5;
 	private int ataqueEspecial = 0;
-	public Personajes(String nombrePersonaje, int vida, String nombreBasico, int danoBasico, String descripcionBasico,
-			String nombreFuerte, int danoFuerte, String descripcionFuerte, String nombreHabilidad, int datosHabilidad,
+	public Personajes(String nombrePersonaje, int vida, String nombreBasico, int danoBasico, String descripcionBasico, int precisionBasico,
+			String nombreFuerte, int danoFuerte, String descripcionFuerte, int precisionFuerte,  String nombreHabilidad, int datosHabilidad,
 			String descripcionHabilidad, String final1, String final2, String final3, String final4, String final5, int ataqueEspecial) {
 		this.nombrePersonaje = nombrePersonaje;
 		this.vida = vida;
 		this.nombreBasico = nombreBasico;
 		this.danoBasico = danoBasico;
 		this.descripcionBasico = descripcionBasico;
+		this.precisionBasico = precisionBasico;
 		this.nombreFuerte = nombreFuerte;
 		this.danoFuerte = danoFuerte;
 		this.descripcionFuerte = descripcionFuerte;
+		this.precisionFuerte = precisionFuerte;
 		this.nombreHabilidad = nombreHabilidad;
 		this.datosHabilidad = datosHabilidad;
 		this.descripcionHabilidad = descripcionHabilidad;
@@ -52,8 +54,7 @@ public class Personajes {
 	public Personajes() {
 		
 	}
-	
-	
+
 	public String getNombrePersonaje() {
 		return nombrePersonaje;
 	}
@@ -94,6 +95,14 @@ public class Personajes {
 		this.descripcionBasico = descripcionBasico;
 	}
 
+	public int getPrecisionBasico() {
+		return precisionBasico;
+	}
+
+	public void setPrecisionBasico(int precisionBasico) {
+		this.precisionBasico = precisionBasico;
+	}
+
 	public String getNombreFuerte() {
 		return nombreFuerte;
 	}
@@ -116,6 +125,14 @@ public class Personajes {
 
 	public void setDescripcionFuerte(String descripcionFuerte) {
 		this.descripcionFuerte = descripcionFuerte;
+	}
+
+	public int getPrecisionFuerte() {
+		return precisionFuerte;
+	}
+
+	public void setPrecisionFuerte(int precisionFuerte) {
+		this.precisionFuerte = precisionFuerte;
 	}
 
 	public String getNombreHabilidad() {
@@ -218,9 +235,11 @@ public class Personajes {
 	                nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_ataques = 1");
 	                danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_ataques = 1");
 	                descripcionBasico = ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_ataques = 1");
+	                precisionBasico = ConectarBDD.consultarDatosint("precisionBasico", "ataques", "id_ataques = 1");
 	                nombreFuerte = ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_ataques = 1");
 	                danoFuerte = ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_ataques = 1");
 	                descripcionFuerte = ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_ataques = 1");
+	                precisionFuerte = ConectarBDD.consultarDatosint("precisionFuerte", "ataques", "id_ataques = 1");
 	                nombreHabilidad = ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques = 1");
 	                datosHabilidad = ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques = 1");
 	                descripcionHabilidad = ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques = 1");
@@ -251,9 +270,11 @@ public class Personajes {
 	                nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_ataques = 2");
 	                danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_ataques = 2");
 	                descripcionBasico = ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_ataques = 2");
+	                precisionBasico = ConectarBDD.consultarDatosint("precisionBasico", "ataques", "id_ataques = 2");
 	                nombreFuerte = ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_ataques = 2");
 	                danoFuerte = ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_ataques = 2");
 	                descripcionFuerte = ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_ataques = 2");
+	                precisionFuerte = ConectarBDD.consultarDatosint("precisionFuerte", "ataques", "id_ataques = 2");
 	                nombreHabilidad = ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques = 2");
 	                datosHabilidad = ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques = 2");
 	                descripcionHabilidad = ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques = 2");
@@ -283,9 +304,11 @@ public class Personajes {
 	                nombreBasico = ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_ataques = 3");
 	                danoBasico = ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_ataques = 3");
 	                descripcionBasico = ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_ataques = 3");
+	                precisionBasico = ConectarBDD.consultarDatosint("precisionBasico", "ataques", "id_ataques = 3");
 	                nombreFuerte = ConectarBDD.consultarDatosString("nombreFuerte", "ataques", "id_ataques = 3");
 	                danoFuerte = ConectarBDD.consultarDatosint("danoFuerte", "ataques", "id_ataques = 3");
 	                descripcionFuerte = ConectarBDD.consultarDatosString("descripcionFuerte", "ataques", "id_ataques = 3");
+	                precisionFuerte = ConectarBDD.consultarDatosint("precisionFuerte", "ataques", "id_ataques = 3");
 	                nombreHabilidad = ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques = 3");
 	                datosHabilidad = ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques = 3");
 	                descripcionHabilidad = ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques = 3");

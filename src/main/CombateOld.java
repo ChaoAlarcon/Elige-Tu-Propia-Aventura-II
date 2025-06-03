@@ -3,16 +3,16 @@ package main;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Combate {
+public class CombateOld {
 	Scanner sc = new Scanner(System.in);
 	private Random random = new Random();
 	private PersonajeOld personaje;
-	private Enemigos enemigos;
+	private EnemigosOld enemigos;
 	private int eleccionAtaque;
 	private int acertar;
 	private int mitadDanio;
 
-	public Combate(Scanner sc, PersonajeOld personaje, Enemigos enemigos) {
+	public CombateOld(Scanner sc, PersonajeOld personaje, EnemigosOld enemigos) {
 		this.sc = sc;
 		this.personaje = personaje;
 		this.enemigos = enemigos;
