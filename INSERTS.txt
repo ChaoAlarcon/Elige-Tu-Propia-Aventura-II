@@ -1,10 +1,10 @@
-//INSERTS\\
+--INSERTS
 
 -- Tabla npc
 INSERT INTO npc (id_npc, nombreNPC, especie, frase_1, frase_2, frase_3, ayuda_1, ayuda_2, ayuda_3) VALUES
-(1, 'Compa', 'Humano', 'frase1_dano', 'frase2_dano', 'frase3_dano', 35, 75, 150),
-(2, 'Randi', 'Desconocida', 'frase1_vidaMax', 'frase2_vidaMax', 'frase3_vidaMax', 100, 150, 200),
-(3, 'Ammet', 'Dios', 'frase1_-vida', 'frase2_+def', 'frase3_+dano', 9999, 50, 9999);
+(1, 'Obi', 'Humano', 'I have a bad feeling about this', 'Hello there!', 'Its over, I have the highground!', 35, 75, 150),
+(2, 'Carlos el Fantasma', 'Fantasma', 'Has perdido estrepitosamente, alguien como no es digno de llamarse guerrero', 'Casi me ganas, pero no has sido lo suficientemente bueno, no obstante has demostrado tu valor y te concederé una pequeña bendición, con ella te sentirás más vivo', '¡Bien hecho! ¡Por fin he conocido un guerrero digno! Ahora te daré mi bendición y te sentirás más vivo que nunca', 200, 750, 1500),
+(3, 'Ammet', 'Dios', 'frase1_muerte', 'frase2_cura y muerte obi', 'frase3_cura y recibe aram', 9999, 500, 9999);
 
 -- Tabla puzzles
 INSERT INTO puzzles (id_puzzles, nombrePuzzle, descripcion, puntos) VALUES
@@ -15,50 +15,55 @@ INSERT INTO puzzles (id_puzzles, nombrePuzzle, descripcion, puntos) VALUES
 (5, 'Puzzle5', 'Trivial Egipto', 10);
 
 -- Tabla terrenos
-INSERT INTO terrenos (id_terrenos, nombreTerreno, buff, descripcionBuff, penalizacion, descripcionPenalizacion) VALUES
-(1, 'Suelo de hierbas raras y brillantes', 5, '+vida', 0, NULL),
-(2, 'Suelo pixelado (rollo glitch digital)', 20, '+vida', 0, NULL),
-(3, 'Suelo mágico', 10, '+vida', 10, '-vida'),
-(4, 'Suelo de hielo', 0, NULL, 5, '-vida'),
-(5, 'Suelo de magma', 0, NULL, 15, '-vida'),
-(6, 'VOID999x_dump', 0, 'class~#descriptionBuff:notfound', 0, 'class~#descriptionDeBuff:notfound');
+INSERT INTO terrenos (id, id_terrenos, nombreTerreno, buff, descripcionBuff, penalizacion, descripcionPenalizacion) VALUES
+(1 ,1, 'Suelo de hierba', 20, '+vida', 0, NULL),
+(2, 2, 'Suelo de cristales mágicos', 10, '+vida', 0, NULL),
+(3, 3, 'Suelo arenoso', 0, NILL , 5, '-vida'),
+(4, 4, 'Suelo de hielo', 0, NULL, 10, '-vida'),
+(5, 5, 'Suelo de magma', 0, NULL, 15, '-vida'),
+(6, 6, 'VOID999x_dump', 0, 'class~#descriptionBuff:notfound', 0, 'class~#descriptionDeBuff:notfound');
 
 -- Tabla climas
-INSERT INTO climas (id_climas, nombreClima, buff, descripcionBuff, penalizacion, descripcionPenalizacion) VALUES
-(1, 'Nublado', 10, '+defensa', 0, NULL),
-(2, 'Despejado', 20, '+defensa', 0, NULL),
-(3, 'Calor extremo', 0, NULL, 30, '-defensa'),
-(4, 'Frío extremo', 0, NULL, 20, '-defensa'),
-(5, 'Tormenta de arena', 0, NULL, 25, '-defensa'),
-(6, 'i0_io_0rr0r', 0, 'class~#descriptionBuff:notfound', 0, 'class~#descriptionDeBuff:notfound');
+INSERT INTO climas (id, id_climas, nombreClima, buff, descripcionBuff, penalizacion, descripcionPenalizacion) VALUES
+(1, 1, 'Nublado', 10, '+precision', 0, NULL),
+(2, 2, 'Despejado', 20, '+precision', 0, NULL),
+(3, 3, 'Calor extremo', 0, NULL, 30, '-precision'),
+(4, 4, 'Tormenta de nieve', 0, NULL, 20, '-defensa'),
+(5, 5, 'Tormenta de arena', 0, NULL, 25, '-precision'),
+(6, 6, 'i0_io_0rr0r', 0, 'class~#descriptionBuff:notfound', 0, 'class~#descriptionDeBuff:notfound');
 
 -- Tabla horas_del_dia
-INSERT INTO horas_del_dia (id_horas_del_dia, nombreHora, buff, descripcionBuff, penalizacion, descripcionPenalizacion) VALUES
-(1, 'Mañana', 20, '+ataque', 0, NULL),
-(2, 'Mediodía', 10, '+ataque', 0, NULL),
-(3, 'Tarde', 0, NULL, 5, '-ataque'),
-(4, 'Noche', 0, NULL, 10, '-ataque'),
-(5, 'crypt_id404', 0, 'class~#descriptionBuff:notfound', 0, 'class~#descriptionDeBuff:notfound');
+INSERT INTO horas_del_dia (id, id_horas_del_dia, nombreHora, buff, descripcionBuff, penalizacion, descripcionPenalizacion) VALUES
+(1, 1, 'Mañana', 20, '+ataque', 0, NULL),
+(2, 2, 'Mediodía', 10, '+ataque', 0, NULL),
+(3, 3, 'Tarde', 0, NULL, 5, '-ataque'),
+(4, 4, 'Noche', 0, NULL, 10, '-ataque'),
+(5, 5, 'crypt_id404', 0, 'class~#descriptionBuff:notfound', 0, 'class~#descriptionDeBuff:notfound');
 
 -- Tabla ataques
 INSERT INTO ataques (
+    id,
     id_ataques, 
     nombreBasico, 
     danoBasico,
     descripcionBasico,
+    precisionBasico,
     nombreFuerte,
     danoFuerte,
     descripcionFuerte,
+    precisionFuerte,
     nombreHabilidad,
     datosHabilidad,
-    descripcionHabilidad
+    descripcionHabilidad,
+    precisionHabilidad
 ) VALUES
-(1, 'Cetro', 30,'Bonk','Invocación de bestias', 130, 'Ánuket invoca dos hellhounds que muerden al enemigo', 'Aegis etéreo', 20, 'Invoca un escudo alrededor de Ánuket'),
-(2, 'Dagas', 30,'Bastet lanza afiladas dagas contra su enemigo', 'Flor fatal', 140, 'Bastet lanza dagas impregnadas en veneno', 'Alma voraz', 40, 'Bastet lanza un hechizo que restaura algo de salud'),
-(3, 'Espada', 40, 'Slash', 'Doble espada', 120, 'Slash x2', 'Señal de Rhyon', 30, 'Gerald recibe un aumento de daño');
+(1, 1, 'Porrazo de cetro', 50,'Ánuket empuña su cetro y le da un golpe al enemigo',100, 'Invocación de bestias', 250, 'Ánuket invoca dos golems que muerden al enemigo', 70, 'Aegis etéreo', 25, 'Ánuket invoca un escudo alrededor suyo que reduce el daño recibido', 120),
+(2, 2, 'Lanzamiento de dagas', 55,'Bastet lanza afiladas dagas contra su enemigo', 100, 'Flor fatal', 150, 'Bastet lanza dagas impregnadas con veneno', 90, 'Alma voraz', 200, 'Bastet lanza un hechizo que restaura algo de su salud', 120),
+(3, 3, 'Espadazo', 70, 'Gerald empuña su espada y corta al enemigo', 100, 'Doble espadazo', 200, 'Gerald empuña sus dos espadas para realizar un combo de cortes', 75, 'Modo berserker', 75, 'Gerald enfurece y recibe un aumento de daño', 120);
 
 -- Tabla ataques_enemigos
 INSERT INTO ataques_enemigos (
+  id,
   id_ataques_enemigos,
   nombreBasico,
   danoBasico,
@@ -70,72 +75,81 @@ INSERT INTO ataques_enemigos (
   datosHabilidad,
   descripcionHabilidad
 ) VALUES
-(1, 'Básico', 20, 'dano', 'Fuerte', 40, 'dano', 'Bonk', 60, 'dano'),
-(2, 'Básico', 30, 'dano', 'Fuerte', 60, 'dano', 'Cambio x1', 1, 'Cambia terreno'),
-(3, 'Básico', 30, 'dano', 'Fuerte', 60, 'dano', 'Cambio x1', 1, 'Cambia terreno'),
-(4, 'Básico', 40, 'dano', 'Fuerte', 80, 'dano', 'Cambio x1', 1, 'Cambia terreno'),
-(5, 'Básico', 50, 'dano', 'Fuerte', 100, 'dano', 'Cambio x2', 2, 'Cambia terreno y clima'),
-(6, 'Básico', 50, 'dano', 'Fuerte', 100, 'dano', 'Cambio x2', 2, 'Cambia terreno y clima'),
-(7, 'Básico', 70, 'dano', 'Fuerte', 140, 'dano', 'Cambio x3', 3, 'Cambia terreno clima y hora');
-
--- Tabla batallas
-INSERT INTO batallas (id_batallas, nombreBatalla, id_enemigos) VALUES
-(1, 'Batalla 1', 1),
-(2, 'Batalla 2', 2),
-(3, 'Batalla 3', 3),
-(4, 'Batalla 4', 4),
-(5, 'Batalla 5', 5),
-(6, 'Batalla 6', 6),
-(7, 'Batalla Final', 7);
+(1, 1, 'Mirada punzante', 20, 'El cactus te mira fijamente y sientes como se te pinchara con todas sus espinas', 'Lanzamiento de espinas', 40, 'El cactus se hincha y dispara muchas espinas', 'Explosión floral', 60, 'Del cactus crece una flor que esparce una nube de veneno'),
+(2, 2, 'Lanzamiento de hueso', 30, 'Cambises se arranca una costilla para lanzartela', 'Espadazo', 60, 'Cambises empuña su espada rota para hacer un corte', 'Danza de muerto', 1, 'Cambises la Momia invoca a los muert-
+ERROR class_terreno:~random'),
+(3, 3, 'Puñetazo de magma', 35, 'El Golem alza su puño de rocas ardientes y lo deja caer sobre ti', 'Llamarada', 70, 'Los ojos del Golem se encienden y de ellos salen unas potentes llamas', 'Invocación de llamas', 1, 'El Golem alza sus brazos y del suelo empiezan a surgi-
+ERROR class_terreno:~random'),
+(4, 4, 'Ramazo', 40, 'El Ent estrira las ramas de su brazo para apuñalarte', 'Martillo de madera', 80, 'El Ent forma un martillo gigante con sus brazos para aplastarte', 'Florecer de verano', 1, 'De las ramas del Ent empiezan a brotar hoj-
+ERROR class_terreno:~random'),
+(5, 5, 'Salpicar', 45, 'Salomón el Salmón Gigante le pega con la cola a la superficie del río para lanzar una gran ola de agua', 'Hidrocañón', 90, 'Salomón el Salmón Gigante acumula agua en su boca para luego lanzarla con muchísima presión', 'Salto de montañas', 2, 'Salomón el Salmón Gigante salta hacia el ciel- 
+ERROR class_terreno:~random
+ERROR class_clima:~random'),
+(6, 6, 'Bola de fuego infernal', 50, 'Tahorki conjura un hechizo para lanzar una bola de fuego negro', 'Luvia de rayos', 100, 'Tahorki conjura un hechizo que nubla el cielo, y de las nubes empiezan a caer rayos', 'Invocación de muertos', 2, 'Tahorki empieza a conjurar un hechizo, del suelo empiezan a sur- 
+ERROR class_terreno:~random
+ERROR class_clima:~random'),
+(7, 7, 'class_ataqueBasico:notfound', 100, 'Del extraño ser, salen una ráfaga de cubos disparados', 'class_ataqueFuerte:notfound', 200, 'Del extraño ser salen disparados cubos al cielo que empiezan a formar un cubo gigante que deja caer encima tuyo', 'class_habilidad:notfound', 3, 'ERROR class_terreno:~random
+ERROR class_clima:~random
+ERROR class_hora~random');
 
 -- Tabla personajes
-INSERT INTO personajes (id_personajes, nombrePersonaje, vida, final_1, final_2, final_3, final_4, final_5, id_ataques) VALUES
-(1, 'Ánuket', 650,
- 'texto final...',
- 'texto final...',
- 'texto final...',
- 'texto final...',
- 'texto final...',
+INSERT INTO personajes (id, id_personajes, nombrePersonaje, vida, final_1, final_2, final_3, final_4, final_5, id_ataques) VALUES
+(1, 1, 'Ánuket', 1050,
+ 'Muerte antes de Boss',
+ '5 Puzzles ArmaTocha',
+ 'Muerte Ammet',
+ 'Sacrificio contra Boss',
+ 'Victoria boss',
  1),
-(2, 'Bastet', 700,
- 'texto final...',
- 'texto final...',
- 'texto final...',
- 'texto final...',
- 'texto final...',
+(2, 2,'Bastet', 900,
+ 'Muerte antes de Boss',
+ '5 Puzzles ArmaTocha',
+ 'Muerte Ammet',
+ 'Sacrificio contra Boss',
+ 'Victoria boss',
  2),
-(3, 'Gerald', 600,
- 'texto final...',
- 'texto final...',
- 'texto final...',
- 'texto final...',
- 'texto final...',
+(3, 3, 'Gerald', 1200,
+ 'Muerte antes de Boss',
+ '5 Puzzles ArmaTocha',
+ 'Muerte Ammet',
+ 'Sacrificio contra Boss',
+ 'Victoria boss',
  3);
 
--- Tabla jugador (no aparecen datos)
+-- Tabla jugador (id, nombreJugador, contrasena, puntos)
+INSERT INTO jugador VALUES (1, 'admin', 'admin', 0);
 
 -- Tabla enemigos
-INSERT INTO enemigos (id_enemigos, nombreEnemigo, especie, vida, id_ataques_enemigos) VALUES
-(1, 'Uno', 'Uno', 200, 1),
-(2, 'Dos', 'Dos', 300, 2),
-(3, 'Tres', 'Tres', 500, 3),
-(4, 'Cuatro', 'Cuatro', 700, 4),
-(5, 'Cinco', 'Cinco', 1000, 5),
-(6, 'Seis', 'Seis', 1500, 6),
-(7, 'Taharka', 'Siete', 2000, 7);
+INSERT INTO enemigos (id, id_enemigos, nombreEnemigo, especie, vida, id_ataques_enemigos) VALUES
+(1, 1, 'Cactus Amarillo', 'Planta', 250, 1),
+(2, 2, 'Cambises la Momia', 'Humano muerto', 500, 2),
+(3, 3, 'Golem de magma', 'Rocas calientes', 750, 3),
+(4, 4, 'Ent', 'Planta', 1000, 4),
+(5, 5, 'Salomón el salmón gigante', 'Pez', 1500, 5),
+(6, 6, 'Aprendiz Tahorki', 'Humano', 2000, 6),
+(7, 7, 'class_jefeFinal:notfound', '???', 4000, 7);
 
+-- Tabla batallas
+INSERT INTO batallas (id, id_batallas, nombreBatalla, id_enemigos) VALUES
+(1, 1, 'Batalla contra el amenazante Cactus Amarillo', 1),
+(2, 2, 'Batalla en la entrada de la Pirámide', 2),
+(3, 3, 'Batalla contra el Golem de Magma', 3),
+(4, 4, 'Batalla contra el Ent', 4),
+(5, 5, 'Batalla contra Salomón el Salmón Gigante', 5),
+(6, 6, 'Batalla contra El Aprendiz Tahorki', 6),
+(7, 7, 'Batalla Final', 7);
 
 -- Tabla escenarios
 INSERT INTO escenarios (
-  id_escenarios, nombreEscenario, id_batallas, id_puzzles, id_terrenos, id_climas, id_horas_del_dia, id_npc
+  id, id_escenarios, nombreEscenario, id_batallas, id_puzzles, id_terrenos, id_climas, id_horas_del_dia, id_npc
 ) VALUES
-(1, 'Escenario 1', 1, NULL, 6, 6, 5, 1),
-(2, 'Escenario 2', 2, 1, 6, 6, 5, 1),
-(3, 'Escenario 3', NULL, 2, 6, 6, 5, 1),
-(4, 'Escenario 4', 3, NULL, 6, 6, 5, 1),
-(5, 'Escenario 5', 4, 3, 6, 6, 5, 1),
-(6, 'Escenario 6', NULL, 4, 6, 6, 5, 2),
-(7, 'Escenario 7', 5, NULL, 6, 6, 5, 1),
-(8, 'Escenario 8', 6, NULL, 6, 6, 5, 1),
-(9, 'Escenario 9', NULL, 5, 6, 6, 5, 3),
-(10,'Escenario 10',7, NULL, 6, 6, 5, 1);
+(1, 1, 'Desierto', 1, NULL, 3, 2, 1, 1),
+(2, 2, 'Entrada a la Pirámide', 2, 1, 3, 2, 1, 1),
+(3, 2, 'Pasillo oscuro', NULL, 2, 3, 1, 1, 1),
+(4, 3, 'Sala Roja', 3, NULL, 5, 3, 2, 1),
+(5, 4, 'Sala Verde', 4, 3, 1, 1, 2, 1),
+(6, 5, 'Sala Blanca', NULL, 4, 6, 6, 3, 2),
+(7, 6, 'Sala Azul', 5, NULL, 4, 4, 3, 1),
+(8, 7, 'Sala Morada', 6, NULL, 2, 5, 4, 1),
+(9, 8, 'Templo de Ammit', NULL, 5, 1, 2, 4, 3),
+(10, 10, 'class_escenario:notfound', 7, NULL, 6, 6, 5, 1);
