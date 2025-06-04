@@ -40,9 +40,8 @@ public class Puzzle5 {
 		} else {
 			System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
 			juegoPerdido = true;
-			return false;
 		}
-		if (juegoPerdido = false) {
+		if (juegoPerdido == false) {
 			respuestaUsuario = 0;
 			System.out.println("Segunda pregunta: \n¿En qué año comenzó la Segunda Guerra Mundial?");
 			System.out.println("1. 1938");
@@ -61,10 +60,9 @@ public class Puzzle5 {
 			} else {
 				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
 				juegoPerdido = true;
-				return false;
 			}
 		}
-		if (juegoPerdido = false) {
+		if (juegoPerdido == false) {
 			respuestaUsuario = 0;
 			System.out.println("Tercera pregunta: \n¿Cuál es la capital de Australia?");
 			System.out.println("1. Sídney");
@@ -83,10 +81,9 @@ public class Puzzle5 {
 			} else {
 				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
 				juegoPerdido = true;
-				return false;
 			}
 		}
-		if (juegoPerdido = false) {
+		if (juegoPerdido == false) {
 			respuestaUsuario = 0;
 			System.out.println("Cuarta pregunta: \n¿Qué elemento químico tiene el símbolo 'Au'?");
 			System.out.println("1. Plata");
@@ -105,10 +102,9 @@ public class Puzzle5 {
 			} else {
 				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
 				juegoPerdido = true;
-				return false;
 			}
 		}
-		if (juegoPerdido = false) {
+		if (juegoPerdido == false) {
 			respuestaUsuario = 0;
 			System.out.println("Quinta pregunta: \n¿Quién escribió 'Cien años de soledad'?");
 			System.out.println("1. Mario Vargas Llosa");
@@ -127,10 +123,9 @@ public class Puzzle5 {
 			} else {
 				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
 				juegoPerdido = true;
-				return false;
 			}
 		}
-		if (juegoPerdido = false) {
+		if (juegoPerdido == false) {
 			respuestaUsuario = 0;
 			System.out.println("Sexta pregunta: \n¿Cuál es el océano más grande del mundo?");
 			System.out.println("1. Atlántico");
@@ -149,10 +144,9 @@ public class Puzzle5 {
 			} else {
 				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
 				juegoPerdido = true;
-				return false;
 			}
 		}
-		if (juegoPerdido = false) {
+		if (juegoPerdido == false) {
 			respuestaUsuario = 0;
 			System.out.println("Séptima pregunta y última pregunta: \n¿En qué continente se encuentra el desierto de Gobi?");
 			System.out.println("1. África");
@@ -171,20 +165,30 @@ public class Puzzle5 {
 			} else {
 				System.out.println("Respuesta incorrecta. Has perdido el puzzle.");
 				juegoPerdido = true;
-				return false;
 			}
 		}
-		if (respuestasCorrectas == 7) {
-			System.out.println(
-					"¡Felicidades! Has respondido correctamente a todas las preguntas y has completado el Puzzle.");
-			System.out.println("Has ganado " + puntosPuzzle + " puntos.");
-			puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
-			conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
-			puzzle5Acertado = true;
-			return true;
-		} else {
-			System.out.println("Has respondido correctamente a " + respuestasCorrectas + " preguntas de 7. Has perdido el puzzle.");
+		if (respuestasCorrectas == 0) {
+			System.out.println("No has acertado ninguna respuesta.");
+		} else if (respuestasCorrectas <= 2 && respuestasCorrectas != 0) {
+			System.out.println("Solamente has acertado " + respuestasCorrectas + " respuesta/s.");
+		}
+		if (respuestasCorrectas <= 2) {
+			System.out.println("TEXTO DE MORIR TU Y EL COMPAÑERO");
 			return false;
 		}
+		else if (respuestasCorrectas >= 3 && respuestasCorrectas <= 6) {
+			System.out.println("Has acertado " + respuestasCorrectas + " respuestas.");
+			System.out.println("TEXTO DE MORIR EL COMPAÑERO Y TU TE CURAS UN POCO");
+			return false;
+		} else if (respuestasCorrectas == 7) {
+			System.out.println("¡Felicidades! Has acertado todas las respuestas.");
+			System.out.println("TEXTO DE HABER GANADO EL PUZZLE Y TE CURAS ENTERO");
+			System.out.println("Has ganado " + puntosPuzzle + " puntos.");
+			puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
+			conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle,"nombreJugador= '" + usuario.getUsuario() + "'");
+			puzzle5Acertado = true;
+			return true;
+		}
+		return puzzle5Acertado;
 	}
 }

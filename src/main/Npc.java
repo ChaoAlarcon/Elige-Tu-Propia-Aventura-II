@@ -29,7 +29,13 @@ public class Npc {
     private int ayuda2_npcDios;
     private int ayuda3_npcDios;
     ConectarBDD conectarBDD = new ConectarBDD();
-    public Npc() {
+    
+	public Npc(String companero, String npcRandom, String npcDios, String especie_companero, String especie_npcRandom,
+			String especie_npcDios, String frase1_companero, String frase2_companero, String frase3_companero,
+			String frase1_npcRandom, String frase2_npcRandom, String frase3_npcRandom, String frase1_npcDios,
+			String frase2_npcDios, String frase3_npcDios, int ayuda1_companero, int ayuda2_companero,
+			int ayuda3_companero, int ayuda1_npcRandom, int ayuda2_npcRandom, int ayuda3_npcRandom, int ayuda1_npcDios,
+			int ayuda2_npcDios, int ayuda3_npcDios) {
         this.companero = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 1");
         this.npcRandom = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 2");
         this.npcDios = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 3");
@@ -55,6 +61,10 @@ public class Npc {
         this.ayuda2_npcDios = conectarBDD.consultarDatosint("ayuda_2", "npc", "id_npc = 3");
         this.ayuda3_npcDios = conectarBDD.consultarDatosint("ayuda_3", "npc", "id_npc = 3");
     }
+	
+	public Npc() {
+		
+	}
 
 	public String getCompanero() {
 		return companero;
@@ -251,5 +261,4 @@ public class Npc {
     public void presentacionCompanero() {
     	System.out.println("Te acompañará " + companero + ", el cual te podrá ayudar en los combates.");
     }
-    
 }

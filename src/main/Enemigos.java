@@ -1,51 +1,201 @@
 package main;
-
+import java.sql.*;
+import java.util.ArrayList;
+import main.ConectarBDD;
 public class Enemigos {
-	
-	// ATRIBUTOS
-	private String nombre;
-	private int vida;
-	private int ataque;
-
-	// CONSTRUCTORES
-	public Enemigos(String nombre, int vida, int ataque) {
-		this.nombre = nombre;
-		this.vida = vida;
-		this.ataque = ataque;
+	ConectarBDD ConectarBDD = new ConectarBDD();
+	private ArrayList<String> enemigos = new ArrayList<>();
+    private ArrayList<String> especie = new ArrayList<>();
+    private ArrayList<Integer> vida = new ArrayList<>();
+    private ArrayList<String> nombreBasico = new ArrayList<>();
+    private ArrayList<Integer> danoBasico = new ArrayList<>();
+    private ArrayList<String> descripcionBasico = new ArrayList<>();
+    private ArrayList<String> nombreFuerte = new ArrayList<>();
+    private ArrayList<Integer> danoFuerte = new ArrayList<>();
+    private ArrayList<String> descripcionFuerte = new ArrayList<>();
+    private ArrayList<String> nombreHabilidad = new ArrayList<>();
+    private ArrayList<Integer> datosHabilidad = new ArrayList<>();
+    private ArrayList<String> descripcionHabilidad = new ArrayList<>();
+    private int numeroEnemigos;
+    
+    public Enemigos() {
+    	
+    }
+    
+    
+    
+    public ArrayList<String> getEnemigos() {
+		return enemigos;
 	}
-	
-	// GETTERS Y SETTERS
-	public String getNombre() {
-		return nombre;
+
+
+
+	public void setEnemigos(ArrayList<String> enemigos) {
+		this.enemigos = enemigos;
 	}
 
-	public int getVida() {
+
+
+	public ArrayList<String> getEspecie() {
+		return especie;
+	}
+
+
+
+	public void setEspecie(ArrayList<String> especie) {
+		this.especie = especie;
+	}
+
+
+
+	public ArrayList<Integer> getVida() {
 		return vida;
 	}
 
-	public int getAtaque() {
-		return ataque;
-	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
 
-	public void setVida(int vida) {
+	public void setVida(ArrayList<Integer> vida) {
 		this.vida = vida;
 	}
 
-	public void setAtaque(int ataque) {
-		this.ataque = ataque;
+
+
+	public ArrayList<String> getNombreBasico() {
+		return nombreBasico;
 	}
 
-	// OTROS METODOS
-	public boolean estaVivo() {
-		return vida > 0;
+
+
+	public void setNombreBasico(ArrayList<String> nombreBasico) {
+		this.nombreBasico = nombreBasico;
 	}
 
-	public void recibirDanio(int danio) {
-		vida = Math.max(0, vida - danio);
+
+
+	public ArrayList<Integer> getDanoBasico() {
+		return danoBasico;
 	}
 
+
+
+	public void setDanoBasico(ArrayList<Integer> danoBasico) {
+		this.danoBasico = danoBasico;
+	}
+
+
+
+	public ArrayList<String> getDescripcionBasico() {
+		return descripcionBasico;
+	}
+
+
+
+	public void setDescripcionBasico(ArrayList<String> descripcionBasico) {
+		this.descripcionBasico = descripcionBasico;
+	}
+
+
+
+	public ArrayList<String> getNombreFuerte() {
+		return nombreFuerte;
+	}
+
+
+
+	public void setNombreFuerte(ArrayList<String> nombreFuerte) {
+		this.nombreFuerte = nombreFuerte;
+	}
+
+
+
+	public ArrayList<Integer> getDanoFuerte() {
+		return danoFuerte;
+	}
+
+
+
+	public void setDanoFuerte(ArrayList<Integer> danoFuerte) {
+		this.danoFuerte = danoFuerte;
+	}
+
+
+
+	public ArrayList<String> getDescripcionFuerte() {
+		return descripcionFuerte;
+	}
+
+
+
+	public void setDescripcionFuerte(ArrayList<String> descripcionFuerte) {
+		this.descripcionFuerte = descripcionFuerte;
+	}
+
+
+
+	public ArrayList<String> getNombreHabilidad() {
+		return nombreHabilidad;
+	}
+
+
+
+	public void setNombreHabilidad(ArrayList<String> nombreHabilidad) {
+		this.nombreHabilidad = nombreHabilidad;
+	}
+
+
+
+	public ArrayList<Integer> getDatosHabilidad() {
+		return datosHabilidad;
+	}
+
+
+
+	public void setDatosHabilidad(ArrayList<Integer> datosHabilidad) {
+		this.datosHabilidad = datosHabilidad;
+	}
+
+
+
+	public ArrayList<String> getDescripcionHabilidad() {
+		return descripcionHabilidad;
+	}
+
+
+
+	public void setDescripcionHabilidad(ArrayList<String> descripcionHabilidad) {
+		this.descripcionHabilidad = descripcionHabilidad;
+	}
+
+
+
+	public int getNumeroEnemigos() {
+		return numeroEnemigos;
+	}
+
+
+
+	public void setNumeroEnemigos(int numeroEnemigos) {
+		this.numeroEnemigos = numeroEnemigos;
+	}
+
+
+
+	public void creacionEnemigos() {
+    	numeroEnemigos = ConectarBDD.obtenerNumeroDeFilas("enemigos");
+    	for (int i = 1; i < numeroEnemigos; i++) {
+			enemigos.add(ConectarBDD.consultarDatosString("enemigos", "nombreEnemigo", "id_enemigos =" + i));
+			especie.add(ConectarBDD.consultarDatosString("enemigos", "especie", "id_enemigos =" + i));
+			vida.add(ConectarBDD.consultarDatosint("enemigos", "vida", "id_enemigos =" + i));
+			nombreBasico.add(ConectarBDD.consultarDatosString("ataques_enemigos", "nombreBasico", "id_ataques_enemigos =" + i));
+			danoBasico.add(ConectarBDD.consultarDatosint("ataques_enemigos", "danoBasico", "id_ataques_enemigos =" + i));
+			descripcionBasico.add(ConectarBDD.consultarDatosString("ataques_enemigos", "descripcionBasico", "id_ataques_enemigos =" + i));
+			nombreFuerte.add(ConectarBDD.consultarDatosString("ataques_enemigos", "nombreFuerte", "id_ataques_enemigos =" + i));
+			danoFuerte.add(ConectarBDD.consultarDatosint("ataques_enemigos", "danoFuerte", "id_ataques_enemigos =" + i));
+			descripcionFuerte.add(ConectarBDD.consultarDatosString("ataques_enemigos", "descripcionFuerte", "id_ataques_enemigos =" + i));
+			nombreHabilidad.add(ConectarBDD.consultarDatosString("habilidades_enemigos", "nombreHabilidad", "id_habilidades_enemigos =" + i));
+			datosHabilidad.add(ConectarBDD.consultarDatosint("habilidades_enemigos", "datosHabilidad", "id_habilidades_enemigos =" + i));
+			descripcionHabilidad.add(ConectarBDD.consultarDatosString("habilidades_enemigos", "descripcionHabilidad", "id_habilidades_enemigos =" + i));
+		}
+    }
+    
 }

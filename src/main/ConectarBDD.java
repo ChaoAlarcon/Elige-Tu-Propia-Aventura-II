@@ -143,4 +143,22 @@ public String consultarDatosString(String columnas, String tabla, String condici
 			return false;
 		}
 	}
+//Método para obtener el número de filas de una tabla
+	public int obtenerNumeroDeFilas(String tabla) {
+		int numeroDeFilas = 0;
+		String query = "SELECT COUNT(*) AS total FROM " + tabla;
+		try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+			ResultSet rs = stmt.executeQuery();
+			if (rs.next()) {
+				numeroDeFilas = rs.getInt("total");
+			}
+		} catch (SQLException e) {
+			System.out.println("Ha ocurrido un error al intentar obtener el número de filas de la tabla");
+			numeroDeFilas = -1; // Retorna -1 en caso de error
+		}
+		return numeroDeFilas;
+	}
 }
+
+
+

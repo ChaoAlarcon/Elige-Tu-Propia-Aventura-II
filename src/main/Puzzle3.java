@@ -62,14 +62,14 @@ public class Puzzle3 {
 				 return false;
 			}
 	
-	        if (String.join("", letrasAdivinadas).replace(" ", "").equals(palabraSecretaFinal)) {
-	            System.out.println("¡Felicidades! Has adivinado la palabra: " + palabraSecretaFinal + " y has completado el Puzzle.");
-	            System.out.println("Has ganado " + puntosPuzzle + " puntos.");
-	            puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
-				conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
-	            puzzle3Acertado = true;
-	            return true;
-	        }
+			if (String.join("", letrasAdivinadas).replace(" ", "").equalsIgnoreCase(palabraSecretaFinal)) {
+			    System.out.println("¡Felicidades! Has adivinado la palabra: " + palabraSecretaFinal + " y has completado el Puzzle.");
+			    System.out.println("Has ganado " + puntosPuzzle + " puntos.");
+			    puntosPuzzle += puntosTotalesUsuario;
+			    conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
+			    puzzle3Acertado = true;
+			    return true;
+			}
 	    }
 	    return puzzle3Acertado;
 	}
