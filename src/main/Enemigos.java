@@ -22,163 +22,61 @@ public class Enemigos {
     	
     }
     
-    
-    
     public ArrayList<String> getEnemigos() {
 		return enemigos;
 	}
-
-
-
-	public void setEnemigos(ArrayList<String> enemigos) {
-		this.enemigos = enemigos;
-	}
-
-
 
 	public ArrayList<String> getEspecie() {
 		return especie;
 	}
 
-
-
-	public void setEspecie(ArrayList<String> especie) {
-		this.especie = especie;
-	}
-
-
-
 	public ArrayList<Integer> getVida() {
 		return vida;
 	}
-
-
 
 	public void setVida(ArrayList<Integer> vida) {
 		this.vida = vida;
 	}
 
-
-
 	public ArrayList<String> getNombreBasico() {
 		return nombreBasico;
 	}
-
-
 
 	public void setNombreBasico(ArrayList<String> nombreBasico) {
 		this.nombreBasico = nombreBasico;
 	}
 
-
-
 	public ArrayList<Integer> getDanoBasico() {
 		return danoBasico;
 	}
-
-
-
-	public void setDanoBasico(ArrayList<Integer> danoBasico) {
-		this.danoBasico = danoBasico;
-	}
-
-
 
 	public ArrayList<String> getDescripcionBasico() {
 		return descripcionBasico;
 	}
 
-
-
-	public void setDescripcionBasico(ArrayList<String> descripcionBasico) {
-		this.descripcionBasico = descripcionBasico;
-	}
-
-
-
 	public ArrayList<String> getNombreFuerte() {
 		return nombreFuerte;
 	}
-
-
-
-	public void setNombreFuerte(ArrayList<String> nombreFuerte) {
-		this.nombreFuerte = nombreFuerte;
-	}
-
-
 
 	public ArrayList<Integer> getDanoFuerte() {
 		return danoFuerte;
 	}
 
-
-
-	public void setDanoFuerte(ArrayList<Integer> danoFuerte) {
-		this.danoFuerte = danoFuerte;
-	}
-
-
-
 	public ArrayList<String> getDescripcionFuerte() {
 		return descripcionFuerte;
 	}
-
-
-
-	public void setDescripcionFuerte(ArrayList<String> descripcionFuerte) {
-		this.descripcionFuerte = descripcionFuerte;
-	}
-
-
 
 	public ArrayList<String> getNombreHabilidad() {
 		return nombreHabilidad;
 	}
 
-
-
-	public void setNombreHabilidad(ArrayList<String> nombreHabilidad) {
-		this.nombreHabilidad = nombreHabilidad;
-	}
-
-
-
 	public ArrayList<Integer> getDatosHabilidad() {
 		return datosHabilidad;
 	}
 
-
-
-	public void setDatosHabilidad(ArrayList<Integer> datosHabilidad) {
-		this.datosHabilidad = datosHabilidad;
-	}
-
-
-
 	public ArrayList<String> getDescripcionHabilidad() {
 		return descripcionHabilidad;
 	}
-
-
-
-	public void setDescripcionHabilidad(ArrayList<String> descripcionHabilidad) {
-		this.descripcionHabilidad = descripcionHabilidad;
-	}
-
-
-
-	public int getNumeroEnemigos() {
-		return numeroEnemigos;
-	}
-
-
-
-	public void setNumeroEnemigos(int numeroEnemigos) {
-		this.numeroEnemigos = numeroEnemigos;
-	}
-
-
 
 	public void creacionEnemigos() {
     	numeroEnemigos = ConectarBDD.obtenerNumeroDeFilas("enemigos");

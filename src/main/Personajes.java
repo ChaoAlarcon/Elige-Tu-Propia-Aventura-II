@@ -60,10 +60,6 @@ public class Personajes {
 		return nombrePersonaje;
 	}
 
-	public void setNombrePersonaje(String nombrePersonaje) {
-		this.nombrePersonaje = nombrePersonaje;
-	}
-
 	public int getVida() {
 		return vida;
 	}
@@ -76,136 +72,74 @@ public class Personajes {
 		return nombreBasico;
 	}
 
-	public void setNombreBasico(String nombreBasico) {
-		this.nombreBasico = nombreBasico;
-	}
-
 	public int getDanoBasico() {
 		return danoBasico;
-	}
-
-	public void setDanoBasico(int danoBasico) {
-		this.danoBasico = danoBasico;
 	}
 
 	public String getDescripcionBasico() {
 		return descripcionBasico;
 	}
 
-	public void setDescripcionBasico(String descripcionBasico) {
-		this.descripcionBasico = descripcionBasico;
-	}
-
 	public int getPrecisionBasico() {
 		return precisionBasico;
-	}
-
-	public void setPrecisionBasico(int precisionBasico) {
-		this.precisionBasico = precisionBasico;
 	}
 
 	public String getNombreFuerte() {
 		return nombreFuerte;
 	}
 
-	public void setNombreFuerte(String nombreFuerte) {
-		this.nombreFuerte = nombreFuerte;
-	}
 
 	public int getDanoFuerte() {
 		return danoFuerte;
 	}
 
-	public void setDanoFuerte(int danoFuerte) {
-		this.danoFuerte = danoFuerte;
-	}
 
 	public String getDescripcionFuerte() {
 		return descripcionFuerte;
 	}
 
-	public void setDescripcionFuerte(String descripcionFuerte) {
-		this.descripcionFuerte = descripcionFuerte;
-	}
 
 	public int getPrecisionFuerte() {
 		return precisionFuerte;
-	}
-
-	public void setPrecisionFuerte(int precisionFuerte) {
-		this.precisionFuerte = precisionFuerte;
 	}
 
 	public String getNombreHabilidad() {
 		return nombreHabilidad;
 	}
 
-	public void setNombreHabilidad(String nombreHabilidad) {
-		this.nombreHabilidad = nombreHabilidad;
-	}
 
 	public int getDatosHabilidad() {
 		return datosHabilidad;
 	}
 
-	public void setDatosHabilidad(int datosHabilidad) {
-		this.datosHabilidad = datosHabilidad;
-	}
 
 	public String getDescripcionHabilidad() {
 		return descripcionHabilidad;
 	}
 
-	public void setDescripcionHabilidad(String descripcionHabilidad) {
-		this.descripcionHabilidad = descripcionHabilidad;
-	}
 
 	public String getFinal1() {
 		return final1;
-	}
-
-	public void setFinal1(String final1) {
-		this.final1 = final1;
 	}
 
 	public String getFinal2() {
 		return final2;
 	}
 
-	public void setFinal2(String final2) {
-		this.final2 = final2;
-	}
-
 	public String getFinal3() {
 		return final3;
-	}
-
-	public void setFinal3(String final3) {
-		this.final3 = final3;
 	}
 
 	public String getFinal4() {
 		return final4;
 	}
 
-	public void setFinal4(String final4) {
-		this.final4 = final4;
-	}
-
 	public String getFinal5() {
 		return final5;
 	}
 
-	public void setFinal5(String final5) {
-		this.final5 = final5;
-	}
-
 	public int getAtaqueEspecial() {
 		return ataqueEspecial;
-	}
-
-	public void setAtaqueEspecial(int ataqueEspecial) {
-		this.ataqueEspecial = ataqueEspecial;
 	}
 
 	public void ElegirPersonaje() {

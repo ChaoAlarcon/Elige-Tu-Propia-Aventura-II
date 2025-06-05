@@ -7,7 +7,7 @@ public class ConectarBDD{
 	public String driver = "com.mysql.cj.jdbc.Driver";
 
 	// Nombre de la base de datos
-	public String database = "etpa2_g25v4";
+	public String database = "etpa2_g25v5";
 
 	// Host
 	public String hostname = "localhost";
@@ -81,36 +81,36 @@ public class ConectarBDD{
 	}
 
 // Método para consultar datos int
-public int consultarDatosint(String columnas, String tabla, String condicion) {
-    int resultado = 0;
-    String query = "SELECT " + columnas + " FROM " + tabla + " WHERE " + condicion;
-	try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
-		ResultSet rs = stmt.executeQuery();
-        if (rs.next()) {
-            resultado = rs.getInt(columnas);
-        }
-    } catch (SQLException e) {
-		System.out.println("Ha ocurrido un error al intentar usar la base de datos");
-		resultado = -1; // Retorna -1 en caso de error
-    }
-    return resultado;
-}
+	public int consultarDatosint(String columnas, String tabla, String condicion) {
+	    int resultado = 0;
+	    String query = "SELECT " + columnas + " FROM " + tabla + " WHERE " + condicion;
+		try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+			ResultSet rs = stmt.executeQuery();
+	        if (rs.next()) {
+	            resultado = rs.getInt(columnas);
+	        }
+	    } catch (SQLException e) {
+			System.out.println("Ha ocurrido un error al intentar usar la base de datos");
+			resultado = -1; // Retorna -1 en caso de error
+	    }
+	    return resultado;
+	}
 
 //Método para consultar datos String
-public String consultarDatosString(String columnas, String tabla, String condicion) {
- String resultado = null;
- String query = "SELECT " + columnas + " FROM " + tabla + " WHERE " + condicion;
- try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
-     ResultSet rs = stmt.executeQuery();
-     if (rs.next()) {
-         resultado = rs.getString(columnas);
-     }
- } catch (SQLException e) {
-     System.out.println("Ha ocurrido un error al intentar usar la base de datos");
-     resultado = null; // Retorna null en caso de error
- }
- return resultado;
-}
+	public String consultarDatosString(String columnas, String tabla, String condicion) {
+	 String resultado = null;
+	 String query = "SELECT " + columnas + " FROM " + tabla + " WHERE " + condicion;
+	 try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+	     ResultSet rs = stmt.executeQuery();
+	     if (rs.next()) {
+	         resultado = rs.getString(columnas);
+	     }
+	 } catch (SQLException e) {
+	     System.out.println("Ha ocurrido un error al intentar usar la base de datos");
+	     resultado = null; // Retorna null en caso de error
+	 }
+	 return resultado;
+	}
 
 // Método para iniciar sesión
 	public boolean iniciarSesionBDD(String condicion) {
@@ -143,22 +143,24 @@ public String consultarDatosString(String columnas, String tabla, String condici
 			return false;
 		}
 	}
-//Método para obtener el número de filas de una tabla
+	
+// Método para obtener el número de filas de una tabla
 	public int obtenerNumeroDeFilas(String tabla) {
-		int numeroDeFilas = 0;
-		String query = "SELECT COUNT(*) AS total FROM " + tabla;
-		try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
-			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				numeroDeFilas = rs.getInt("total");
-			}
-		} catch (SQLException e) {
-			System.out.println("Ha ocurrido un error al intentar obtener el número de filas de la tabla");
-			numeroDeFilas = -1; // Retorna -1 en caso de error
-		}
-		return numeroDeFilas;
+	    int numeroDeFilas = 0;
+	    String query = "SELECT COUNT(*) AS total FROM " + tabla;
+	    try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+	        ResultSet rs = stmt.executeQuery();
+	        if (rs.next()) {
+	            numeroDeFilas = rs.getInt("total");
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Ha ocurrido un error al intentar obtener el número de filas de la tabla: " + e.getMessage());
+	        numeroDeFilas = -1; // Retorna -1 en caso de error
+	    }
+	    return numeroDeFilas;
 	}
 }
+
 
 
 
