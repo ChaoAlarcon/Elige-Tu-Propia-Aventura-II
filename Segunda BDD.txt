@@ -1,4 +1,4 @@
-//Segunda BDD\\
+//Tercera BDD\\
 -- Tabla: Jugador
 CREATE TABLE Jugador (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -9,7 +9,8 @@ CREATE TABLE Jugador (
 
 -- Tabla: Ataques
 CREATE TABLE Ataques (
-    id_ataques INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_ataques INT,
     nombreBasico VARCHAR(100),
     danoBasico INT,
     descripcionBasico TEXT,
@@ -23,7 +24,8 @@ CREATE TABLE Ataques (
 
 -- Tabla: Ataques_Enemigos
 CREATE TABLE Ataques_Enemigos (
-    id_ataques_enemigos INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_ataques_enemigos INT,
     nombreBasico VARCHAR(100),
     danoBasico INT,
     descripcionBasico TEXT,
@@ -37,7 +39,8 @@ CREATE TABLE Ataques_Enemigos (
 
 -- Tabla_ Personajes
 CREATE TABLE Personajes (
-    id_personajes INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_personajes INT,
     nombrePersonaje VARCHAR(100),
     vida INT,
     final_1 TEXT,
@@ -50,7 +53,8 @@ CREATE TABLE Personajes (
 );
 -- Tabla: Enemigos
 CREATE TABLE Enemigos (
-    id_enemigos INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_enemigos INT,
     nombreEnemigo VARCHAR(100),
     especie VARCHAR(100),
     vida INT,
@@ -80,7 +84,8 @@ CREATE TABLE Puzzles (
 
 -- Tabla: Batallas
 CREATE TABLE Batallas (
-    id_batallas INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_batallas INT,
     nombreBatalla VARCHAR(100),
     id_enemigos INT,
     FOREIGN KEY (id_enemigos) REFERENCES Enemigos(id_enemigos)
@@ -88,7 +93,8 @@ CREATE TABLE Batallas (
 
 -- Tabla: Terrenos
 CREATE TABLE Terrenos (
-    id_terrenos INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_terrenos INT,
     nombreTerreno VARCHAR(100),
     buff INT,
     descripcionBuff TEXT,
@@ -98,7 +104,8 @@ CREATE TABLE Terrenos (
 
 -- Tabla: Climas
 CREATE TABLE Climas (
-    id_climas INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_climas INT,
     nombreClima VARCHAR(100),
     buff INT,
     descripcionBuff TEXT,
@@ -108,7 +115,8 @@ CREATE TABLE Climas (
 
 -- Tabla: Horas_Del_Dia
 CREATE TABLE Horas_Del_Dia (
-    id_horas_del_dia INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_horas_del_dia INT,
     nombreHora VARCHAR(50),
     buff INT,
     descripcionBuff TEXT,
@@ -118,7 +126,8 @@ CREATE TABLE Horas_Del_Dia (
 
 -- Tabla: Escenarios
 CREATE TABLE Escenarios (
-    id_escenarios INT AUTO_INCREMENT PRIMARY KEY,
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_escenarios INT,
     nombreEscenario VARCHAR(100),
     id_batallas INT,
     id_puzzles INT,

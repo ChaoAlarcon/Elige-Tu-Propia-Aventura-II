@@ -145,11 +145,11 @@ INSERT INTO escenarios (
 ) VALUES
 (1, 1, 'Desierto', 1, NULL, 3, 2, 1, 1),
 (2, 2, 'Entrada a la Pirámide', 2, 1, 3, 2, 1, 1),
-(3, 2, 'Pasillo oscuro', NULL, 2, 3, 1, 1, 1),
-(4, 3, 'Sala Roja', 3, NULL, 5, 3, 2, 1),
-(5, 4, 'Sala Verde', 4, 3, 1, 1, 2, 1),
-(6, 5, 'Sala Blanca', NULL, 4, 6, 6, 3, 2),
-(7, 6, 'Sala Azul', 5, NULL, 4, 4, 3, 1),
-(8, 7, 'Sala Morada', 6, NULL, 2, 5, 4, 1),
-(9, 8, 'Templo de Ammit', NULL, 5, 1, 2, 4, 3),
+(3, 3, 'Pasillo oscuro', NULL, 2, 3, 1, 1, 1),
+(4, 4, 'Sala Roja', 3, NULL, 5, 3, 2, 1),
+(5, 5, 'Sala Verde', 4, 3, 1, 1, 2, 1),
+(6, 6, 'Sala Blanca', NULL, 4, 6, 6, 3, 2),
+(7, 7, 'Sala Azul', 5, NULL, 4, 4, 3, 1),
+(8, 8, 'Sala Morada', 6, NULL, 2, 5, 4, 1),
+(9, 9, 'Templo de Ammit', NULL, 5, 1, 2, 4, 3),
 (10, 10, 'class_escenario:notfound', 7, NULL, 6, 6, 5, 1);
