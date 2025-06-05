@@ -10,7 +10,7 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 - **Institución:** Instituto Nebrija Formación Profesional 
 - **Estado:** En desarrollo  
 
-![Portada](Portada_ETPA_II.png)
+![Portada](Portada_ETPA_II_Remastered.png)
 
 ## Integrantes del Grupo 👥️
 - Álvaro Santos Calvo
