@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import main.ConectarBDD;
 public class Climas {
 	ConectarBDD conectarBDD = new ConectarBDD();
+	HorasDelDia hora = new HorasDelDia();
 	private ArrayList<String> nombreClima = new ArrayList<>();
 	private ArrayList<Integer> buffClima = new ArrayList<>();
 	private ArrayList<String> descripcionBuffClima = new ArrayList<>();
@@ -44,6 +45,12 @@ public class Climas {
 	public void creacionClimas() {
 		numeroClimas = conectarBDD.obtenerNumeroDeFilas("climas");
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("climas");
+	    nombreClima.clear();
+	    buffClima.clear();
+	    descripcionBuffClima.clear();
+	    penalizacionClima.clear();
+	    descripcionPenalizacionClima.clear();
+	    idClimasEnEscenarios.clear();
 		for (int i = 1; i <= numeroClimas; i++) {
 			nombreClima.add(conectarBDD.consultarDatosString("nombreClima", "climas", "id_climas = " + i));
 			buffClima.add(conectarBDD.consultarDatosint("buff", "climas", "id_climas = " + i));
@@ -54,9 +61,10 @@ public class Climas {
 		for (int j = 1; j <= numeroEscenarios; j++) {
 			idClimasEnEscenarios.add(conectarBDD.consultarDatosint("id_climas", "escenarios", "id_escenarios = " + j));
 		}
+		hora.creacionHoras();
 	}
 	
-	public void efectoTerreno() {
+	public void efectoClima() {
 		climaActual = idClimasEnEscenarios.get(filaDeClimaActual) - 1;
 		if (buffClima.get(climaActual) != 0 && penalizacionClima.get(climaActual) == 0) {
 			System.out.println("Es por la " + nombreClima.get(climaActual) + ".");

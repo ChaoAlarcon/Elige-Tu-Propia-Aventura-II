@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import main.ConectarBDD;
 public class Enemigos {
 	ConectarBDD ConectarBDD = new ConectarBDD();
+	Escenarios escenario = new Escenarios();
 	private ArrayList<String> enemigos = new ArrayList<>();
     private ArrayList<String> especie = new ArrayList<>();
     private ArrayList<Integer> vida = new ArrayList<>();
@@ -80,6 +81,18 @@ public class Enemigos {
 
 	public void creacionEnemigos() {
     	numeroEnemigos = ConectarBDD.obtenerNumeroDeFilas("enemigos");
+        enemigos.clear();
+        especie.clear();
+        vida.clear();
+        nombreBasico.clear();
+        danoBasico.clear();
+        descripcionBasico.clear();
+        nombreFuerte.clear();
+        danoFuerte.clear();
+        descripcionFuerte.clear();
+        nombreHabilidad.clear();
+        datosHabilidad.clear();
+        descripcionHabilidad.clear();
     	for (int i = 1; i < numeroEnemigos; i++) {
 			enemigos.add(ConectarBDD.consultarDatosString("enemigos", "nombreEnemigo", "id_enemigos =" + i));
 			especie.add(ConectarBDD.consultarDatosString("enemigos", "especie", "id_enemigos =" + i));
@@ -94,6 +107,7 @@ public class Enemigos {
 			datosHabilidad.add(ConectarBDD.consultarDatosint("habilidades_enemigos", "datosHabilidad", "id_habilidades_enemigos =" + i));
 			descripcionHabilidad.add(ConectarBDD.consultarDatosString("habilidades_enemigos", "descripcionHabilidad", "id_habilidades_enemigos =" + i));
 		}
+    	escenario.creacionEscenarios();
     }
     
 }

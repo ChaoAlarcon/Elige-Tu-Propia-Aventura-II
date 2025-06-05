@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import main.ConectarBDD;
 public class HorasDelDia {
 	ConectarBDD conectarBDD = new ConectarBDD();
+	Enemigos enemigo = new Enemigos();
 	private ArrayList<String> nombreHora = new ArrayList<>();
 	private ArrayList<Integer> buffHora = new ArrayList<>();
 	private ArrayList<String> descripcionBuffHora = new ArrayList<>();
@@ -42,6 +43,12 @@ public class HorasDelDia {
 	public void creacionHoras() {
 		numeroHoras = conectarBDD.obtenerNumeroDeFilas("horas_del_dia");
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("horas_del_dia");
+	    nombreHora.clear();
+	    buffHora.clear();
+	    descripcionBuffHora.clear();
+	    penalizacionHora.clear();
+	    descripcionPenalizacionHora.clear();
+	    idHorasEnEscenarios.clear();
 		for (int i = 1; i <= numeroHoras; i++) {
 			nombreHora.add(conectarBDD.consultarDatosString("nombreHora", "horas_del_dia", "id_hora_del_dia = " + i));
 			buffHora.add(conectarBDD.consultarDatosint("buff", "horas_del_dia", "id_hora_del_dia = " + i));
@@ -52,9 +59,10 @@ public class HorasDelDia {
 		for (int j = 1; j <= numeroEscenarios; j++) {
 			idHorasEnEscenarios.add(conectarBDD.consultarDatosint("id_horas_del_dia", "escenarios", "id_escenarios = " + j));
 		}
+		enemigo.creacionEnemigos();
 	}
 	
-	public void efectoTerreno() {
+	public void efectoHoraDelDia() {
 		horaActual = idHorasEnEscenarios.get(filaDeHoraActual) - 1;
 		if (buffHora.get(horaActual) != 0 && penalizacionHora.get(horaActual) == 0) {
 			System.out.println("Es por la " + nombreHora.get(horaActual) + ".");

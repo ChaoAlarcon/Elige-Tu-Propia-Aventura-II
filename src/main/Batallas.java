@@ -42,9 +42,11 @@ public class Batallas {
 	}
 	
 	public void batallas() {
-		for (int i = 0; i < numeroBatallas; i++) {
+		for (int i = 1; i < numeroBatallas; i++) {
 			System.out.println(nombreBatalla.get(i));
-			System.out.println("Estas en el terreno: " + terreno.getNombreTerreno().get(i) + "el cual te da: ");
+			clima.efectoClima();
+			terreno.efectoTerreno();
+			hora.efectoHoraDelDia();
 		}
 		
 	}

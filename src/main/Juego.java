@@ -4,8 +4,9 @@ import main.ConectarBDD;
 public class Juego {
 	Personajes personaje = new Personajes();
 	ConectarBDD conectarBDD = new ConectarBDD();
-	Npc npc = new Npc();
+	Escenarios escenario = new Escenarios();
 	public void juego() {
 		personaje.ElegirPersonaje();
+		escenario.escenarios();
 	}
 }

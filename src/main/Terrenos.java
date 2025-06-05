@@ -4,7 +4,6 @@ import main.ConectarBDD;
 import java.util.ArrayList;
 public class Terrenos {
 	ConectarBDD conectarBDD = new ConectarBDD();
-	Escenarios escenarios = new Escenarios();
 	private ArrayList<String> nombreTerreno = new ArrayList<>();
 	private ArrayList<Integer> buffTerreno = new ArrayList<>();
 	private ArrayList<String> descripcionBuffTerreno = new ArrayList<>();
@@ -43,6 +42,12 @@ public class Terrenos {
 	public void creacionTerrenos() {
 		numeroTerrenos = conectarBDD.obtenerNumeroDeFilas("terrenos");
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("escenarios");
+	    nombreTerreno.clear();
+	    buffTerreno.clear();
+	    descripcionBuffTerreno.clear();
+	    penalizacionTerreno.clear();
+	    descripcionPenalizacionTerreno.clear();
+	    idTerrenosEnEscenarios.clear();
 		for (int i = 1; i <= numeroTerrenos; i++) {
 			nombreTerreno.add(conectarBDD.consultarDatosString("nombreTerreno", "terrenos", "id_terrenos = " + i));
 			buffTerreno.add(conectarBDD.consultarDatosint("buff", "terrenos", "id_terrenos = " + i));

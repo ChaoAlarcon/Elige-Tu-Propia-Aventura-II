@@ -29,6 +29,7 @@ public class Npc {
     private int ayuda2_npcDios;
     private int ayuda3_npcDios;
     ConectarBDD conectarBDD = new ConectarBDD();
+    Climas clima = new Climas();
     
 	public Npc(String companero, String npcRandom, String npcDios, String especie_companero, String especie_npcRandom,
 			String especie_npcDios, String frase1_companero, String frase2_companero, String frase3_companero,
@@ -164,6 +165,7 @@ public class Npc {
 	}
 	
     public void presentacionCompanero() {
-    	System.out.println("Te acompañará " + companero + ", el cual te podrá ayudar en los combates.");
+    	System.out.println("Te acompañará " + companero + "que es un " + especie_companero + " y el cual te podrá ayudar en los combates.");
+    	clima.creacionClimas();
     }
 }
