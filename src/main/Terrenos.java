@@ -15,6 +15,7 @@ public class Terrenos {
 	private int numeroEscenarios;
 	private int terrenoActual;
 	private int filaDeTerrenoActual = 0;
+	private int efectoVida;
 	
 	public Terrenos() {
 
@@ -75,5 +76,20 @@ public class Terrenos {
 		} else {
 			System.out.println("Error al cargar el terreno.");
 		}
+	}
+	
+	public int efectoTerreno() {
+		efectoVida = 0;
+		terrenoActual = idTerrenosEnEscenarios.get(filaDeTerrenoActual) - 1;
+		if (buffTerreno.get(terrenoActual) != 0 && penalizacionTerreno.get(terrenoActual) == 0) {
+			efectoVida = buffTerreno.get(terrenoActual);
+		} else if (penalizacionTerreno.get(terrenoActual) != 0 && buffTerreno.get(terrenoActual) == 0) {
+			efectoVida = -penalizacionTerreno.get(terrenoActual);
+		} else if (buffTerreno.get(terrenoActual) == 0 && penalizacionTerreno.get(terrenoActual) == 0) {
+			efectoVida = 0;
+		} else {
+			System.out.println("Error al cargar la hora.");
+		}
+		return efectoVida;
 	}
 }

@@ -2,7 +2,7 @@ package main;
 import java.sql.*;
 import java.util.ArrayList;
 import main.ConectarBDD;
-public class Climas {
+public class Climas extends Batallas{
 	ConectarBDD conectarBDD = new ConectarBDD();
 	HorasDelDia hora = new HorasDelDia();
 	private ArrayList<String> nombreClima = new ArrayList<>();
@@ -15,6 +15,7 @@ public class Climas {
 	private int numeroEscenarios;
 	private int climaActual;
 	private int filaDeClimaActual = 0;
+	private int efectoPrecision;
 	
 	public Climas() {
 		
@@ -77,6 +78,20 @@ public class Climas {
 		} else {
 			System.out.println("Error al cargar el clima.");
 		}
+	}
+	public int efectoClima() {
+		efectoPrecision = 0;
+		climaActual = idClimasEnEscenarios.get(filaDeClimaActual) - 1;
+		if (buffClima.get(climaActual) != 0 && penalizacionClima.get(climaActual) == 0) {
+			efectoPrecision = buffClima.get(climaActual);
+		} else if (penalizacionClima.get(climaActual) != 0 && buffClima.get(climaActual) == 0) {
+			efectoPrecision = -penalizacionClima.get(climaActual);
+		} else if (buffClima.get(climaActual) == 0 && penalizacionClima.get(climaActual) == 0) {
+			efectoPrecision = 0;
+		} else {
+			System.out.println("Error al cargar la hora.");
+		}
+		return efectoPrecision;
 	}
 }
 
