@@ -51,7 +51,6 @@ public class Terrenos {
 	    idTerrenosEnEscenarios.clear();
 		for (int i = 1; i <= numeroTerrenos; i++) {
 			nombreTerreno.add(conectarBDD.consultarDatosString("nombreTerreno", "terrenos", "id_terrenos = " + i));
-			System.out.println("Terreno");
 			buffTerreno.add(conectarBDD.consultarDatosint("buff", "terrenos", "id_terrenos = " + i));
 			descripcionBuffTerreno.add(conectarBDD.consultarDatosString("descripcionBuff", "terrenos", "id_terrenos = " + i));
 			penalizacionTerreno.add(conectarBDD.consultarDatosint("penalizacion", "terrenos", "id_terrenos = " + i));
@@ -63,7 +62,7 @@ public class Terrenos {
 		escenario.creacionEscenarios();
 	}
 	
-	public void efectoTerreno() {
+	public void efectoTerrenoDescrip() {
 		terrenoActual = idTerrenosEnEscenarios.get(filaDeTerrenoActual) - 1;
 		if (buffTerreno.get(terrenoActual) != 0 && penalizacionTerreno.get(terrenoActual) == 0) {
 			System.out.println("El terreno es " + nombreTerreno.get(terrenoActual) + ".");
@@ -76,6 +75,5 @@ public class Terrenos {
 		} else {
 			System.out.println("Error al cargar el terreno.");
 		}
-		filaDeTerrenoActual++;
 	}
 }

@@ -53,7 +53,6 @@ public class Climas {
 	    idClimasEnEscenarios.clear();
 		for (int i = 1; i <= numeroClimas; i++) {
 			nombreClima.add(conectarBDD.consultarDatosString("nombreClima", "climas", "id_climas = " + i));
-			System.out.println("Climas");
 			buffClima.add(conectarBDD.consultarDatosint("buff", "climas", "id_climas = " + i));
 			descripcionBuffClima.add(conectarBDD.consultarDatosString("descripcionBuff", "climas", "id_climas = " + i));
 			penalizacionClima.add(conectarBDD.consultarDatosint("penalizacion", "climas", "id_climas = " + i));
@@ -65,7 +64,7 @@ public class Climas {
 		hora.creacionHoras();
 	}
 	
-	public void efectoClima() {
+	public void efectoClimaDescrip() {
 		climaActual = idClimasEnEscenarios.get(filaDeClimaActual);
 		if (buffClima.get(climaActual) != 0 && penalizacionClima.get(climaActual) == 0) {
 			System.out.println("Es por la " + nombreClima.get(climaActual) + ".");
@@ -78,7 +77,6 @@ public class Climas {
 		} else {
 			System.out.println("Error al cargar el clima.");
 		}
-		filaDeClimaActual++;
 	}
 }
 

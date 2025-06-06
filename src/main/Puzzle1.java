@@ -8,6 +8,7 @@ public class Puzzle1 {
 	Random random = new Random();
 	ConectarBDD conectarBDD = new ConectarBDD();
 	Usuarios usuario = new Usuarios();
+	Batallas batallas = new Batallas();
 	private int intentosRestantes = 8;
 	private int respuestaUsuario;
 	private int solucionPuzzle1;
@@ -57,6 +58,7 @@ public class Puzzle1 {
 				puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
 				conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
 				puzzle1Acertado = true;
+				batallas.setBatallaActual(batallas.getBatallaActual() + 1);
 				return true;
 			} else {
 				intentosRestantes--;

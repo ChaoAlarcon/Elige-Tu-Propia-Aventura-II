@@ -141,6 +141,15 @@ public class Personajes {
 	public int getAtaqueEspecial() {
 		return ataqueEspecial;
 	}
+	
+
+	public int getOpcionPersonaje() {
+		return opcionPersonaje;
+	}
+
+	public void setOpcionPersonaje(int opcionPersonaje) {
+		this.opcionPersonaje = opcionPersonaje;
+	}
 
 	public void ElegirPersonaje() {
 	    opcionPersonaje = 0;

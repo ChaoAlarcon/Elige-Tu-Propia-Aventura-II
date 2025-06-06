@@ -81,7 +81,6 @@ public class Enemigos {
 
 	public void creacionEnemigos() {
     	numeroEnemigos = ConectarBDD.obtenerNumeroDeFilas("enemigos");
-    	System.out.println(numeroEnemigos);
     	enemigos.clear();
         especie.clear();
         vida.clear();
@@ -94,9 +93,8 @@ public class Enemigos {
         nombreHabilidad.clear();
         datosHabilidad.clear();
         descripcionHabilidad.clear();
-    	for (int i = 1; i < numeroEnemigos; i++) {
+    	for (int i = 1; i <= numeroEnemigos; i++) {
 			enemigos.add(ConectarBDD.consultarDatosString("nombreEnemigo", "enemigos", "id_enemigos =" + i));
-			System.out.println(enemigos.get(i - 1));
 			especie.add(ConectarBDD.consultarDatosString("especie","enemigos",  "id_enemigos =" + i));
 			vida.add(ConectarBDD.consultarDatosint( "vida","enemigos", "id_enemigos =" + i));
 			nombreBasico.add(ConectarBDD.consultarDatosString( "nombreBasico","ataques_enemigos", "id_ataques_enemigos =" + i));
@@ -105,9 +103,9 @@ public class Enemigos {
 			nombreFuerte.add(ConectarBDD.consultarDatosString( "nombreFuerte","ataques_enemigos", "id_ataques_enemigos =" + i));
 			danoFuerte.add(ConectarBDD.consultarDatosint( "danoFuerte","ataques_enemigos", "id_ataques_enemigos =" + i));
 			descripcionFuerte.add(ConectarBDD.consultarDatosString( "descripcionFuerte","ataques_enemigos", "id_ataques_enemigos =" + i));
-			nombreHabilidad.add(ConectarBDD.consultarDatosString( "nombreHabilidad","ataques_enemigos", "id_habilidades_enemigos =" + i));
-			datosHabilidad.add(ConectarBDD.consultarDatosint( "datosHabilidad","ataques_enemigos", "id_habilidades_enemigos =" + i));
-			descripcionHabilidad.add(ConectarBDD.consultarDatosString( "descripcionHabilidad","ataques_enemigos", "id_habilidades_enemigos =" + i));
+			nombreHabilidad.add(ConectarBDD.consultarDatosString( "nombreHabilidad","ataques_enemigos", "id_ataques_enemigos =" + i));
+			datosHabilidad.add(ConectarBDD.consultarDatosint( "datosHabilidad","ataques_enemigos", "id_ataques_enemigos =" + i));
+			descripcionHabilidad.add(ConectarBDD.consultarDatosString( "descripcionHabilidad","ataques_enemigos", "id_ataques_enemigos =" + i));
 		}
     	terreno.creacionTerrenos();
     }

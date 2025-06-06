@@ -14,6 +14,7 @@ public class HorasDelDia {
 	private int numeroHoras;
 	private int numeroEscenarios;
 	private int horaActual;
+	private int efectoAtaque;
 	private int filaDeHoraActual = 0;
 	
 	public HorasDelDia() {
@@ -40,6 +41,14 @@ public class HorasDelDia {
 		return descripcionPenalizacionHora;
 	}
 	
+	public int getHoraActual() {
+		return horaActual;
+	}
+
+	public void setHoraActual(int horaActual) {
+		this.horaActual = horaActual;
+	}
+
 	public void creacionHoras() {
 		numeroHoras = conectarBDD.obtenerNumeroDeFilas("horas_del_dia");
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("horas_del_dia");
@@ -51,7 +60,6 @@ public class HorasDelDia {
 	    idHorasEnEscenarios.clear();
 		for (int i = 1; i <= numeroHoras; i++) {
 			nombreHora.add(conectarBDD.consultarDatosString("nombreHora", "horas_del_dia", "id_horas_del_dia = " + i));
-			System.out.println("Hora");
 			buffHora.add(conectarBDD.consultarDatosint("buff", "horas_del_dia", "id_horas_del_dia = " + i));
 			descripcionBuffHora.add(conectarBDD.consultarDatosString("descripcionBuff", "horas_del_dia", "id_horas_del_dia = " + i));
 			penalizacionHora.add(conectarBDD.consultarDatosint("penalizacion", "horas_del_dia", "id_horas_del_dia = " + i));
@@ -63,7 +71,7 @@ public class HorasDelDia {
 		enemigo.creacionEnemigos();
 	}
 	
-	public void efectoHoraDelDia() {
+	public void efectoHoraDelDiaDescrip() {
 		horaActual = idHorasEnEscenarios.get(filaDeHoraActual) - 1;
 		if (buffHora.get(horaActual) != 0 && penalizacionHora.get(horaActual) == 0) {
 			System.out.println("Es por la " + nombreHora.get(horaActual) + ".");
@@ -76,6 +84,20 @@ public class HorasDelDia {
 		} else {
 			System.out.println("Error al cargar la hora.");
 		}
-		filaDeHoraActual++;
+	}
+	
+	public int efectoHoraDelDia() {
+		efectoAtaque = 0;
+		horaActual = idHorasEnEscenarios.get(filaDeHoraActual) - 1;
+		if (buffHora.get(horaActual) != 0 && penalizacionHora.get(horaActual) == 0) {
+			efectoAtaque = buffHora.get(horaActual);
+		} else if (penalizacionHora.get(horaActual) != 0 && buffHora.get(horaActual) == 0) {
+			efectoAtaque = -penalizacionHora.get(horaActual);
+		} else if (buffHora.get(horaActual) == 0 && penalizacionHora.get(horaActual) == 0) {
+			efectoAtaque = 0;
+		} else {
+			System.out.println("Error al cargar la hora.");
+		}
+		return efectoAtaque;
 	}
 }
