@@ -9,6 +9,7 @@ public class Puzzle3 {
 	ConectarBDD conectarBDD = new ConectarBDD();
 	Usuarios usuario = new Usuarios();
 	Batallas batallas = new Batallas();
+	Enemigos enemigos = new Enemigos();
 	private int fallosDisponibles = 7;
 	private int puntosPuzzle;
 	private int puntosTotalesUsuario;
@@ -23,6 +24,11 @@ public class Puzzle3 {
 	}
 	
 	public boolean iniciarPuzzle3() {
+		System.out.println("Después de derrotar al " + getEnemigos().get(batallaActual)
+				+ " abrís la puerta y os lleva a una zona de bosque");
+		System.out.println("Avanzando por el bosque, os topáis con un " + getEnemigos().get(batallaActual) + 1
+				+ ", que dice: Estoy demasiado mayor para pelear, ¿Qué os parece si jugamos a un juego en vez de pelear?\n");
+		System.out.println("Nombre Puzzle");
 		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 3");
 		System.out.println("Puzzle 3: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 3"));
@@ -55,16 +61,16 @@ public class Puzzle3 {
 	            System.out.println("¡Correcto! " + String.join("", letrasAdivinadas));
 	        } else {
 	            fallosDisponibles--;
-	            System.out.println("Letra incorrecta. Intentos restantes: " + fallosDisponibles + " " + String.join("", letrasAdivinadas));
+	            System.out.println("”Muy mal, pero todavía te quedan intentos.” " + fallosDisponibles + " " + String.join("", letrasAdivinadas));
 	        }
 	        
 			if (fallosDisponibles == 0) {
-				 System.out.println("¡Has perdido! La palabra era: " + palabraSecretaFinal);
+				 System.out.println("”Jajaja, la palabra era: " + palabraSecretaFinal + " que incompetentes, creía que serias rivales más difíciles, pero veo que os he sobreestimado, ahora que sé que sois así de estúpidos, ¡Os machacare!.”");
 				 return false;
 			}
 	
 			if (String.join("", letrasAdivinadas).replace(" ", "").equalsIgnoreCase(palabraSecretaFinal)) {
-			    System.out.println("¡Felicidades! Has adivinado la palabra: " + palabraSecretaFinal + " y has completado el Puzzle.");
+				System.out.println("”Muy bien, has adivinado la palabra: " + palabraSecretaFinal + " y has completado el puzzle, parece que sois lo suficientemente sabios, os dejaré pasar.”");
 			    System.out.println("Has ganado " + puntosPuzzle + " puntos.");
 			    puntosPuzzle += puntosTotalesUsuario;
 			    conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");

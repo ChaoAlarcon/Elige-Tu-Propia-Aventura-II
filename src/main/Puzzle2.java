@@ -17,6 +17,9 @@ public class Puzzle2 {
 	}
 	
 	public boolean iniciarPuzzle2() {
+		System.out.println("Conseguís pasar por la puerta y os adentráis por un oscuro pasillo, cuando llegáis al final se encienden unas antorchas y ante vosotros se encuentra una esfinge de 5 metros de altura, mientras admirais la belleza de la estructura os sorprende una voz que dice: \n"
+				+ "“Si querés continuar tenéis que demostrar vuestra valía resolviendo este acertijo:”\n");
+		System.out.println("Nombre Puzzle");
 		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 2");
 		System.out.println("Puzzle 2: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 2"));
@@ -34,19 +37,21 @@ public class Puzzle2 {
 			respuestaUsuario = sc.nextLine().trim();
 
 			if (respuestaUsuario.equalsIgnoreCase("agujero") || respuestaUsuario.equalsIgnoreCase("hoyo") || respuestaUsuario.equalsIgnoreCase("boquete")) {
-				System.out.println("¡Respuesta correcta! Has completado el Puzzle.");
+				System.out.println("Acertasteis, os daré mi bendición para que os ayude en vuestra aventura y os dejaré pasar, pero antes de seguir sabed que el camino por el que camináis es muy peligroso, tened cuidado. \n");
 				System.out.println("Has ganado " + puntosPuzzle + " puntos.");
+				System.out.println("Después de lo que ha dicho la Esfinge, decidís destruirla y descubris que dentro de ella ocultaba una puerta roja.");
 				puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
 				conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
 				puzzle2Acertado = true;
 				return true;
 			} else {
 				intentosRestantes--;
-				System.out.println("Respuesta incorrecta. Inténtalo de nuevo.");
+				System.out.println("No es correcto, inténtalo de nuevo.");
 			}
 
 			if (intentosRestantes == 0 && !puzzle2Acertado) {
-				System.out.println("Has agotado todos tus intentos. No has podido resolver el puzzle.");
+				System.out.println("No mereceis continuar por este camino, Y mientras yo siga en pie nunca encontraréis la puerta que os lleva a la siguiente sala.\n”"
+						+ "“Después de lo que ha dicho la Esfinge, decidís destruirla y descubris que dentro de ella ocultaba una puerta roja\n");
 				return false;
 			}
 		}

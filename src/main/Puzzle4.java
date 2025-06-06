@@ -21,6 +21,9 @@ public class Puzzle4 {
 		return puzzle4Acertado;
 	}
 	public boolean iniciarPuzzle4() {
+		System.out.println("Después de vencer a " + getEnemigos.get(batallaActual) + ", las ramas de los árboles de alrededor forman una puerta blanca.");
+		System.out.println("La puerta os lleva a una sala blanca donde encontráis un fantasma, este os dice: Esta es una sala segura donde podéis descansar un rato antes de proseguir vuestra aventura. También puedo ofreceros un poco de ayuda pero para eso debéis demostrar vuestro valor.\n");
+		System.out.println("Nombre Puzzle");
 		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 4");
 		System.out.println("Puzzle 3: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 4"));
@@ -67,6 +70,9 @@ public class Puzzle4 {
 		        System.out.println("tu enemigo tiene: " + puntosEnemigo + " puntos");
 		    }
 		}	
+		/*	-Pierdes con tres o menos: “Has perdido estrepitosamente, alguien como tú, no es digno de llamarse guerrero.”
+			-Pierdes con 4: “Casi me ganas, pero no has sido lo suficientemente bueno, no obstante has demostrado tu valor y te concederé una pequeña bendición, con ella te sentirás más vivo”
+			-Ganas: “¡Bien hecho! ¡Por fin he conocido un guerrero digno! Ahora te daré mi bendición y te sentirás más vivo que nunca.”*/
 		if (puntosUsuario == 5) {
 			System.out.println("¡Felicidades! Has derrotado a tu enemigo y has completado el Puzzle.");
 			System.out.println("Has ganado " + puntosPuzzle + " puntos.");

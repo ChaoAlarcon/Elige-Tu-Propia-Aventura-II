@@ -23,6 +23,9 @@ public class Puzzle1 {
 	}
 	
 	public boolean iniciarPuzzle1() {
+		System.out.println("Tras derrotar al cactus prosiguis vuestro camino hacia la pirámide, cuando llegais, os encontráis con un extraño guardián, ¡es Cambises!, pero está momificado, parece ser que ha intentado adentrarse él solo a la pirámide y no ha sobrevivido, y ahora es solo un espejismo del guerrero que fue convertido, en mero guardián.\n");
+		System.out.println("Al acercaros os dice: “...uoh uh para paaasar por estaaa puerta tendréis que aaadivinar el número secreeeto”");
+		System.out.println("Nombre Puzzle");
 		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 1");
 		System.out.println("Puzzle 1: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 1"));
@@ -53,7 +56,7 @@ public class Puzzle1 {
 			System.out.println("Introduce un número del 1 al 20:");
 			respuestaUsuario = sc.nextInt();
 			if (respuestaUsuario == solucionPuzzle1) {
-				System.out.println("¡Respuesta correcta! Has completado el Puzzle.");
+				System.out.println("“Eeese es eel númeroo correctooo oohh, podéis pasaaar.”");
 				System.out.println("Has ganado " + puntosPuzzle + " puntos.");
 				puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
 				conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
@@ -62,11 +65,11 @@ public class Puzzle1 {
 				return true;
 			} else {
 				intentosRestantes--;
-				System.out.println("Respuesta incorrecta. Inténtalo de nuevo.");
+				System.out.println("“uuh Eeese nooo es eel númeroo correctooo oohh”");
 			}
 			if (intentosRestantes == 0 && !puzzle1Acertado) {
-				System.out.println("Has agotado todos tus intentos. No has podido resolver el puzzle.");
-				System.out.println("La solución era: " + solucionPuzzle1);
+				System.out.println("“You shall not pass!!!”");
+				//System.out.println("La solución era: " + solucionPuzzle1);
 				return false;
 			}
 		}

@@ -18,6 +18,11 @@ public class Puzzle5 {
 	}
 	
 	public boolean iniciarPuzzle5() {
+		System.out.println("Al derrotar a " + getEnemigos().get(batallaActual - 1) + ", una luz morada os envuelve y os teletransporta.");
+		System.out.println("Parece que el hechizo os ha llevado al templo donde recibisteis la misión de la diosa Ammit. Cuando llegáis al altar, "
+				+ "aparece Ammit, pero tiene un aura oscura alrededor de ella, parece estar corrompida, para liberarla tendréis que deshacer el hechizo "
+				+ "que la controla, mientras Obi la distrae tendrás que encargarte de resolver las preguntas que forman el hechizo.\n Nombre Puzzle");
+
 		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 5");
 		System.out.println("Puzzle 5: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 5"));
