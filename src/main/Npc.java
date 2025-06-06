@@ -30,38 +30,6 @@ public class Npc {
     private int ayuda3_npcDios;
     ConectarBDD conectarBDD = new ConectarBDD();
     Climas clima = new Climas();
-    
-	public Npc(String companero, String npcRandom, String npcDios, String especie_companero, String especie_npcRandom,
-			String especie_npcDios, String frase1_companero, String frase2_companero, String frase3_companero,
-			String frase1_npcRandom, String frase2_npcRandom, String frase3_npcRandom, String frase1_npcDios,
-			String frase2_npcDios, String frase3_npcDios, int ayuda1_companero, int ayuda2_companero,
-			int ayuda3_companero, int ayuda1_npcRandom, int ayuda2_npcRandom, int ayuda3_npcRandom, int ayuda1_npcDios,
-			int ayuda2_npcDios, int ayuda3_npcDios) {
-        this.companero = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 1");
-        this.npcRandom = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 2");
-        this.npcDios = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 3");
-        this.especie_companero = conectarBDD.consultarDatosString("especie", "npc", "id_npc = 1");
-        this.especie_npcRandom = conectarBDD.consultarDatosString("especie", "npc", "id_npc = 2");
-        this.especie_npcDios = conectarBDD.consultarDatosString("especie", "npc", "id_npc = 3");
-        this.frase1_companero = conectarBDD.consultarDatosString("frase_1", "npc", "id_npc = 1");
-        this.frase2_companero = conectarBDD.consultarDatosString("frase_2", "npc", "id_npc = 1");
-        this.frase3_companero = conectarBDD.consultarDatosString("frase_3", "npc", "id_npc = 1");
-        this.frase1_npcRandom = conectarBDD.consultarDatosString("frase_1", "npc", "id_npc = 2");
-        this.frase2_npcRandom = conectarBDD.consultarDatosString("frase_2", "npc", "id_npc = 2");
-        this.frase3_npcRandom = conectarBDD.consultarDatosString("frase_3", "npc", "id_npc = 2");
-        this.frase1_npcDios = conectarBDD.consultarDatosString("frase_1", "npc", "id_npc = 3");
-        this.frase2_npcDios = conectarBDD.consultarDatosString("frase_2", "npc", "id_npc = 3");
-        this.frase3_npcDios = conectarBDD.consultarDatosString("frase_3", "npc", "id_npc = 3");
-        this.ayuda1_companero = conectarBDD.consultarDatosint("ayuda_1", "npc", "id_npc = 1");
-        this.ayuda2_companero = conectarBDD.consultarDatosint("ayuda_2", "npc", "id_npc = 1");
-        this.ayuda3_companero = conectarBDD.consultarDatosint("ayuda_3", "npc", "id_npc = 1");
-        this.ayuda1_npcRandom = conectarBDD.consultarDatosint("ayuda_1", "npc", "id_npc = 2");
-        this.ayuda2_npcRandom = conectarBDD.consultarDatosint("ayuda_2", "npc", "id_npc = 2");
-        this.ayuda3_npcRandom = conectarBDD.consultarDatosint("ayuda_3", "npc", "id_npc = 2");
-        this.ayuda1_npcDios = conectarBDD.consultarDatosint("ayuda_1", "npc", "id_npc = 3");
-        this.ayuda2_npcDios = conectarBDD.consultarDatosint("ayuda_2", "npc", "id_npc = 3");
-        this.ayuda3_npcDios = conectarBDD.consultarDatosint("ayuda_3", "npc", "id_npc = 3");
-    }
 	
 	public Npc() {
 		
@@ -164,8 +132,35 @@ public class Npc {
 		return ayuda3_npcDios;
 	}
 	
+	public void creacionNpcs() {
+		companero = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 1");
+        npcRandom = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 2");
+        npcDios = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 3");
+        especie_companero = conectarBDD.consultarDatosString("especie", "npc", "id_npc = 1");
+        especie_npcRandom = conectarBDD.consultarDatosString("especie", "npc", "id_npc = 2");
+        especie_npcDios = conectarBDD.consultarDatosString("especie", "npc", "id_npc = 3");
+        frase1_companero = conectarBDD.consultarDatosString("frase_1", "npc", "id_npc = 1");
+        frase2_companero = conectarBDD.consultarDatosString("frase_2", "npc", "id_npc = 1");
+        frase3_companero = conectarBDD.consultarDatosString("frase_3", "npc", "id_npc = 1");
+        frase1_npcRandom = conectarBDD.consultarDatosString("frase_1", "npc", "id_npc = 2");
+        frase2_npcRandom = conectarBDD.consultarDatosString("frase_2", "npc", "id_npc = 2");
+        frase3_npcRandom = conectarBDD.consultarDatosString("frase_3", "npc", "id_npc = 2");
+        frase1_npcDios = conectarBDD.consultarDatosString("frase_1", "npc", "id_npc = 3");
+        frase2_npcDios = conectarBDD.consultarDatosString("frase_2", "npc", "id_npc = 3");
+        frase3_npcDios = conectarBDD.consultarDatosString("frase_3", "npc", "id_npc = 3");
+        ayuda1_companero = conectarBDD.consultarDatosint("ayuda_1", "npc", "id_npc = 1");
+        ayuda2_companero = conectarBDD.consultarDatosint("ayuda_2", "npc", "id_npc = 1");
+        ayuda3_companero = conectarBDD.consultarDatosint("ayuda_3", "npc", "id_npc = 1");
+        ayuda1_npcRandom = conectarBDD.consultarDatosint("ayuda_1", "npc", "id_npc = 2");
+        ayuda2_npcRandom = conectarBDD.consultarDatosint("ayuda_2", "npc", "id_npc = 2");
+        ayuda3_npcRandom = conectarBDD.consultarDatosint("ayuda_3", "npc", "id_npc = 2");
+        ayuda1_npcDios = conectarBDD.consultarDatosint("ayuda_1", "npc", "id_npc = 3");
+        ayuda2_npcDios = conectarBDD.consultarDatosint("ayuda_2", "npc", "id_npc = 3");
+        ayuda3_npcDios = conectarBDD.consultarDatosint("ayuda_3", "npc", "id_npc = 3");
+	}
+	
     public void presentacionCompanero() {
-    	System.out.println("Te acompañará " + companero + "que es un " + especie_companero + " y el cual te podrá ayudar en los combates.");
+    	System.out.println("Te acompañará " + companero + " que es un " + especie_companero + " y el cual te podrá ayudar en los combates.");
     	clima.creacionClimas();
     }
 }

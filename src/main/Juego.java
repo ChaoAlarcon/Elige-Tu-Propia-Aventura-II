@@ -5,8 +5,9 @@ public class Juego {
 	Personajes personaje = new Personajes();
 	ConectarBDD conectarBDD = new ConectarBDD();
 	Escenarios escenario = new Escenarios();
+	Climas clima = new Climas();
 	public void juego() {
 		personaje.ElegirPersonaje();
-		escenario.escenarios();
+		clima.creacionClimas();
 	}
 }

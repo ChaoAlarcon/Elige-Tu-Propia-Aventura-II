@@ -189,6 +189,7 @@ public class Personajes {
 	            }
 	    }
         System.out.println("");
+        npc.creacionNpcs();
         npc.presentacionCompanero();
 	}
 }

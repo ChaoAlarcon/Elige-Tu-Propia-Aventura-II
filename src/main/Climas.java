@@ -45,7 +45,7 @@ public class Climas {
 	public void creacionClimas() {
 		numeroClimas = conectarBDD.obtenerNumeroDeFilas("climas");
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("climas");
-	    nombreClima.clear();
+		nombreClima.clear();
 	    buffClima.clear();
 	    descripcionBuffClima.clear();
 	    penalizacionClima.clear();
@@ -53,6 +53,7 @@ public class Climas {
 	    idClimasEnEscenarios.clear();
 		for (int i = 1; i <= numeroClimas; i++) {
 			nombreClima.add(conectarBDD.consultarDatosString("nombreClima", "climas", "id_climas = " + i));
+			System.out.println("Climas");
 			buffClima.add(conectarBDD.consultarDatosint("buff", "climas", "id_climas = " + i));
 			descripcionBuffClima.add(conectarBDD.consultarDatosString("descripcionBuff", "climas", "id_climas = " + i));
 			penalizacionClima.add(conectarBDD.consultarDatosint("penalizacion", "climas", "id_climas = " + i));
@@ -65,7 +66,7 @@ public class Climas {
 	}
 	
 	public void efectoClima() {
-		climaActual = idClimasEnEscenarios.get(filaDeClimaActual) - 1;
+		climaActual = idClimasEnEscenarios.get(filaDeClimaActual);
 		if (buffClima.get(climaActual) != 0 && penalizacionClima.get(climaActual) == 0) {
 			System.out.println("Es por la " + nombreClima.get(climaActual) + ".");
 			System.out.println("La hora te da un buff de " + buffClima.get(climaActual) + " " + descripcionBuffClima.get(climaActual));

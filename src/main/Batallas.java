@@ -14,6 +14,7 @@ public class Batallas {
 	Terrenos terreno = new Terrenos();
 	HorasDelDia hora = new HorasDelDia();
 	private ArrayList<String> nombreBatalla = new ArrayList<>();
+	private int batallaActual = 0;
 	private int numeroBatallas;
 	
 	public Batallas() {
@@ -42,12 +43,9 @@ public class Batallas {
 	}
 	
 	public void batallas() {
-		for (int i = 1; i < numeroBatallas; i++) {
-			System.out.println(nombreBatalla.get(i));
+			System.out.println(nombreBatalla.get(batallaActual));
 			clima.efectoClima();
 			terreno.efectoTerreno();
 			hora.efectoHoraDelDia();
-		}
-		
 	}
 }

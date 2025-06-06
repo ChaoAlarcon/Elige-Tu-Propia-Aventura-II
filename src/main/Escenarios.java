@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import main.ConectarBDD;
 public class Escenarios {
 	ConectarBDD conectarBDD = new ConectarBDD();
-	Terrenos terreno = new Terrenos();
 	private ArrayList<String> nombreEscenario = new ArrayList<>();
 	private ArrayList<Integer> numeroIdBatalla = new ArrayList<>();
 	private ArrayList<Integer> numeroIdPuzzles = new ArrayList<>();
@@ -36,6 +35,7 @@ public class Escenarios {
 	    numeroIdNpc.clear();
 		for (int i = 1; i <= numeroEscenarios; i++) {
 			nombreEscenario.add(conectarBDD.consultarDatosString("nombreEscenario", "escenarios", "id_escenarios= " + i));
+			System.out.println("Escenario");
 			numeroIdBatalla.add(conectarBDD.consultarDatosint("id_batallas", "escenarios", "id_escenarios= " + i));
 			numeroIdPuzzles.add(conectarBDD.consultarDatosint("id_puzzles", "escenarios", "id_escenarios= " + i));
 			numeroIdTerreno.add(conectarBDD.consultarDatosint("id_terrenos", "escenarios", "id_escenarios= " + i));
@@ -43,7 +43,6 @@ public class Escenarios {
 			numeroIdHora.add(conectarBDD.consultarDatosint("id_horas_del_dia", "escenarios", "id_escenarios= " + i));
 			numeroIdNpc.add(conectarBDD.consultarDatosint("id_npc", "escenarios", "id_escenarios= " + i));
 		}
-		terreno.creacionTerrenos();
 	}
 	
 	public void escenarios() {

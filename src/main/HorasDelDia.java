@@ -43,18 +43,19 @@ public class HorasDelDia {
 	public void creacionHoras() {
 		numeroHoras = conectarBDD.obtenerNumeroDeFilas("horas_del_dia");
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("horas_del_dia");
-	    nombreHora.clear();
+		nombreHora.clear();
 	    buffHora.clear();
 	    descripcionBuffHora.clear();
 	    penalizacionHora.clear();
 	    descripcionPenalizacionHora.clear();
 	    idHorasEnEscenarios.clear();
 		for (int i = 1; i <= numeroHoras; i++) {
-			nombreHora.add(conectarBDD.consultarDatosString("nombreHora", "horas_del_dia", "id_hora_del_dia = " + i));
-			buffHora.add(conectarBDD.consultarDatosint("buff", "horas_del_dia", "id_hora_del_dia = " + i));
-			descripcionBuffHora.add(conectarBDD.consultarDatosString("descripcionBuff", "horas_del_dia", "id_hora_del_dia = " + i));
-			penalizacionHora.add(conectarBDD.consultarDatosint("penalizacion", "horas_del_dia", "id_hora_del_dia = " + i));
-			descripcionPenalizacionHora.add(conectarBDD.consultarDatosString("descripcionPenalizacion", "horas_del_dia", "id_hora_del_dia = " + i));
+			nombreHora.add(conectarBDD.consultarDatosString("nombreHora", "horas_del_dia", "id_horas_del_dia = " + i));
+			System.out.println("Hora");
+			buffHora.add(conectarBDD.consultarDatosint("buff", "horas_del_dia", "id_horas_del_dia = " + i));
+			descripcionBuffHora.add(conectarBDD.consultarDatosString("descripcionBuff", "horas_del_dia", "id_horas_del_dia = " + i));
+			penalizacionHora.add(conectarBDD.consultarDatosint("penalizacion", "horas_del_dia", "id_horas_del_dia = " + i));
+			descripcionPenalizacionHora.add(conectarBDD.consultarDatosString("descripcionPenalizacion", "horas_del_dia", "id_horas_del_dia = " + i));
 		}
 		for (int j = 1; j <= numeroEscenarios; j++) {
 			idHorasEnEscenarios.add(conectarBDD.consultarDatosint("id_horas_del_dia", "escenarios", "id_escenarios = " + j));

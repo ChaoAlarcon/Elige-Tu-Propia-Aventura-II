@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import main.ConectarBDD;
 public class Enemigos {
 	ConectarBDD ConectarBDD = new ConectarBDD();
-	Escenarios escenario = new Escenarios();
+	Terrenos terreno = new Terrenos();
 	private ArrayList<String> enemigos = new ArrayList<>();
     private ArrayList<String> especie = new ArrayList<>();
     private ArrayList<Integer> vida = new ArrayList<>();
@@ -81,7 +81,8 @@ public class Enemigos {
 
 	public void creacionEnemigos() {
     	numeroEnemigos = ConectarBDD.obtenerNumeroDeFilas("enemigos");
-        enemigos.clear();
+    	System.out.println(numeroEnemigos);
+    	enemigos.clear();
         especie.clear();
         vida.clear();
         nombreBasico.clear();
@@ -94,20 +95,21 @@ public class Enemigos {
         datosHabilidad.clear();
         descripcionHabilidad.clear();
     	for (int i = 1; i < numeroEnemigos; i++) {
-			enemigos.add(ConectarBDD.consultarDatosString("enemigos", "nombreEnemigo", "id_enemigos =" + i));
-			especie.add(ConectarBDD.consultarDatosString("enemigos", "especie", "id_enemigos =" + i));
-			vida.add(ConectarBDD.consultarDatosint("enemigos", "vida", "id_enemigos =" + i));
-			nombreBasico.add(ConectarBDD.consultarDatosString("ataques_enemigos", "nombreBasico", "id_ataques_enemigos =" + i));
-			danoBasico.add(ConectarBDD.consultarDatosint("ataques_enemigos", "danoBasico", "id_ataques_enemigos =" + i));
-			descripcionBasico.add(ConectarBDD.consultarDatosString("ataques_enemigos", "descripcionBasico", "id_ataques_enemigos =" + i));
-			nombreFuerte.add(ConectarBDD.consultarDatosString("ataques_enemigos", "nombreFuerte", "id_ataques_enemigos =" + i));
-			danoFuerte.add(ConectarBDD.consultarDatosint("ataques_enemigos", "danoFuerte", "id_ataques_enemigos =" + i));
-			descripcionFuerte.add(ConectarBDD.consultarDatosString("ataques_enemigos", "descripcionFuerte", "id_ataques_enemigos =" + i));
-			nombreHabilidad.add(ConectarBDD.consultarDatosString("habilidades_enemigos", "nombreHabilidad", "id_habilidades_enemigos =" + i));
-			datosHabilidad.add(ConectarBDD.consultarDatosint("habilidades_enemigos", "datosHabilidad", "id_habilidades_enemigos =" + i));
-			descripcionHabilidad.add(ConectarBDD.consultarDatosString("habilidades_enemigos", "descripcionHabilidad", "id_habilidades_enemigos =" + i));
+			enemigos.add(ConectarBDD.consultarDatosString("nombreEnemigo", "enemigos", "id_enemigos =" + i));
+			System.out.println(enemigos.get(i - 1));
+			especie.add(ConectarBDD.consultarDatosString("especie","enemigos",  "id_enemigos =" + i));
+			vida.add(ConectarBDD.consultarDatosint( "vida","enemigos", "id_enemigos =" + i));
+			nombreBasico.add(ConectarBDD.consultarDatosString( "nombreBasico","ataques_enemigos", "id_ataques_enemigos =" + i));
+			danoBasico.add(ConectarBDD.consultarDatosint( "danoBasico","ataques_enemigos", "id_ataques_enemigos =" + i));
+			descripcionBasico.add(ConectarBDD.consultarDatosString( "descripcionBasico","ataques_enemigos", "id_ataques_enemigos =" + i));
+			nombreFuerte.add(ConectarBDD.consultarDatosString( "nombreFuerte","ataques_enemigos", "id_ataques_enemigos =" + i));
+			danoFuerte.add(ConectarBDD.consultarDatosint( "danoFuerte","ataques_enemigos", "id_ataques_enemigos =" + i));
+			descripcionFuerte.add(ConectarBDD.consultarDatosString( "descripcionFuerte","ataques_enemigos", "id_ataques_enemigos =" + i));
+			nombreHabilidad.add(ConectarBDD.consultarDatosString( "nombreHabilidad","ataques_enemigos", "id_habilidades_enemigos =" + i));
+			datosHabilidad.add(ConectarBDD.consultarDatosint( "datosHabilidad","ataques_enemigos", "id_habilidades_enemigos =" + i));
+			descripcionHabilidad.add(ConectarBDD.consultarDatosString( "descripcionHabilidad","ataques_enemigos", "id_habilidades_enemigos =" + i));
 		}
-    	escenario.creacionEscenarios();
+    	terreno.creacionTerrenos();
     }
     
 }
