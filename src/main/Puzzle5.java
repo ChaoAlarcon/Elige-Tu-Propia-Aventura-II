@@ -17,6 +17,14 @@ public class Puzzle5 {
 		return puzzle5Acertado;
 	}
 	
+	public boolean isPuzzle5Acertado() {
+		return puzzle5Acertado;
+	}
+
+	public void setPuzzle5Acertado(boolean puzzle5Acertado) {
+		this.puzzle5Acertado = puzzle5Acertado;
+	}
+
 	public boolean iniciarPuzzle5() {
 		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 5");

@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import main.ConectarBDD;
 public class Escenarios {
 	ConectarBDD conectarBDD = new ConectarBDD();
-	Batallas batallas = new Batallas();
-	Climas climas = new Climas();
-	Enemigos enemigos = new Enemigos();
-	HorasDelDia horasDelDia = new HorasDelDia();
-	Npc npc = new Npc();
-	Personajes personajes = new Personajes();
-	Terrenos terrenos = new Terrenos();
+	Batallas batalla = new Batallas();
 	Puzzle1 puzzle1 = new Puzzle1();
 	Puzzle2 puzzle2 = new Puzzle2();
 	Puzzle3 puzzle3 = new Puzzle3();
 	Puzzle4 puzzle4 = new Puzzle4();
 	Puzzle5 puzzle5 = new Puzzle5();
+	Personajes heroe = new Personajes();
+	Npc npc = new Npc();
+	Enemigos enemigos = new Enemigos();
+	Climas climas = new Climas();
+	Terrenos terrenos = new Terrenos();
+	HorasDelDia horasDelDia = new HorasDelDia();
 	private ArrayList<String> nombreEscenario = new ArrayList<>();
 	private ArrayList<Integer> numeroIdBatalla = new ArrayList<>();
 	private ArrayList<Integer> numeroIdPuzzles = new ArrayList<>();
@@ -24,6 +24,30 @@ public class Escenarios {
 	private ArrayList<Integer> numeroIdHora = new ArrayList<>();
 	private ArrayList<Integer> numeroIdNpc = new ArrayList<>();
 	private int numeroEscenarios;
+	
+
+	public Escenarios(Personajes personajes, Puzzle1 puzzle1, Puzzle2 puzzle2, Puzzle3 puzzle3, Puzzle4 puzzle4, Puzzle5 puzzle5,
+	                  ArrayList<String> nombreEscenario, ArrayList<Integer> numeroIdBatalla,
+	                  ArrayList<Integer> numeroIdPuzzles, ArrayList<Integer> numeroIdTerreno,
+	                  ArrayList<Integer> numeroIdClima, ArrayList<Integer> numeroIdHora,
+	                  ArrayList<Integer> numeroIdNpc, int numeroEscenarios) {
+	    
+	    this.puzzle1 = puzzle1;
+	    this.puzzle2 = puzzle2;
+	    this.puzzle3 = puzzle3;
+	    this.puzzle4 = puzzle4;
+	    this.puzzle5 = puzzle5;
+	    this.nombreEscenario = nombreEscenario;
+	    this.numeroIdBatalla = numeroIdBatalla;
+	    this.numeroIdPuzzles = numeroIdPuzzles;
+	    this.numeroIdTerreno = numeroIdTerreno;
+	    this.numeroIdClima = numeroIdClima;
+	    this.numeroIdHora = numeroIdHora;
+	    this.numeroIdNpc = numeroIdNpc;
+	    this.numeroEscenarios = numeroEscenarios;
+	}
+
+	
 	public Escenarios() {
 		
 	}
@@ -36,13 +60,8 @@ public class Escenarios {
 		this.nombreEscenario = nombreEscenario;
 	}
 
-	public void creacionVariables() {
-		personajes.ElegirPersonaje();
-		npc.creacionNpcs();
-		enemigos.creacionEnemigos();
-		climas.creacionClimas();
-		horasDelDia.creacionHoras();
-		terrenos.creacionTerrenos();
+	public void creacionEscenarios() {
+		batalla.creacionBatallas();
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("escenarios");
 	    nombreEscenario.clear();
 	    numeroIdBatalla.clear();
@@ -66,28 +85,41 @@ public class Escenarios {
 
 	public void escenariosIniciar() {
 	    for (int j = 1; j <= 10; j++) {
+	    	puzzle1.setPuzzle1Acertado(false);
+	    	puzzle3.setPuzzle3Acertado(false);
 	        System.out.println("Escenario " + j + ": " + nombreEscenario.get(j-1));
 	        if (numeroIdPuzzles.get(j - 1) != 0) {
 	            System.out.println("Puzzle: " + numeroIdPuzzles.get(j - 1));
 	            switch (numeroIdPuzzles.get(j - 1)) {
 	                case 1:
 	                    puzzle1.iniciarPuzzle1();
+	                    puzzle3.setPuzzle3Acertado(true);
+						if (puzzle1.isPuzzle1Acertado()) {
+							batalla.Puzzlecambio1();
+						}
 	                    break;
 	                case 2:
 	                    puzzle2.iniciarPuzzle2();
+	                    batalla.Puzzlecambio2();
 	                    break;
 	                case 3:
 	                    puzzle3.iniciarPuzzle3();
+	                    puzzle1.setPuzzle1Acertado(true);
+	                    if (puzzle3.isPuzzle3Acertado()) {
+							batalla.Puzzlecambio1();
+						}
 	                    break;
 	                case 4:
 	                    puzzle4.iniciarPuzzle4();
+	                    batalla.Puzzlecambio2();
 	                    break;
 	                case 5:
 	                    puzzle5.iniciarPuzzle5();
+	                    batalla.Puzzlecambio2();
 	                    break;
 	            }
-	        } else if (numeroIdBatalla.get(j - 1) != 0) {
-	            System.out.println("jiji");
+	        } if (!puzzle1.isPuzzle1Acertado() && numeroIdBatalla.get(j - 1) != 0 || !puzzle3.isPuzzle3Acertado() && numeroIdBatalla.get(j - 1) != 0 ) {
+	            batalla.batallas();
 	        }
 	    }
 }

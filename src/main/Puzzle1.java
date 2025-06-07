@@ -8,7 +8,6 @@ public class Puzzle1 {
 	Random random = new Random();
 	ConectarBDD conectarBDD = new ConectarBDD();
 	Usuarios usuario = new Usuarios();
-	Batallas batallas = new Batallas();
 	private int intentosRestantes = 8;
 	private int respuestaUsuario;
 	private int solucionPuzzle1;
@@ -17,7 +16,14 @@ public class Puzzle1 {
 	private int puntosTotalesUsuario;
 	private boolean puzzle1Acertado = false;
 	
-	
+	public boolean isPuzzle1Acertado() {
+		return puzzle1Acertado;
+	}
+
+	public void setPuzzle1Acertado(boolean puzzle1Acertado) {
+		this.puzzle1Acertado = puzzle1Acertado;
+	}
+
 	public boolean PuzzleAcertado() {
 		return puzzle1Acertado;
 	}
@@ -28,7 +34,7 @@ public class Puzzle1 {
 		System.out.println("Puzzle 1: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 1"));
 		System.out.println("AQUÍ IRÍA EL TEXTO DE BIENVENIDA DEL PUZZLE 1");
 		System.out.println(conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 1"));
-		solucionPuzzle1 = random.nextInt(20) + 1;
+		solucionPuzzle1 = random.nextInt(10) + 1;
 		while (intentosRestantes > 0 && !puzzle1Acertado) {
 			if (intentosRestantes > 1) {
 				System.out.println("Tienes " + intentosRestantes + " intentos restantes.");
@@ -50,7 +56,7 @@ public class Puzzle1 {
 	                }
 	            }
 			}
-			System.out.println("Introduce un número del 1 al 20:");
+			System.out.println("Introduce un número del 1 al 10:");
 			respuestaUsuario = sc.nextInt();
 			if (respuestaUsuario == solucionPuzzle1) {
 				System.out.println("¡Respuesta correcta! Has completado el Puzzle.");
@@ -58,7 +64,6 @@ public class Puzzle1 {
 				puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
 				conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
 				puzzle1Acertado = true;
-				batallas.setBatallaActual(batallas.getBatallaActual() + 1);
 				return true;
 			} else {
 				intentosRestantes--;

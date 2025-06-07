@@ -20,11 +20,26 @@ public class Puzzle4 {
 	public boolean PuzzleAcertado() {
 		return puzzle4Acertado;
 	}
+	
+	
+	
+	public boolean isPuzzle4Acertado() {
+		return puzzle4Acertado;
+	}
+
+
+
+	public void setPuzzle4Acertado(boolean puzzle4Acertado) {
+		this.puzzle4Acertado = puzzle4Acertado;
+	}
+
+
+
 	public boolean iniciarPuzzle4() {
 		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 4");
-		System.out.println("Puzzle 3: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 4"));
-		System.out.println("AQUÍ IRÍA EL TEXTO DE BIENVENIDA DEL PUZZLE 3");
+		System.out.println("Puzzle 4: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 4"));
+		System.out.println("AQUÍ IRÍA EL TEXTO DE BIENVENIDA DEL PUZZLE 4");
 		System.out.println(conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 4"));
 		while (puntosEnemigo != 5 && puntosUsuario != 5) {
 			eleccionOponente = random.nextInt(2);

@@ -17,17 +17,51 @@ public class Enemigos {
     private ArrayList<Integer> datosHabilidad = new ArrayList<>();
     private ArrayList<String> descripcionHabilidad = new ArrayList<>();
     private int numeroEnemigos;
+    private int vidaEnemigoActual = 0;
+    
+    public Enemigos(ArrayList<String> enemigos, ArrayList<String> especie,
+            ArrayList<Integer> vida, ArrayList<String> nombreBasico, ArrayList<Integer> danoBasico,
+            ArrayList<String> descripcionBasico, ArrayList<String> nombreFuerte, ArrayList<Integer> danoFuerte,
+            ArrayList<String> descripcionFuerte, ArrayList<String> nombreHabilidad,
+            ArrayList<Integer> datosHabilidad, ArrayList<String> descripcionHabilidad,
+            int numeroEnemigos, int vidaEnemigoActual) {
+
+		this.enemigos = enemigos;
+		this.especie = especie;
+		this.vida = vida;
+		this.nombreBasico = nombreBasico;
+		this.danoBasico = danoBasico;
+		this.descripcionBasico = descripcionBasico;
+		this.nombreFuerte = nombreFuerte;
+		this.danoFuerte = danoFuerte;
+		this.descripcionFuerte = descripcionFuerte;
+		this.nombreHabilidad = nombreHabilidad;
+		this.datosHabilidad = datosHabilidad;
+		this.descripcionHabilidad = descripcionHabilidad;
+		this.numeroEnemigos = numeroEnemigos;
+		this.vidaEnemigoActual = vidaEnemigoActual;
+	}
     
     public Enemigos() {
     	
     }
     
-    public ArrayList<String> getEnemigos() {
+    
+
+	public ArrayList<String> getEnemigos() {
 		return enemigos;
+	}
+
+	public void setEnemigos(ArrayList<String> enemigos) {
+		this.enemigos = enemigos;
 	}
 
 	public ArrayList<String> getEspecie() {
 		return especie;
+	}
+
+	public void setEspecie(ArrayList<String> especie) {
+		this.especie = especie;
 	}
 
 	public ArrayList<Integer> getVida() {
@@ -50,32 +84,80 @@ public class Enemigos {
 		return danoBasico;
 	}
 
+	public void setDanoBasico(ArrayList<Integer> danoBasico) {
+		this.danoBasico = danoBasico;
+	}
+
 	public ArrayList<String> getDescripcionBasico() {
 		return descripcionBasico;
+	}
+
+	public void setDescripcionBasico(ArrayList<String> descripcionBasico) {
+		this.descripcionBasico = descripcionBasico;
 	}
 
 	public ArrayList<String> getNombreFuerte() {
 		return nombreFuerte;
 	}
 
+	public void setNombreFuerte(ArrayList<String> nombreFuerte) {
+		this.nombreFuerte = nombreFuerte;
+	}
+
 	public ArrayList<Integer> getDanoFuerte() {
 		return danoFuerte;
+	}
+
+	public void setDanoFuerte(ArrayList<Integer> danoFuerte) {
+		this.danoFuerte = danoFuerte;
 	}
 
 	public ArrayList<String> getDescripcionFuerte() {
 		return descripcionFuerte;
 	}
 
+	public void setDescripcionFuerte(ArrayList<String> descripcionFuerte) {
+		this.descripcionFuerte = descripcionFuerte;
+	}
+
 	public ArrayList<String> getNombreHabilidad() {
 		return nombreHabilidad;
+	}
+
+	public void setNombreHabilidad(ArrayList<String> nombreHabilidad) {
+		this.nombreHabilidad = nombreHabilidad;
 	}
 
 	public ArrayList<Integer> getDatosHabilidad() {
 		return datosHabilidad;
 	}
 
+	public void setDatosHabilidad(ArrayList<Integer> datosHabilidad) {
+		this.datosHabilidad = datosHabilidad;
+	}
+
 	public ArrayList<String> getDescripcionHabilidad() {
 		return descripcionHabilidad;
+	}
+
+	public void setDescripcionHabilidad(ArrayList<String> descripcionHabilidad) {
+		this.descripcionHabilidad = descripcionHabilidad;
+	}
+
+	public int getNumeroEnemigos() {
+		return numeroEnemigos;
+	}
+
+	public void setNumeroEnemigos(int numeroEnemigos) {
+		this.numeroEnemigos = numeroEnemigos;
+	}
+
+	public int getVidaEnemigoActual() {
+		return vidaEnemigoActual;
+	}
+
+	public void setVidaEnemigoActual(int vidaEnemigoActual) {
+		this.vidaEnemigoActual = vidaEnemigoActual;
 	}
 
 	public void creacionEnemigos() {

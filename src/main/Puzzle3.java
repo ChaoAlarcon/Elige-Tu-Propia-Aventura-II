@@ -8,7 +8,6 @@ public class Puzzle3 {
 	Random random = new Random();
 	ConectarBDD conectarBDD = new ConectarBDD();
 	Usuarios usuario = new Usuarios();
-	Batallas batallas = new Batallas();
 	private int fallosDisponibles = 7;
 	private int puntosPuzzle;
 	private int puntosTotalesUsuario;
@@ -18,6 +17,14 @@ public class Puzzle3 {
 	private String palabraSecretaFinal;
 	private String[] letrasAdivinadas;
 	
+	public boolean isPuzzle3Acertado() {
+		return puzzle3Acertado;
+	}
+
+	public void setPuzzle3Acertado(boolean puzzle3Acertado) {
+		this.puzzle3Acertado = puzzle3Acertado;
+	}
+
 	public boolean PuzzleAcertado() {
 		return puzzle3Acertado;
 	}
@@ -59,8 +66,8 @@ public class Puzzle3 {
 	        }
 	        
 			if (fallosDisponibles == 0) {
-				 System.out.println("¡Has perdido! La palabra era: " + palabraSecretaFinal);
-				 return false;
+				System.out.println("¡Has perdido! La palabra era: " + palabraSecretaFinal);
+				return false;
 			}
 	
 			if (String.join("", letrasAdivinadas).replace(" ", "").equalsIgnoreCase(palabraSecretaFinal)) {
@@ -69,7 +76,6 @@ public class Puzzle3 {
 			    puntosPuzzle += puntosTotalesUsuario;
 			    conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
 			    puzzle3Acertado = true;
-			    batallas.setBatallaActual(batallas.getBatallaActual() + 1);
 			    return true;
 			}
 	    }

@@ -16,8 +16,26 @@ public class HorasDelDia {
 	private int efectoAtaque;
 	private int filaDeHoraActual = 0;
 	
-	public HorasDelDia() {
+	public HorasDelDia(ArrayList<String> nombreHora, ArrayList<Integer> buffHora, ArrayList<String> descripcionBuffHora,
+	        ArrayList<Integer> penalizacionHora, ArrayList<String> descripcionPenalizacionHora,
+	        ArrayList<Integer> idHorasEnEscenarios, int numeroHoras, int numeroEscenarios, int horaActual,
+	        int efectoAtaque, int filaDeHoraActual) {
 
+	    this.nombreHora = nombreHora;
+	    this.buffHora = buffHora;
+	    this.descripcionBuffHora = descripcionBuffHora;
+	    this.penalizacionHora = penalizacionHora;
+	    this.descripcionPenalizacionHora = descripcionPenalizacionHora;
+	    this.idHorasEnEscenarios = idHorasEnEscenarios;
+	    this.numeroHoras = numeroHoras;
+	    this.numeroEscenarios = numeroEscenarios;
+	    this.horaActual = horaActual;
+	    this.efectoAtaque = efectoAtaque;
+	    this.filaDeHoraActual = filaDeHoraActual;
+	}
+	
+	public HorasDelDia() {
+		
 	}
 
 	public ArrayList<String> getNombreHora() {
@@ -47,10 +65,19 @@ public class HorasDelDia {
 	public void setHoraActual(int horaActual) {
 		this.horaActual = horaActual;
 	}
+	
 
-	public void creacionHoras() {
+	public int getFilaDeHoraActual() {
+		return filaDeHoraActual;
+	}
+
+	public void setFilaDeHoraActual(int filaDeHoraActual) {
+		this.filaDeHoraActual = filaDeHoraActual;
+	}
+
+	public void creacionHorasDelDia() {
 		numeroHoras = conectarBDD.obtenerNumeroDeFilas("horas_del_dia");
-		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("horas_del_dia");
+		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("escenarios");
 		nombreHora.clear();
 	    buffHora.clear();
 	    descripcionBuffHora.clear();
@@ -72,13 +99,11 @@ public class HorasDelDia {
 	public void efectoHoraDelDiaDescrip() {
 		horaActual = idHorasEnEscenarios.get(filaDeHoraActual) - 1;
 		if (buffHora.get(horaActual) != 0 && penalizacionHora.get(horaActual) == 0) {
-			System.out.println("Es por la " + nombreHora.get(horaActual) + ".");
-			System.out.println("La hora te da un buff de " + buffHora.get(horaActual) + " " + descripcionBuffHora.get(horaActual));
+			System.out.println("Es por la " + nombreHora.get(horaActual) + " y te sube el ataque " + buffHora.get(horaActual) + " puntos de daño.");
 		} else if (penalizacionHora.get(horaActual) != 0 && buffHora.get(horaActual) == 0) {
-			System.out.println("Es por la " + nombreHora.get(horaActual) + ".");
-			System.out.println("La hora te penaliza con " + penalizacionHora.get(horaActual) + " " + descripcionPenalizacionHora.get(horaActual));
+			System.out.println("Es por la " + nombreHora.get(horaActual) + " y te baja el ataque " + penalizacionHora.get(horaActual) + " puntos de daño.");
 		} else if (buffHora.get(horaActual) == 0 && penalizacionHora.get(horaActual) == 0) {
-			System.out.println("Son las " + nombreHora.get(horaActual) + descripcionPenalizacionHora.get(horaActual));
+			System.out.println("System error Class_Hora not found");
 		} else {
 			System.out.println("Error al cargar la hora.");
 		}
@@ -86,7 +111,6 @@ public class HorasDelDia {
 	
 	public int efectoHoraDelDia() {
 		efectoAtaque = 0;
-		horaActual = idHorasEnEscenarios.get(filaDeHoraActual) - 1;
 		if (buffHora.get(horaActual) != 0 && penalizacionHora.get(horaActual) == 0) {
 			efectoAtaque = buffHora.get(horaActual);
 		} else if (penalizacionHora.get(horaActual) != 0 && buffHora.get(horaActual) == 0) {

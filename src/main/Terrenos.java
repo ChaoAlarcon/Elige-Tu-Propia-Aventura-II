@@ -16,10 +16,31 @@ public class Terrenos {
 	private int filaDeTerrenoActual = 0;
 	private int efectoVida;
 	
+
+	public Terrenos (ArrayList<String> nombreTerreno, ArrayList<Integer> buffTerreno,
+	                ArrayList<String> descripcionBuffTerreno, ArrayList<Integer> penalizacionTerreno,
+	                ArrayList<String> descripcionPenalizacionTerreno, ArrayList<Integer> idTerrenosEnEscenarios,
+	                int numeroTerrenos, int numeroEscenarios, int terrenoActual, int filaDeTerrenoActual,
+	                int efectoVida) {
+	
+	    this.nombreTerreno = nombreTerreno;
+	    this.buffTerreno = buffTerreno;
+	    this.descripcionBuffTerreno = descripcionBuffTerreno;
+	    this.penalizacionTerreno = penalizacionTerreno;
+	    this.descripcionPenalizacionTerreno = descripcionPenalizacionTerreno;
+	    this.idTerrenosEnEscenarios = idTerrenosEnEscenarios;
+	    this.numeroTerrenos = numeroTerrenos;
+	    this.numeroEscenarios = numeroEscenarios;
+	    this.terrenoActual = terrenoActual;
+	    this.filaDeTerrenoActual = filaDeTerrenoActual;
+	    this.efectoVida = efectoVida;
+	}
+	
 	public Terrenos() {
 
 	}
 
+	
 	public ArrayList<String> getNombreTerreno() {
 		return nombreTerreno;
 	}
@@ -34,13 +55,21 @@ public class Terrenos {
 
 	public ArrayList<Integer> getPenalizacionTerreno() {
 		return penalizacionTerreno;
-	}
+	} 
 	
 	public ArrayList<String> getDescripcionPenalizacionTerreno() {
 		return descripcionPenalizacionTerreno;
 	}
 	
-	public void creacionTerrenos() {
+	public int getFilaDeTerrenoActual() {
+		return filaDeTerrenoActual;
+	}
+
+	public void setFilaDeTerrenoActual(int filaDeTerrenoActual) {
+		this.filaDeTerrenoActual = filaDeTerrenoActual;
+	}
+
+	public void  creacionTerrenos() {
 		numeroTerrenos = conectarBDD.obtenerNumeroDeFilas("terrenos");
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("escenarios");
 	    nombreTerreno.clear();
@@ -64,13 +93,11 @@ public class Terrenos {
 	public void efectoTerrenoDescrip() {
 		terrenoActual = idTerrenosEnEscenarios.get(filaDeTerrenoActual) - 1;
 		if (buffTerreno.get(terrenoActual) != 0 && penalizacionTerreno.get(terrenoActual) == 0) {
-			System.out.println("El terreno es " + nombreTerreno.get(terrenoActual) + ".");
-			System.out.println("El terreno te da un buff de " + buffTerreno.get(terrenoActual) + " " + descripcionBuffTerreno.get(terrenoActual));
+			System.out.println("El " + nombreTerreno.get(terrenoActual) + " te cura " + buffTerreno.get(terrenoActual) + " puntos de vida.");
 		} else if (penalizacionTerreno.get(terrenoActual) != 0 && buffTerreno.get(terrenoActual) == 0) {
-			System.out.println("El terreno es " + nombreTerreno.get(terrenoActual) + ".");
-			System.out.println("El terreno te penaliza con " + penalizacionTerreno.get(terrenoActual) + " " + descripcionPenalizacionTerreno.get(terrenoActual));
+			System.out.println("El " + nombreTerreno.get(terrenoActual) + " te quita " + penalizacionTerreno.get(terrenoActual) + " puntos de vida.");
 		} else if (buffTerreno.get(terrenoActual) == 0 && penalizacionTerreno.get(terrenoActual) == 0) {
-			System.out.println("El terreno es " + nombreTerreno.get(terrenoActual) + descripcionPenalizacionTerreno.get(terrenoActual));
+			System.out.println("System error Class_Terreno not found");
 		} else {
 			System.out.println("Error al cargar el terreno.");
 		}
@@ -78,7 +105,6 @@ public class Terrenos {
 	
 	public int efectoTerreno() {
 		efectoVida = 0;
-		terrenoActual = idTerrenosEnEscenarios.get(filaDeTerrenoActual) - 1;
 		if (buffTerreno.get(terrenoActual) != 0 && penalizacionTerreno.get(terrenoActual) == 0) {
 			efectoVida = buffTerreno.get(terrenoActual);
 		} else if (penalizacionTerreno.get(terrenoActual) != 0 && buffTerreno.get(terrenoActual) == 0) {
@@ -86,7 +112,7 @@ public class Terrenos {
 		} else if (buffTerreno.get(terrenoActual) == 0 && penalizacionTerreno.get(terrenoActual) == 0) {
 			efectoVida = 0;
 		} else {
-			System.out.println("Error al cargar la hora.");
+			System.out.println("Error al cargar el terreno.");
 		}
 		return efectoVida;
 	}
