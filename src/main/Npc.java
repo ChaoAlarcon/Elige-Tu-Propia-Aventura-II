@@ -19,6 +19,7 @@ public class Npc {
     private String frase1_npcDios;
     private String frase2_npcDios;
     private String frase3_npcDios;
+    private String frase4_npcDios;
     private int ayuda1_companero;
     private int ayuda2_companero;
     private int ayuda3_companero;
@@ -93,6 +94,10 @@ public class Npc {
 	public String getFrase3_npcDios() {
 		return frase3_npcDios;
 	}
+	
+	public String getFrase4_npcDios() {
+		return frase4_npcDios;
+	}
 
 	public int getAyuda1_companero() {
 		return ayuda1_companero;
@@ -131,6 +136,7 @@ public class Npc {
 		return ayuda3_npcDios;
 	}
 	
+	
 	public void creacionNpcs() {
 		companero = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 1");
         npcRandom = conectarBDD.consultarDatosString("nombreNPC", "npc", "id_npc = 2");
@@ -147,6 +153,7 @@ public class Npc {
         frase1_npcDios = conectarBDD.consultarDatosString("frase_1", "npc", "id_npc = 3");
         frase2_npcDios = conectarBDD.consultarDatosString("frase_2", "npc", "id_npc = 3");
         frase3_npcDios = conectarBDD.consultarDatosString("frase_3", "npc", "id_npc = 3");
+        frase4_npcDios = conectarBDD.consultarDatosString("frase_4", "npc", "id_npc = 3");
         ayuda1_companero = conectarBDD.consultarDatosint("ayuda_1", "npc", "id_npc = 1");
         ayuda2_companero = conectarBDD.consultarDatosint("ayuda_2", "npc", "id_npc = 1");
         ayuda3_companero = conectarBDD.consultarDatosint("ayuda_3", "npc", "id_npc = 1");

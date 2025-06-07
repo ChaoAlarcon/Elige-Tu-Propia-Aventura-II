@@ -20,36 +20,13 @@ public class Personajes {
 	private String nombreHabilidad;
 	private int datosHabilidad;
 	private String descripcionHabilidad;
-	private String final1;
-	private String final2;
-	private String final3;
-	private String final4;
-	private String final5;
+	private String Muerte_antes_de_Boss;
+	private String Muerte_Ammit;
+	private String Muerte_Boss;
+	private String Victoria_Boss;
+	private String Bendicion_Ammit;
 	private int numeroPersonajes;
 	private int ataqueEspecial = 0;
-	public Personajes(String nombrePersonaje, int vida, String nombreBasico, int danoBasico, String descripcionBasico, int precisionBasico,
-			String nombreFuerte, int danoFuerte, String descripcionFuerte, int precisionFuerte,  String nombreHabilidad, int datosHabilidad,
-			String descripcionHabilidad, String final1, String final2, String final3, String final4, String final5, int numeroPersonajes, int ataqueEspecial) {
-		this.nombrePersonaje = nombrePersonaje;
-		this.vida = vida;
-		this.nombreBasico = nombreBasico;
-		this.danoBasico = danoBasico;
-		this.descripcionBasico = descripcionBasico;
-		this.precisionBasico = precisionBasico;
-		this.nombreFuerte = nombreFuerte;
-		this.danoFuerte = danoFuerte;
-		this.descripcionFuerte = descripcionFuerte;
-		this.precisionFuerte = precisionFuerte;
-		this.nombreHabilidad = nombreHabilidad;
-		this.datosHabilidad = datosHabilidad;
-		this.descripcionHabilidad = descripcionHabilidad;
-		this.final1 = final1;
-		this.final2 = final2;
-		this.final3 = final3;
-		this.final4 = final4;
-		this.final5 = final5;
-		this.ataqueEspecial = ataqueEspecial;
-	}
 	
 	public Personajes() {
 		
@@ -115,26 +92,25 @@ public class Personajes {
 	public String getDescripcionHabilidad() {
 		return descripcionHabilidad;
 	}
-
-
-	public String getFinal1() {
-		return final1;
+	
+	public String getMuerte_antes_de_Boss() {
+		return Muerte_antes_de_Boss;
 	}
 
-	public String getFinal2() {
-		return final2;
+	public String getMuerte_Ammit() {
+		return Muerte_Ammit;
 	}
 
-	public String getFinal3() {
-		return final3;
+	public String getMuerte_Boss() {
+		return Muerte_Boss;
 	}
 
-	public String getFinal4() {
-		return final4;
+	public String getVictoria_Boss() {
+		return Victoria_Boss;
 	}
 
-	public String getFinal5() {
-		return final5;
+	public String getBendicion_Ammit() {
+		return Bendicion_Ammit;
 	}
 
 	public int getAtaqueEspecial() {
@@ -186,11 +162,11 @@ public class Personajes {
 	                nombreHabilidad = ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques =" + opcionPersonaje);
 	                datosHabilidad = ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques =" + opcionPersonaje);
 	                descripcionHabilidad = ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques =" + opcionPersonaje);
-	                final1 = ConectarBDD.consultarDatosString("final_1", "personajes", "id_personajes =" + opcionPersonaje);
-	                final2 = ConectarBDD.consultarDatosString("final_2", "personajes", "id_personajes =" + opcionPersonaje);
-	                final3 = ConectarBDD.consultarDatosString("final_3", "personajes", "id_personajes =" + opcionPersonaje);
-	                final4 = ConectarBDD.consultarDatosString("final_4", "personajes", "id_personajes =" + opcionPersonaje);
-	                final5 = ConectarBDD.consultarDatosString("final_5", "personajes", "id_personajes =" + opcionPersonaje);
+	                Muerte_antes_de_Boss = ConectarBDD.consultarDatosString("Muerte_antes_de_Boss", "personajes", "id_personajes =" + opcionPersonaje);
+	                Muerte_Ammit = ConectarBDD.consultarDatosString("Muerte_Ammit", "personajes", "id_personajes =" + opcionPersonaje);
+	                Muerte_Boss = ConectarBDD.consultarDatosString("Muerte_Boss", "personajes", "id_personajes =" + opcionPersonaje);
+	                Victoria_Boss = ConectarBDD.consultarDatosString("Victoria_Boss", "personajes", "id_personajes =" + opcionPersonaje);
+	                Bendicion_Ammit = ConectarBDD.consultarDatosString("Bendicion_Ammit", "personajes", "id_personajes =" + opcionPersonaje);
 				}
 	            else {
 	                opcionPersonaje = 0;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 05-06-2025 a las 12:50:53
+-- Tiempo de generación: 07-06-2025 a las 12:39:37
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `etpa2_g25v5`
+-- Base de datos: `etpa2_g25v6`
 --
 
 -- --------------------------------------------------------
@@ -287,11 +287,11 @@ CREATE TABLE `personajes` (
   `id_personajes` int(11) DEFAULT NULL,
   `nombrePersonaje` varchar(100) DEFAULT NULL,
   `vida` int(11) DEFAULT NULL,
-  `Muerte antes de Boss` text DEFAULT NULL,
-  `Muerte Ammit` text DEFAULT NULL,
-  `Muerte Boss` text DEFAULT NULL,
-  `Victoria Boss` text DEFAULT NULL,
-  `Bendición Ammit` text DEFAULT NULL,
+  `Muerte_antes_de_Boss` text DEFAULT NULL,
+  `Muerte_Ammit` text DEFAULT NULL,
+  `Muerte_Boss` text DEFAULT NULL,
+  `Victoria_Boss` text DEFAULT NULL,
+  `Bendicion_Ammit` text DEFAULT NULL,
   `id_ataques` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -299,7 +299,7 @@ CREATE TABLE `personajes` (
 -- Volcado de datos para la tabla `personajes`
 --
 
-INSERT INTO `personajes` (`id`, `id_personajes`, `nombrePersonaje`, `vida`, `Muerte antes de Boss`, `Muerte Ammit`, `Muerte Boss`, `Victoria Boss`, `Bendición Ammit`, `id_ataques`) VALUES
+INSERT INTO `personajes` (`id`, `id_personajes`, `nombrePersonaje`, `vida`, `Muerte_antes_de_Boss`, `Muerte_Ammit`, `Muerte_Boss`, `Victoria_Boss`, `Bendicion_Ammit`, `id_ataques`) VALUES
 (1, 1, 'Ánuket', 1050, 'enemigo + \" Te da el golpe de gracia y acaba contigo. Contigo derrotado no queda tiempo para que nadie pueda salvar Eazima.\\n—FIN DEL JUEGO—', 'No consigues liberar a Ammit y ves cómo mata a Obi, después Ammit se dirige hacia ti y acaba contigo.\\n—FIN DEL JUEGO—', 'El extraño ser acaba contigo y pronto conseguirá salir de la Pirámide y acabará con toda Eazima.\\n—FIN DEL JUEGO—', 'Con ese ataque, consigues acabar con el ser y la sala empieza a desaparecer poco a poco y cuando desaparece completamente, ves que toda la pirámide y el portal han desaparecido también, has conseguido acabar con el mal que amenazaba a Eazima.\\n —FIN DEL JUEGO—', 'Gracias a la bendición de Ammit lanzas un ataque que acaba con el ser de un golpe.\\nLa sala empieza a desaparecer poco a poco y cuando desaparece completamente, ves que toda la pirámide y el portal han desaparecido también, has conseguido acabar con el mal que amenazaba a Eazima.\\n —FIN DEL JUEGO—', 1),
 (2, 2, 'Bastet', 900, 'enemigo + \" Te da el golpe de gracia y acaba contigo. Contigo derrotado no queda tiempo para que nadie pueda salvar Eazima.\\n—FIN DEL JUEGO—', 'No consigues liberar a Ammit y ves cómo mata a Obi, después Ammit se dirige hacia ti y acaba contigo.\\n—FIN DEL JUEGO—', 'El extraño ser acaba contigo y pronto conseguirá salir de la Pirámide y acabará con toda Eazima.\\n—FIN DEL JUEGO—', 'Con ese ataque, consigues acabar con el ser y la sala empieza a desaparecer poco a poco y cuando desaparece completamente, ves que toda la pirámide y el portal han desaparecido también, has conseguido acabar con el mal que amenazaba a Eazima.\\n —FIN DEL JUEGO—', 'Gracias a la bendición de Ammit lanzas un ataque que acaba con el ser de un golpe.\\nLa sala empieza a desaparecer poco a poco y cuando desaparece completamente, ves que toda la pirámide y el portal han desaparecido también, has conseguido acabar con el mal que amenazaba a Eazima.\\n —FIN DEL JUEGO—', 2),
 (3, 3, 'Gerald', 1200, 'enemigo + \" Te da el golpe de gracia y acaba contigo. Contigo derrotado no queda tiempo para que nadie pueda salvar Eazima.\\n—FIN DEL JUEGO—', 'No consigues liberar a Ammit y ves cómo mata a Obi, después Ammit se dirige hacia ti y acaba contigo.\\n—FIN DEL JUEGO—', 'El extraño ser acaba contigo y pronto conseguirá salir de la Pirámide y acabará con toda Eazima.\\n—FIN DEL JUEGO—', 'Con ese ataque, consigues acabar con el ser y la sala empieza a desaparecer poco a poco y cuando desaparece completamente, ves que toda la pirámide y el portal han desaparecido también, has conseguido acabar con el mal que amenazaba a Eazima.\\n —FIN DEL JUEGO—', 'Gracias a la bendición de Ammit lanzas un ataque que acaba con el ser de un golpe.\\nLa sala empieza a desaparecer poco a poco y cuando desaparece completamente, ves que toda la pirámide y el portal han desaparecido también, has conseguido acabar con el mal que amenazaba a Eazima.\\n —FIN DEL JUEGO—', 3);
