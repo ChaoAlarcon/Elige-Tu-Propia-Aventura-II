@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import main.ConectarBDD;
 public class Enemigos {
 	ConectarBDD ConectarBDD = new ConectarBDD();
-	Terrenos terreno = new Terrenos();
 	private ArrayList<String> enemigos = new ArrayList<>();
     private ArrayList<String> especie = new ArrayList<>();
     private ArrayList<Integer> vida = new ArrayList<>();
@@ -107,7 +106,6 @@ public class Enemigos {
 			datosHabilidad.add(ConectarBDD.consultarDatosint( "datosHabilidad","ataques_enemigos", "id_ataques_enemigos =" + i));
 			descripcionHabilidad.add(ConectarBDD.consultarDatosString( "descripcionHabilidad","ataques_enemigos", "id_ataques_enemigos =" + i));
 		}
-    	terreno.creacionTerrenos();
     }
     
 }

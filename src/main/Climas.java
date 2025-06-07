@@ -2,9 +2,8 @@ package main;
 import java.sql.*;
 import java.util.ArrayList;
 import main.ConectarBDD;
-public class Climas extends Batallas{
+public class Climas{
 	ConectarBDD conectarBDD = new ConectarBDD();
-	HorasDelDia hora = new HorasDelDia();
 	private ArrayList<String> nombreClima = new ArrayList<>();
 	private ArrayList<Integer> buffClima = new ArrayList<>();
 	private ArrayList<String> descripcionBuffClima = new ArrayList<>();
@@ -62,7 +61,6 @@ public class Climas extends Batallas{
 		for (int j = 1; j <= numeroEscenarios; j++) {
 			idClimasEnEscenarios.add(conectarBDD.consultarDatosint("id_climas", "escenarios", "id_escenarios = " + j));
 		}
-		hora.creacionHoras();
 	}
 	
 	public void efectoClimaDescrip() {

@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Personajes {
 	Scanner sc = new Scanner(System.in);
 	ConectarBDD ConectarBDD = new ConectarBDD();
-	Npc npc = new Npc();
 	private int opcionPersonaje;
 	private String confirmacionSeleccionPersonaje;
 	private String nombrePersonaje;
@@ -198,7 +197,5 @@ public class Personajes {
 	            }
 	    }
         System.out.println("");
-        npc.creacionNpcs();
-        npc.presentacionCompanero();
 	}
 }

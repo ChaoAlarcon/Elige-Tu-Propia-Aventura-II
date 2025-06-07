@@ -29,7 +29,6 @@ public class Npc {
     private int ayuda2_npcDios;
     private int ayuda3_npcDios;
     ConectarBDD conectarBDD = new ConectarBDD();
-    Climas clima = new Climas();
 	
 	public Npc() {
 		
@@ -157,10 +156,10 @@ public class Npc {
         ayuda1_npcDios = conectarBDD.consultarDatosint("ayuda_1", "npc", "id_npc = 3");
         ayuda2_npcDios = conectarBDD.consultarDatosint("ayuda_2", "npc", "id_npc = 3");
         ayuda3_npcDios = conectarBDD.consultarDatosint("ayuda_3", "npc", "id_npc = 3");
+        presentacionCompanero();
 	}
 	
     public void presentacionCompanero() {
     	System.out.println("Te acompañará " + companero + " que es un " + especie_companero + " y el cual te podrá ayudar en los combates.");
-    	clima.creacionClimas();
     }
 }

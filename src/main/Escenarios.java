@@ -4,6 +4,13 @@ import java.util.ArrayList;
 import main.ConectarBDD;
 public class Escenarios {
 	ConectarBDD conectarBDD = new ConectarBDD();
+	Batallas batallas = new Batallas();
+	Climas climas = new Climas();
+	Enemigos enemigos = new Enemigos();
+	HorasDelDia horasDelDia = new HorasDelDia();
+	Npc npc = new Npc();
+	Personajes personajes = new Personajes();
+	Terrenos terrenos = new Terrenos();
 	Puzzle1 puzzle1 = new Puzzle1();
 	Puzzle2 puzzle2 = new Puzzle2();
 	Puzzle3 puzzle3 = new Puzzle3();
@@ -29,7 +36,13 @@ public class Escenarios {
 		this.nombreEscenario = nombreEscenario;
 	}
 
-	public void creacionEscenarios() {
+	public void creacionVariables() {
+		personajes.ElegirPersonaje();
+		npc.creacionNpcs();
+		enemigos.creacionEnemigos();
+		climas.creacionClimas();
+		horasDelDia.creacionHoras();
+		terrenos.creacionTerrenos();
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("escenarios");
 	    nombreEscenario.clear();
 	    numeroIdBatalla.clear();

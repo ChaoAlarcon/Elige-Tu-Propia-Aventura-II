@@ -4,7 +4,7 @@ import main.ConectarBDD;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.ArrayList;
-public class Batallas extends Enemigos {
+public class Batallas {
 	ConectarBDD conectarBDD = new ConectarBDD();
 	Scanner sc = new Scanner(System.in);
 	Random random = new Random();
@@ -12,6 +12,7 @@ public class Batallas extends Enemigos {
 	Climas clima = new Climas();
 	Terrenos terreno = new Terrenos();
 	HorasDelDia hora = new HorasDelDia();
+	Enemigos enemigos = new Enemigos();
 	private ArrayList<String> nombreBatalla = new ArrayList<>();
 	private int batallaActual = 0;
 	private int numeroBatallas;
@@ -109,9 +110,9 @@ public class Batallas extends Enemigos {
 			horaCambiada = false;
 			terrenoCambiado = false;
 			climaCambiado = false;
-			while (getVida().get(batallaActual) >= 0 && heroe.getVida() >= 0) {
-				vidaEnemigoActual = getVida().get(batallaActual);
-				System.out.println("A " + getEnemigos().get(batallaActual) + " le quedan " + getVida().get(batallaActual) + " puntos de vida");
+			while (enemigos.getVida().get(batallaActual) >= 0 && heroe.getVida() >= 0) {
+				vidaEnemigoActual = enemigos.getVida().get(batallaActual);
+				System.out.println("A " + enemigos.getEnemigos().get(batallaActual) + " le quedan " + enemigos.getVida().get(batallaActual) + " puntos de vida");
 				System.out.println("Que quieres hacer?");
 				System.out.println("1." + heroe.getNombreBasico() + ":" + heroe.getDanoBasico() + " puntos de daño. (" + heroe.getDescripcionBasico() + ")");
 				System.out.println("2." + heroe.getNombreFuerte() + ":" + heroe.getDanoFuerte() + " puntos de daño. (" + heroe.getDescripcionFuerte() + ")");
@@ -124,14 +125,14 @@ public class Batallas extends Enemigos {
 				if (respuestaUsuarioBatalla == 1) {
 					precisionBasicoActual = random.nextInt(99) + 1;
 					if (heroe.getPrecisionBasico() - precisionBasicoActual >= 80) {
-						System.out.println("Usaste " + heroe.getNombreBasico() + " y le has hecho un daño crítico de " + heroe.getDanoBasico() + " puntos de daño a " + getEnemigos().get(batallaActual) + ".");
+						System.out.println("Usaste " + heroe.getNombreBasico() + " y le has hecho un daño crítico de " + heroe.getDanoBasico() + " puntos de daño a " + enemigos.getEnemigos().get(batallaActual) + ".");
 						vidaEnemigoActual = vidaEnemigoActual - heroe.getDanoBasico() + hora.efectoHoraDelDia();
-						System.out.println("A " + getEnemigos().get(batallaActual) + " le quedan " + vidaEnemigoActual + " puntos de vida");
+						System.out.println("A " + enemigos.getEnemigos().get(batallaActual) + " le quedan " + vidaEnemigoActual + " puntos de vida");
 					}
 					if (heroe.getPrecisionBasico() - precisionBasicoActual >= 20 && heroe.getPrecisionBasico() - precisionBasicoActual < 80) {
-						System.out.println("Usaste " + heroe.getNombreBasico() + " y le has hecho un daño de " + heroe.getDanoBasico()/2 + " puntos de daño a " + getEnemigos().get(batallaActual) + ".");
+						System.out.println("Usaste " + heroe.getNombreBasico() + " y le has hecho un daño de " + heroe.getDanoBasico()/2 + " puntos de daño a " + enemigos.getEnemigos().get(batallaActual) + ".");
 						vidaEnemigoActual = vidaEnemigoActual - heroe.getDanoBasico()/2;
-						System.out.println("A " + getEnemigos().get(batallaActual) + " le quedan " + vidaEnemigoActual + " puntos de vida");
+						System.out.println("A " + enemigos.getEnemigos().get(batallaActual) + " le quedan " + vidaEnemigoActual + " puntos de vida");
 					} 
 					else{
 						System.out.println("Usaste " + heroe.getNombreBasico() + " pero fallaste el ataque.");
@@ -141,14 +142,14 @@ public class Batallas extends Enemigos {
 				if (respuestaUsuarioBatalla == 2) {
 					precisionFuerteActual = random.nextInt(99) + 1;
 					if (heroe.getPrecisionFuerte() - precisionFuerteActual >= 80) {
-						System.out.println("Usaste " + heroe.getNombreFuerte() + " y le has hecho un daño crítico de " + heroe.getDanoFuerte() + " puntos de daño a " + getEnemigos().get(batallaActual) + ".");
+						System.out.println("Usaste " + heroe.getNombreFuerte() + " y le has hecho un daño crítico de " + heroe.getDanoFuerte() + " puntos de daño a " + enemigos.getEnemigos().get(batallaActual) + ".");
 						vidaEnemigoActual = vidaEnemigoActual - heroe.getDanoFuerte() + hora.efectoHoraDelDia();
-						System.out.println("A " + getEnemigos().get(batallaActual) + " le quedan " + vidaEnemigoActual + " puntos de vida");
+						System.out.println("A " + enemigos.getEnemigos().get(batallaActual) + " le quedan " + vidaEnemigoActual + " puntos de vida");
 					}
 					if (heroe.getPrecisionFuerte() - precisionBasicoActual >= 20 && heroe.getPrecisionFuerte() - precisionFuerteActual < 80) {
-						System.out.println("Usaste " + heroe.getNombreFuerte() + " y le has hecho un daño de " + heroe.getDanoFuerte()/2 + " puntos de daño a " + getEnemigos().get(batallaActual) + ".");
+						System.out.println("Usaste " + heroe.getNombreFuerte() + " y le has hecho un daño de " + heroe.getDanoFuerte()/2 + " puntos de daño a " + enemigos.getEnemigos().get(batallaActual) + ".");
 						vidaEnemigoActual = vidaEnemigoActual - heroe.getDanoFuerte()/2;
-						System.out.println("A " + getEnemigos().get(batallaActual) + " le quedan " + vidaEnemigoActual + " puntos de vida");
+						System.out.println("A " + enemigos.getEnemigos().get(batallaActual) + " le quedan " + vidaEnemigoActual + " puntos de vida");
 					} 
 					else{
 						System.out.println("Usaste " + heroe.getNombreFuerte() + " pero fallaste el ataque.");
@@ -167,52 +168,52 @@ public class Batallas extends Enemigos {
 					}
 				}
 				
-				if (getVida().get(batallaActual) >= 0) {
+				if (enemigos.getVida().get(batallaActual) >= 0) {
 					ataqueEnemigoAleatorio = random.nextInt(2);
 					precisionBasicoActual = random.nextInt(99) + 1;
 					if (ataqueEnemigoAleatorio == 0) {
 						if (precisionBasicoActual >= 80) {
-							System.out.println(getEnemigos().get(batallaActual) + " te ataca con "+ getNombreBasico() +" y te hace un crítico de " + getDanoBasico().get(batallaActual) + " puntos de daño.");
-							heroe.setVida(heroe.getVida() - getDanoBasico().get(batallaActual));
+							System.out.println(enemigos.getEnemigos().get(batallaActual) + " te ataca con "+ enemigos.getNombreBasico() +" y te hace un crítico de " + enemigos.getDanoBasico().get(batallaActual) + " puntos de daño.");
+							heroe.setVida(heroe.getVida() - enemigos.getDanoBasico().get(batallaActual));
 							System.out.println("Te quedan " + heroe.getVida() + " puntos de vida.");	
 						}
 						if (precisionBasicoActual >= 20 && precisionBasicoActual < 80) {
-							System.out.println(getEnemigos().get(batallaActual) + " te ataca con "+ getNombreBasico() +" y te hace " + getDanoBasico().get(batallaActual)/2 + " puntos de daño.");
-							heroe.setVida(heroe.getVida() - getDanoBasico().get(batallaActual)/2);
+							System.out.println(enemigos.getEnemigos().get(batallaActual) + " te ataca con "+ enemigos.getNombreBasico() +" y te hace " + enemigos.getDanoBasico().get(batallaActual)/2 + " puntos de daño.");
+							heroe.setVida(heroe.getVida() - enemigos.getDanoBasico().get(batallaActual)/2);
 							System.out.println("Te quedan " + heroe.getVida() + " puntos de vida.");	
 						} 
 						else{
-							System.out.println(getEnemigos().get(batallaActual) + " usó "  + getNombreBasico() + " pero falló el ataque.");
+							System.out.println(enemigos.getEnemigos().get(batallaActual) + " usó "  + enemigos.getNombreBasico() + " pero falló el ataque.");
 						}
 					}
 					} if (ataqueEnemigoAleatorio == 1) {
 						if (precisionBasicoActual >= 80) {
-							System.out.println(getEnemigos().get(batallaActual) + " te ataca con " + getNombreFuerte()+ " y te hace un crítico de " + getDanoFuerte().get(batallaActual) + " puntos de daño.");
-							heroe.setVida(heroe.getVida() - getDanoFuerte().get(batallaActual));
+							System.out.println(enemigos.getEnemigos().get(batallaActual) + " te ataca con " + enemigos.getNombreFuerte()+ " y te hace un crítico de " + enemigos.getDanoFuerte().get(batallaActual) + " puntos de daño.");
+							heroe.setVida(heroe.getVida() - enemigos.getDanoFuerte().get(batallaActual));
 							System.out.println("Te quedan " + heroe.getVida() + " puntos de vida.");
 						}
 						if (precisionBasicoActual >= 20 && precisionBasicoActual < 80) {
-							System.out.println(getEnemigos().get(batallaActual) + " te ataca con " + getNombreFuerte()+ " y te hace " + getDanoFuerte().get(batallaActual) / 2 + " puntos de daño.");
-							heroe.setVida(heroe.getVida() - getDanoFuerte().get(batallaActual) / 2);
+							System.out.println(enemigos.getEnemigos().get(batallaActual) + " te ataca con " + enemigos.getNombreFuerte()+ " y te hace " + enemigos.getDanoFuerte().get(batallaActual) / 2 + " puntos de daño.");
+							heroe.setVida(heroe.getVida() - enemigos.getDanoFuerte().get(batallaActual) / 2);
 							System.out.println("Te quedan " + heroe.getVida() + " puntos de vida.");
 						} else {
-							System.out.println(getEnemigos().get(batallaActual) + " usó " + getNombreFuerte()+ " pero falló el ataque.");
+							System.out.println(enemigos.getEnemigos().get(batallaActual) + " usó " + enemigos.getNombreFuerte()+ " pero falló el ataque.");
 						}
 					}
 					if (ataqueEnemigoAleatorio == 2) {
-						if (getDatosHabilidad().get(batallaActual) > 3) {
-							System.out.println(getEnemigos().get(batallaActual) + " te ataca con "+ getNombreHabilidad().get(batallaActual) + " y te hace "+ getDatosHabilidad().get(batallaActual) + " puntos de daño.");
-							heroe.setVida(heroe.getVida() - getDatosHabilidad().get(batallaActual));
+						if (enemigos.getDatosHabilidad().get(batallaActual) > 3) {
+							System.out.println(enemigos.getEnemigos().get(batallaActual) + " te ataca con "+ enemigos.getNombreHabilidad().get(batallaActual) + " y te hace "+ enemigos.getDatosHabilidad().get(batallaActual) + " puntos de daño.");
+							heroe.setVida(heroe.getVida() - enemigos.getDatosHabilidad().get(batallaActual));
 							System.out.println("Te quedan " + heroe.getVida() + " puntos de vida.");
 						}
-						else if (getDatosHabilidad().get(batallaActual) == 1) {
+						else if (enemigos.getDatosHabilidad().get(batallaActual) == 1) {
 							terrenoCambiado = true;
 						}
-						else if (getDatosHabilidad().get(batallaActual) == 2) {
+						else if (enemigos.getDatosHabilidad().get(batallaActual) == 2) {
                             terrenoCambiado = true;
                             climaCambiado = true;
                         }
-                        else if (getDatosHabilidad().get(batallaActual) == 3) {
+                        else if (enemigos.getDatosHabilidad().get(batallaActual) == 3) {
                             terrenoCambiado = true;
                             climaCambiado = true;
                             horaCambiada = true;

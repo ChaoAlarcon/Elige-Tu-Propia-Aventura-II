@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import main.ConectarBDD;
 public class HorasDelDia {
 	ConectarBDD conectarBDD = new ConectarBDD();
-	Enemigos enemigo = new Enemigos();
 	private ArrayList<String> nombreHora = new ArrayList<>();
 	private ArrayList<Integer> buffHora = new ArrayList<>();
 	private ArrayList<String> descripcionBuffHora = new ArrayList<>();
@@ -68,7 +67,6 @@ public class HorasDelDia {
 		for (int j = 1; j <= numeroEscenarios; j++) {
 			idHorasEnEscenarios.add(conectarBDD.consultarDatosint("id_horas_del_dia", "escenarios", "id_escenarios = " + j));
 		}
-		enemigo.creacionEnemigos();
 	}
 	
 	public void efectoHoraDelDiaDescrip() {
