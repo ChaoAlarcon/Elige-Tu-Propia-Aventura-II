@@ -31,47 +31,52 @@ public class Puzzle1 {
 	public boolean iniciarPuzzle1() {
 		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 1");
-		System.out.println("Puzzle 1: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 1"));
-		System.out.println("AQUÍ IRÍA EL TEXTO DE BIENVENIDA DEL PUZZLE 1");
-		System.out.println(conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 1"));
+		System.out.println("\nAl acercaros os dice: “...uoh uh para paaasar por estaaa puerta tendréis que aaadivinar el número secreeeto”");
+		System.out.println("\n" + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 1") + ", " + conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 1"));
 		solucionPuzzle1 = random.nextInt(10) + 1;
 		while (intentosRestantes > 0 && !puzzle1Acertado) {
 			if (intentosRestantes > 1) {
-				System.out.println("Tienes " + intentosRestantes + " intentos restantes.");
+				System.out.println("\n“Tieneeees " + intentosRestantes + " intentooooss restaaanteeess.”");
 			} else if (intentosRestantes == 1) {
-				System.out.println("¡Solo te queda un intento más!");
+				System.out.println("\n“¡Sooolo te queeeedaa uun intentoo máaas!");
 			}
+			//PISTA
 			if (intentosRestantes != 8 && intentosRestantes >= 3) {
 				aceptarPista = "";
 				sc.nextLine();
-				System.out.println("Tienes la posibilidad de pedir una pista. Esta te consumirá 2 intentos. ¿Quieres pedir una pista? ([S] para aceptar/Cualquier otra tecla para rechazar)");
+				System.out.println("\n“Tieneees la poosibilidad de peeedir una pisstaa que teee consumiráaa 2 intentoooss.” \n¿Quieres pedir una pista? ([S] para aceptar/Cualquier otra tecla para rechazar)");
 	            aceptarPista = sc.nextLine();
 	            if (aceptarPista.equalsIgnoreCase("S")) {
 		            intentosRestantes = intentosRestantes - 2;
 		            if (solucionPuzzle1 > respuestaUsuario) {
-		            	System.out.println("La solución es mayor que tu última respuesta. Intenta con un número más alto.");
+		            	System.out.println("\n“Eeel númerooo es maaayooor que tu últimaaaa respuuuueestaaaa.”");
 		            }
 		            else if (solucionPuzzle1 < respuestaUsuario) {
-	                	System.out.println("La solución es menor que tu última respuesta. Intenta con un número más bajo.");
+	                	System.out.println("\n“Eeel númerooo es meenooor que tu últimaaaa respuuuueestaaaa.”");
 	                }
 	            }
 			}
-			System.out.println("Introduce un número del 1 al 10:");
+			System.out.println("\nIntroduce un número del 1 al 10:");
 			respuestaUsuario = sc.nextInt();
+			//ACIERTO
 			if (respuestaUsuario == solucionPuzzle1) {
-				System.out.println("¡Respuesta correcta! Has completado el Puzzle.");
-				System.out.println("Has ganado " + puntosPuzzle + " puntos.");
+				System.out.println("\n“Eeese es eel númeroo correctooo oohh, podéis pasaaar.”");
+				System.out.println("\nHas ganado: |" + puntosPuzzle + "| puntos de juego.");
 				puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
 				conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
 				puzzle1Acertado = true;
 				return true;
-			} else {
+			} 
+			//FALLO
+			else {
 				intentosRestantes--;
-				System.out.println("Respuesta incorrecta. Inténtalo de nuevo.");
+				System.out.println("“uuh Eeese nooo es eel númeroo correctooo oohh”");
 			}
+			//PERDIDO
 			if (intentosRestantes == 0 && !puzzle1Acertado) {
-				System.out.println("Has agotado todos tus intentos. No has podido resolver el puzzle.");
-				System.out.println("La solución era: " + solucionPuzzle1);
+				System.out.println("\nHas agotado todos tus intentos. No has podido resolver el puzzle.");
+				System.out.println("\nLa solución era: " + solucionPuzzle1);
+                System.out.println("\n“You shall not pass!!!”\n");
 				return false;
 			}
 		}

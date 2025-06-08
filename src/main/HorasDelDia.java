@@ -2,8 +2,10 @@ package main;
 import java.sql.*;
 import java.util.ArrayList;
 import main.ConectarBDD;
+import java.util.Random;
 public class HorasDelDia {
 	ConectarBDD conectarBDD = new ConectarBDD();
+	Random random = new Random();
 	private ArrayList<String> nombreHora = new ArrayList<>();
 	private ArrayList<Integer> buffHora = new ArrayList<>();
 	private ArrayList<String> descripcionBuffHora = new ArrayList<>();
@@ -99,9 +101,9 @@ public class HorasDelDia {
 	public void efectoHoraDelDiaDescrip() {
 		horaActual = idHorasEnEscenarios.get(filaDeHoraActual) - 1;
 		if (buffHora.get(horaActual) != 0 && penalizacionHora.get(horaActual) == 0) {
-			System.out.println("Es por la " + nombreHora.get(horaActual) + " y te sube el ataque " + buffHora.get(horaActual) + " puntos de daño.");
+			System.out.println("--Es por la |" + nombreHora.get(horaActual) + "| y te sube el ataque |" + buffHora.get(horaActual) + "| puntos de daño.--");
 		} else if (penalizacionHora.get(horaActual) != 0 && buffHora.get(horaActual) == 0) {
-			System.out.println("Es por la " + nombreHora.get(horaActual) + " y te baja el ataque " + penalizacionHora.get(horaActual) + " puntos de daño.");
+			System.out.println("--Es por la |" + nombreHora.get(horaActual) + "| y te baja el ataque |" + penalizacionHora.get(horaActual) + "| puntos de daño.--");
 		} else if (buffHora.get(horaActual) == 0 && penalizacionHora.get(horaActual) == 0) {
 			System.out.println("System error Class_Hora not found");
 		} else {
@@ -121,5 +123,8 @@ public class HorasDelDia {
 			System.out.println("Error al cargar la hora.");
 		}
 		return efectoAtaque;
+	}
+	public void cambioHora() {
+		horaActual = random.nextInt(numeroHoras);
 	}
 }

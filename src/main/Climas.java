@@ -2,8 +2,10 @@ package main;
 import java.sql.*;
 import java.util.ArrayList;
 import main.ConectarBDD;
+import java.util.Random;
 public class Climas{
 	ConectarBDD conectarBDD = new ConectarBDD();
+	Random random = new Random();
 	private ArrayList<String> nombreClima = new ArrayList<>();
 	private ArrayList<Integer> buffClima = new ArrayList<>();
 	private ArrayList<String> descripcionBuffClima = new ArrayList<>();
@@ -101,9 +103,9 @@ public class Climas{
 	public void efectoClimaDescrip() {
 		climaActual = idClimasEnEscenarios.get(filaDeClimaActual) - 1;
 		if (buffClima.get(climaActual) != 0 && penalizacionClima.get(climaActual) == 0) {
-			System.out.println("El clima es " + nombreClima.get(climaActual) + " y te sube la precision " + buffClima.get(climaActual) + " puntos.");
+			System.out.println("--El clima es |" + nombreClima.get(climaActual) + "| y te sube la precision |" + buffClima.get(climaActual) + "| puntos.--");
 		} else if (penalizacionClima.get(climaActual) != 0 && buffClima.get(climaActual) == 0) {
-			System.out.println("El clima es " + nombreClima.get(climaActual) + " y te baja la precision " + penalizacionClima.get(climaActual) + " puntos.");
+			System.out.println("--El clima es |" + nombreClima.get(climaActual) + "| y te baja la precision |" + penalizacionClima.get(climaActual) + "| puntos.--");
 		} else if (buffClima.get(climaActual) == 0 && penalizacionClima.get(climaActual) == 0) {
 			System.out.println("System error Class_Clima not found");
 		} else {
@@ -122,6 +124,9 @@ public class Climas{
 			System.out.println("Error al cargar el clima.");
 		}
 		return efectoPrecision;
+	}
+	public void cambioClima() {
+		climaActual = random.nextInt(numeroClimas);
 	}
 }
 

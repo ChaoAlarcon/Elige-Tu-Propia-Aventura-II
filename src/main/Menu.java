@@ -17,8 +17,10 @@ public class Menu {
 		while (!sesionIniciada) {
 			opcionUsuario = 0;
 			while (opcionUsuario > 2 || opcionUsuario < 1) {
+				System.out.println("--------------------------------");
 				System.out.println("1.Iniciar sesión");
 				System.out.println("2.Registrarse");
+				System.out.println("--------------------------------");
 				opcionUsuario = sc.nextInt();
 				if (opcionUsuario > 2 || opcionUsuario < 1) {
 					System.out.println("Opción no válida");
@@ -34,11 +36,13 @@ public class Menu {
 		}
 		opcionMenu = 0;
 		while (opcionMenu > 4 || opcionMenu < 1) {
-			System.out.println("\n¿Que quieres hacer?");
+			System.out.println("\n--------------------------------");
+			System.out.println("¿Que quieres hacer?\n");
 			System.out.println("1. Jugar");
 			System.out.println("2. Mostrar puntuaciones");
 			System.out.println("3. Cambiar de usuario");
 			System.out.println("4. Salir");
+			System.out.println("--------------------------------");
 			opcionMenu = sc.nextInt();
 			if (opcionMenu > 4 || opcionMenu < 1) {
 				System.out.println("Opción no válida");

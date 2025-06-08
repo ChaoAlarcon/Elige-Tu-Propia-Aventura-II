@@ -202,7 +202,7 @@ public class Npc {
 	}
 	
     public void presentacionCompanero() {
-    	System.out.println("Te acompañará " + companero + " que es un " + especie_companero + " y el cual te podrá ayudar en los combates.");
+        System.out.println("\n“En esta aventura os acompañará Obi, un gran guerrero " + especie_companero + ", capaz de ayudarte en los combates que os esperan.”\n“Marchad y salvad Eazima.”\n");
     }
 
 }

@@ -1,9 +1,11 @@
 package main;
 import java.sql.*;
+import java.util.Random;
 import main.ConectarBDD;
 import java.util.ArrayList;
 public class Terrenos {
 	ConectarBDD conectarBDD = new ConectarBDD();
+	Random random = new Random();
 	private ArrayList<String> nombreTerreno = new ArrayList<>();
 	private ArrayList<Integer> buffTerreno = new ArrayList<>();
 	private ArrayList<String> descripcionBuffTerreno = new ArrayList<>();
@@ -93,9 +95,9 @@ public class Terrenos {
 	public void efectoTerrenoDescrip() {
 		terrenoActual = idTerrenosEnEscenarios.get(filaDeTerrenoActual) - 1;
 		if (buffTerreno.get(terrenoActual) != 0 && penalizacionTerreno.get(terrenoActual) == 0) {
-			System.out.println("El " + nombreTerreno.get(terrenoActual) + " te cura " + buffTerreno.get(terrenoActual) + " puntos de vida.");
+			System.out.println("--El |" + nombreTerreno.get(terrenoActual) + "| te cura |" + buffTerreno.get(terrenoActual) + "| puntos de vida.--");
 		} else if (penalizacionTerreno.get(terrenoActual) != 0 && buffTerreno.get(terrenoActual) == 0) {
-			System.out.println("El " + nombreTerreno.get(terrenoActual) + " te quita " + penalizacionTerreno.get(terrenoActual) + " puntos de vida.");
+			System.out.println("--El |" + nombreTerreno.get(terrenoActual) + "| te quita |" + penalizacionTerreno.get(terrenoActual) + "| puntos de vida.--");
 		} else if (buffTerreno.get(terrenoActual) == 0 && penalizacionTerreno.get(terrenoActual) == 0) {
 			System.out.println("System error Class_Terreno not found");
 		} else {
@@ -115,5 +117,8 @@ public class Terrenos {
 			System.out.println("Error al cargar el terreno.");
 		}
 		return efectoVida;
+	}
+	public void cambioTerreno() {
+		terrenoActual = random.nextInt(numeroTerrenos);
 	}
 }
