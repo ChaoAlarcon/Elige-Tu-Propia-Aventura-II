@@ -7,12 +7,12 @@ public class Puzzle1 {
 	Scanner sc = new Scanner(System.in);
 	Random random = new Random();
 	ConectarBDD conectarBDD = new ConectarBDD();
-	private int intentosRestantes = 8;
+	private int intentosRestantes;
 	private int respuestaUsuario;
 	private int solucionPuzzle1;
 	private String aceptarPista;
 	private int puntosPuzzle;
-	private boolean puzzle1Acertado = false;
+	private boolean puzzle1Acertado;
 	
 	public boolean isPuzzle1Acertado() {
 		return puzzle1Acertado;
@@ -27,10 +27,14 @@ public class Puzzle1 {
 	}
 	
 	public boolean iniciarPuzzle1() {
+		//ADIVNA EL NÚMERO
+		intentosRestantes = 8;
+		puzzle1Acertado = false;
+		sc.nextLine();
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 1");
 		System.out.println("\nAl acercaros os dice: “...uoh uh para paaasar por estaaa puerta tendréis que aaadivinar el número secreeeto”");
 		System.out.println("\n" + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 1") + ", " + conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 1"));
-		solucionPuzzle1 = random.nextInt(10) + 1;
+		solucionPuzzle1 = random.nextInt(20) + 1;
 		while (intentosRestantes > 0 && !puzzle1Acertado) {
 			if (intentosRestantes > 1) {
 				System.out.println("\n“Tieneeees " + intentosRestantes + " intentooooss restaaanteeess.”");
@@ -53,7 +57,7 @@ public class Puzzle1 {
 	                }
 	            }
 			}
-			System.out.println("\nIntroduce un número del 1 al 10:");
+			System.out.println("\nIntroduce un número del 1 al 20:");
 			respuestaUsuario = sc.nextInt();
 			//ACIERTO
 			if (respuestaUsuario == solucionPuzzle1) {

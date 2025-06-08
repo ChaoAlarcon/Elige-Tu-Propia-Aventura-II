@@ -6,11 +6,11 @@ public class Puzzle2 {
 	Scanner sc = new Scanner(System.in);
 	ConectarBDD conectarBDD = new ConectarBDD();
 	Usuarios usuario = new Usuarios();
-	private int intentosRestantes = 5;
+	private int intentosRestantes;
 	private String respuestaUsuario;
 	private int puntosPuzzle;
 	private int puntosTotalesUsuario;
-	private boolean puzzle2Acertado = false;
+	private boolean puzzle2Acertado;
 	
 	public boolean PuzzleAcertado() {
 		return puzzle2Acertado;
@@ -31,6 +31,10 @@ public class Puzzle2 {
 
 
 	public boolean iniciarPuzzle2() {
+		//ACERTIJO DE LA ESFINGE
+		intentosRestantes = 5;
+		puzzle2Acertado = false;
+		sc.nextLine();
 		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 2");		
 		System.out.println("\n" + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 2") + ", " + conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 2"));
@@ -54,7 +58,7 @@ public class Puzzle2 {
 				return true;
 			} else {
 				intentosRestantes--;
-				System.out.println("“No es correcto, inténtalo de nuevo.”");
+				System.out.println("“No es correcto”");
 			}
 
 			if (intentosRestantes == 0 && !puzzle2Acertado) {

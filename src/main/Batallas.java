@@ -110,6 +110,7 @@ public class Batallas {
 	}
 	
 	public void batallas() {
+		//CACTUS
 			if (batallaActual == 0) {
 				System.out.println("Mientras avanzáis por el camino de arena que lleva a la nueva pirámide,\n"
 						+ "os encontráis con un cactus de aspecto extraño, que parece que os amenaza con su mirada.\n");
@@ -117,39 +118,62 @@ public class Batallas {
 				System.out.println(nombreBatalla.get(batallaActual));
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 			}
+			//MOMIA
 			if (batallaActual == 1) {
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 				System.out.println(nombreBatalla.get(batallaActual));
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
-
-
 			}
+			//LAVA
 			if (batallaActual == 2) {
-				System.out.println("Syso de batalla 3");
+				System.out.println("La puerta os lleva a una zona que parece el interior de un volcán, con paredes que rezuman\n"
+						+ "un calor intenso y grandes humaradas, con una cascada de lava que no deja de fluir y en el centro de la sala\n"
+						+ "veis que hay una puerta de color verde.\nOs dirigís hacia ella, y cuando estais a mitad de camino,\n"
+						+ "el suelo empieza a temblar y de la cascada de lava surge un " + enemigos.getEnemigos().get(batallaActual) + " que se dirige rápidamente hacia vosotros.\n ");
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 				System.out.println(nombreBatalla.get(batallaActual));
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 			}
+			//BOSQUE
 			if (batallaActual == 3) {
-				System.out.println("Syso de batalla 4");
+				
+				System.out.println("");
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 				System.out.println(nombreBatalla.get(batallaActual));
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 			}
+			//MONTAÑA
 			if (batallaActual == 4) {
-				System.out.println("Syso de batalla 5");
+				System.out.println("Entrais por la puerta y os encontráis en la cima de una montaña nevada,\n"
+						+ "veis que cerca de donde estais hay un pequeño lago helado con una isla en el centro,\n"
+						+ "y en ella una puerta morada, así que os dirigís hacia allí, pero antes de cruzar,\n"
+						+ "veis una sombra en el agua, al dar el siguiente paso, del agua salta " + enemigos.getEnemigos().get(batallaActual) + ", cortando el paso hacia la puerta.\n");
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 				System.out.println(nombreBatalla.get(batallaActual));
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 			}
+			//CUEVA
 			if (batallaActual == 5) {
-				System.out.println("Syso de batalla 6");
+				System.out.println("Al derrotar a " + enemigos.getEnemigos().get(batallaActual - 1) + ", se forma un puente de hielo que os permite cruzar a la isla.");
+				System.out.println("La puerta os lleva al interior de una cueva repleta de cristales mágicos, que brillan con multitud de colores,\n"
+						+ "que os envuelven. Seguís hacia delante y encontráis una habitación en la que parece que Taharka y sus aprendices realizaban\n"
+						+ "sus experimentos con los muertos. Empezáis a buscar algún sitio por donde seguir, cuando aparece " + enemigos.getEnemigos().get(batallaActual) + " dispuesto a proteger su guarida.\n");
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 				System.out.println(nombreBatalla.get(batallaActual));
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 			}
+			//FINAL
 			if (batallaActual == 6) {
-				System.out.println("Syso de batalla 7");
+				if (npcMuerto) {
+					System.out.println("Entras a una sala que está llena de cubos grises y blancos que no paran de temblar y en el centro puedes ver\n"
+							+ "una forma extraña que no es de este mundo, parece estar formada de muchos cubos de diferentes colores.\n"
+							+ "Te acercas para enfrentarte al ser.\n");
+				}
+				if (!npcMuerto) {
+					System.out.println("Entráis a una sala que está llena de cubos grises y blancos que no paran de temblar y en el centro podéis ver\n"
+							+ "una forma extraña que no es de este mundo, parece estar formada de muchos cubos de diferentes colores.\n"
+							+ "Os acercais para enfrentaros al ser.\n");
+				}
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
 				System.out.println(nombreBatalla.get(batallaActual));
 				System.out.println("-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-|-");
@@ -278,62 +302,62 @@ public class Batallas {
 					}
 					//ENEMIGO BÁSICO
 					if (vidaEnemigoActual > 0) {
-						ataqueEnemigoAleatorio = random.nextInt(2);
+						ataqueEnemigoAleatorio = random.nextInt(3);
 						precisionBasicoActual = random.nextInt(99) + 1;
 						if (ataqueEnemigoAleatorio == 0) {
 							//CRÍTICO
 							if (precisionBasicoActual >= 80) {
-								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con "+ enemigos.getNombreBasico().get(batallaActual) + "\n(" + enemigos.getDescripcionBasico().get(batallaActual) + ") y te hace un crítico de |" + ataqueBasicoEnemigoActual + "| puntos de daño.");
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con ["+ enemigos.getNombreBasico().get(batallaActual) + "]\n(" + enemigos.getDescripcionBasico().get(batallaActual) + ") y te hace un crítico de |" + ataqueBasicoEnemigoActual + "| puntos de daño.");
 								heroe.setVida(heroe.getVida() - ataqueBasicoEnemigoActual);
 							}
 							//NORMAL
 							else if (precisionBasicoActual >= 20 && precisionBasicoActual < 80) {
-								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con "+ enemigos.getNombreBasico().get(batallaActual) + "\n(" + enemigos.getDescripcionBasico().get(batallaActual) + ") y te hace |" + ataqueBasicoEnemigoActual/2 + "| puntos de daño.");
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con ["+ enemigos.getNombreBasico().get(batallaActual) + "]\n(" + enemigos.getDescripcionBasico().get(batallaActual) + ") y te hace |" + ataqueBasicoEnemigoActual/2 + "| puntos de daño.");
 								heroe.setVida(heroe.getVida() - ataqueBasicoEnemigoActual/2);	
 							} 
 							//FALLIDO
 							else if (precisionBasicoActual < 20) {
-								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ usó "  + enemigos.getNombreBasico().get(batallaActual) + " pero falló el ataque.");
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ usó ["  + enemigos.getNombreBasico().get(batallaActual) + "] pero falló el ataque.");
 							}
 						}
 						//ENEMIGO FUERTE
 						 if (ataqueEnemigoAleatorio == 1) {
 							//CRÍTICO
 							if (precisionBasicoActual >= 80) {
-								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con " + enemigos.getNombreFuerte().get(batallaActual) + "\n(" + enemigos.getDescripcionFuerte().get(batallaActual) + ") y te hace un crítico de |" + ataqueFuerteEnemigoActual + "| puntos de daño.");
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con [" + enemigos.getNombreFuerte().get(batallaActual) + "]\n(" + enemigos.getDescripcionFuerte().get(batallaActual) + ") y te hace un crítico de |" + ataqueFuerteEnemigoActual + "| puntos de daño.");
 								heroe.setVida(heroe.getVida() - ataqueFuerteEnemigoActual);
 							}
 							//NORMAL
 							else if (precisionBasicoActual >= 20 && precisionBasicoActual < 80) {
-								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con " + enemigos.getNombreFuerte().get(batallaActual) + "\n(" + enemigos.getDescripcionFuerte().get(batallaActual) + ") y te hace |" + ataqueFuerteEnemigoActual/2 + "| puntos de daño.");
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con [" + enemigos.getNombreFuerte().get(batallaActual) + "]\n(" + enemigos.getDescripcionFuerte().get(batallaActual) + ") y te hace |" + ataqueFuerteEnemigoActual/2 + "| puntos de daño.");
 								heroe.setVida(heroe.getVida() - ataqueFuerteEnemigoActual/2);	
 							}
 							//FALLIDO
 							else if (precisionBasicoActual < 20) {
-								System.out.println("~" +enemigos.getEnemigos().get(batallaActual) + "~ usó " + enemigos.getNombreFuerte().get(batallaActual) + " pero falló el ataque.");
+								System.out.println("~" +enemigos.getEnemigos().get(batallaActual) + "~ usó [" + enemigos.getNombreFuerte().get(batallaActual) + "] pero falló el ataque.");
 							}
 						}
 						 //ENEMIGO HABILIDAD
 						if (ataqueEnemigoAleatorio == 2) {
 							//DAÑO
 							if (enemigos.getDatosHabilidad().get(batallaActual) > 3) {
-								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " te ataca con "+ enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ") y te hace |"+ enemigos.getDatosHabilidad().get(batallaActual) + "| puntos de daño.");
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " te ataca con [" + enemigos.getNombreHabilidad().get(batallaActual) + "]\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ") y te hace |"+ enemigos.getDatosHabilidad().get(batallaActual) + "| puntos de daño.");
 								heroe.setVida(heroe.getVida() - enemigos.getDatosHabilidad().get(batallaActual));	
 							}
 							//CAMBIO TERRENO
 							else if (enemigos.getDatosHabilidad().get(batallaActual) == 1) {
 								terreno.cambioTerreno();
-								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa " + enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
-								System.out.println("El terreno ha cambiado");
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa [" + enemigos.getNombreHabilidad().get(batallaActual) + "]\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
+								System.out.println("El terreno ha cambiado a: " + terreno.getNombreTerreno().get(terreno.getTerrenoActual()));
 							}
 							//CAMBIO TERRENO
 							//CAMBIO CLIMA
 							else if (enemigos.getDatosHabilidad().get(batallaActual) == 2) {
 	                            terreno.cambioTerreno();
 	                            clima.cambioClima();
-	                            System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa " + enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
-								System.out.println("El terreno ha cambiado");
-	                            System.out.println("El clima ha cambiado");
+	                            System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa [" + enemigos.getNombreHabilidad().get(batallaActual) + "]\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
+								System.out.println("El terreno ha cambiado a: " + terreno.getNombreTerreno().get(terreno.getTerrenoActual()));
+								System.out.println("El clima ha cambiado a: " + clima.getNombreClima().get(clima.getClimaActual()));
 							}
 							//CAMBIO TERRENO
 							//CAMBIO CLIMA
@@ -342,10 +366,10 @@ public class Batallas {
 	                            terreno.cambioTerreno();
 	                            clima.cambioClima();
 	                            hora.cambioHora();
-	                            System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa " + enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
-								System.out.println("El terreno ha cambiado");
-								System.out.println("El clima ha cambiado");
-								System.out.println("La hora ha cambiado");
+	                            System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa [" + enemigos.getNombreHabilidad().get(batallaActual) + "]\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
+	                            System.out.println("El terreno ha cambiado a: " + terreno.getNombreTerreno().get(terreno.getTerrenoActual()));
+								System.out.println("El clima ha cambiado a: " + clima.getNombreClima().get(clima.getClimaActual()));
+								System.out.println("La hora ha cambiado a: " + hora.getNombreHora().get(hora.getHoraActual()));
 	                        }
 						}
 						if (heroe.getVida() <= 0) {
@@ -356,6 +380,10 @@ public class Batallas {
 					}
 				}
 	}
+	//FINAL ANTES DEL BOSS
+	if (heroe.getVida() == 0) {
+		System.out.println(heroe.getMuerteBoss());
+	}
 			//SIGUIENTE ESCENARIO
             clima.setFilaDeClimaActual(clima.getFilaDeClimaActual() + 1);
             terreno.setFilaDeTerrenoActual(terreno.getFilaDeTerrenoActual() + 1);
@@ -363,7 +391,6 @@ public class Batallas {
 			batallaActual++;
 	}
 	//OTROS MÉTODOS
-	
 	public void Puzzlecambio1() {
         clima.setFilaDeClimaActual(clima.getFilaDeClimaActual() + 1);
         terreno.setFilaDeTerrenoActual(terreno.getFilaDeTerrenoActual() + 1);
@@ -376,15 +403,31 @@ public class Batallas {
         terreno.setFilaDeTerrenoActual(terreno.getFilaDeTerrenoActual() + 1);
         hora.setFilaDeHoraActual(hora.getFilaDeHoraActual() + 1);
 	}
+	//CARLOS EL FANTASMA
+	public void Puzzle4Final1() {
+		System.out.println("\n" + npc.getFrase1_npcRandom());
+		heroe.setVida(heroe.getVida() + npc.getAyuda1_npcRandom());
+	}
 	
+	public void Puzzle4Final2() {
+		System.out.println("\n" + npc.getFrase2_npcRandom());
+		heroe.setVidaMax(heroe.getVidaMax() + npc.getAyuda2_npcRandom());
+		heroe.setVida(heroe.getVidaMax());
+	}
+	
+	public void Puzzle4Final3() {
+		System.out.println("\n" + npc.getFrase3_npcRandom());
+		heroe.setVidaMax(heroe.getVidaMax() + npc.getAyuda3_npcRandom());
+		heroe.setVida(heroe.getVidaMax());
+	}
+	//AMMIT
 	public void Puzzle5Final1() {
-		System.out.println("SYSO MUERTE LOS DOS");
-		System.out.println(npc.getFrase1_npcDios());
+		System.out.println("\n" + npc.getFrase1_npcDios());
+		
 	}
 	
 	public void Puzzle5Final2() {
-		System.out.println("SYSO CURAR PERO SE MUERE EL OTRO");
-		System.out.println(npc.getFrase2_npcDios()+ " " + npc.getAyuda2_npcDios() + " puntos de vida");
+		System.out.println("\n" + npc.getFrase2_npcDios()+ " " + npc.getAyuda2_npcDios() + " puntos de vida");
 		heroe.setVida(heroe.getVida() + npc.getAyuda2_npcDios());
 		if (heroe.getVida() > heroe.getVidaMax()) {
 			heroe.setVida(heroe.getVidaMax());
@@ -393,8 +436,7 @@ public class Batallas {
 	}
 	
 	public void Puzzle5Final3() {
-		System.out.println("SYSO CUARAR PERO NO ARMA TOCHA");
-		System.out.println(npc.getFrase3_npcDios()+ " " + npc.getAyuda3_npcDios() + " puntos de vida");
+		System.out.println("\n" + npc.getFrase3_npcDios()+ " " + npc.getAyuda3_npcDios() + " puntos de vida");
 		heroe.setVida(heroe.getVida() + npc.getAyuda3_npcDios());
 		if (heroe.getVida() > heroe.getVidaMax()) {
 			heroe.setVida(heroe.getVidaMax());
@@ -402,11 +444,22 @@ public class Batallas {
 	}
 	
 	public void Puzzle5Final4() {
-		System.out.println("SYSO CUARAR y ARMA TOCHA");
-		System.out.println(npc.getFrase4_npcDios()+ " " + npc.getAyuda3_npcDios() + " puntos de vida");
+		System.out.println("\n" + npc.getFrase4_npcDios()+ " " + npc.getAyuda3_npcDios() + " puntos de vida");
 		heroe.setVida(heroe.getVida() + npc.getAyuda3_npcDios());
 		if (heroe.getVida() > heroe.getVidaMax()) {
 			heroe.setVida(heroe.getVidaMax());
 		}
+	}
+	//MUERTE BOSS
+	public void muerteBoss() {
+		System.out.println("\n" + heroe.getMuerteBoss());
+	}
+	//VICTORIA BOSS
+	public void victoriaBoss() {
+		System.out.println("\n" + heroe.getVictoriaBoss());
+	}
+	//BENDICION AMMIT
+	public void bendicionAmmit() {
+		System.out.println("\n" + heroe.getBendicionAmmit());
 	}
 }

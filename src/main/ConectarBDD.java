@@ -7,7 +7,7 @@ public class ConectarBDD{
 	public String driver = "com.mysql.cj.jdbc.Driver";
 
 	// Nombre de la base de datos
-	public String database = "etpa2_g25v6";
+	public String database = "etpa2_g25v7";
 
 	// Host
 	public String hostname = "localhost";

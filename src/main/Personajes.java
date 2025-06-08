@@ -20,6 +20,11 @@ public class Personajes {
     private String nombreHabilidad;
     private int datosHabilidad;
     private String descripcionHabilidad;
+    private String muerteAntesDelBoss;
+    private String muerteAmmit;
+    private String muerteBoss;
+    private String victoriaBoss;
+    private String bendicionAmmit;
     
 
 	public Personajes(int opcionPersonaje, String confirmacionSeleccionPersonaje,
@@ -186,6 +191,46 @@ public class Personajes {
 	public void setDescripcionHabilidad(String descripcionHabilidad) {
 		this.descripcionHabilidad = descripcionHabilidad;
 	}
+	
+	public String getMuerteAntesDelBoss() {
+		return muerteAntesDelBoss;
+	}
+
+	public void setMuerteAntesDelBoss(String muerteAntesDelBoss) {
+		this.muerteAntesDelBoss = muerteAntesDelBoss;
+	}
+
+	public String getMuerteAmmit() {
+		return muerteAmmit;
+	}
+
+	public void setMuerteAmmit(String muerteAmmit) {
+		this.muerteAmmit = muerteAmmit;
+	}
+
+	public String getMuerteBoss() {
+		return muerteBoss;
+	}
+
+	public void setMuerteBoss(String muerteBoss) {
+		this.muerteBoss = muerteBoss;
+	}
+
+	public String getVictoriaBoss() {
+		return victoriaBoss;
+	}
+
+	public void setVictoriaBoss(String victoriaBoss) {
+		this.victoriaBoss = victoriaBoss;
+	}
+
+	public String getBendicionAmmit() {
+		return bendicionAmmit;
+	}
+
+	public void setBendicionAmmit(String bendicionAmmit) {
+		this.bendicionAmmit = bendicionAmmit;
+	}
 
 	public void ElejirPersonajes() {
 		System.out.println("La diosa Ammit necesita vuestra ayuda para detener a un nuevo mal que ha surgido en Eazima,\n"
@@ -232,6 +277,11 @@ public class Personajes {
                 setNombreHabilidad(ConectarBDD.consultarDatosString("nombreHabilidad", "ataques", "id_ataques =" + opcionPersonaje));
                 setDatosHabilidad(ConectarBDD.consultarDatosint("datosHabilidad", "ataques", "id_ataques =" + opcionPersonaje));
                 setDescripcionHabilidad(ConectarBDD.consultarDatosString("descripcionHabilidad", "ataques", "id_ataques =" + opcionPersonaje));
+                setMuerteAntesDelBoss(ConectarBDD.consultarDatosString("Muerte_antes_de_Boss", "personajes", "id_personajes =" + opcionPersonaje));
+                setMuerteAmmit(ConectarBDD.consultarDatosString("Muerte_Ammit", "personajes", "id_personajes =" + opcionPersonaje));
+                setMuerteBoss(ConectarBDD.consultarDatosString("Muerte_Boss", "personajes", "id_personajes =" + opcionPersonaje));
+                setVictoriaBoss(ConectarBDD.consultarDatosString("Victoria_Boss", "personajes", "id_personajes =" + opcionPersonaje));
+                setBendicionAmmit(ConectarBDD.consultarDatosString("Bendicion_Ammit", "personajes", "id_personajes =" + opcionPersonaje));
 
                 System.out.println("\nHas elegido a " + nombrePersonaje);
             } else {

@@ -9,13 +9,23 @@ public class Puzzle4 {
 	ConectarBDD conectarBDD = new ConectarBDD();
 	Usuarios usuario = new Usuarios();
 	private boolean puzzle4Acertado = false;
-	private int puntosEnemigo = 0;
-	private int puntosUsuario = 0;
+	private int puntosEnemigo;
+	private int puntosUsuario;
 	private int eleccionOponente;
 	private int eleccionJugador;
 	private int puntosPuzzle;
 	private int puntosTotalesUsuario;
 	String[] opciones = {"Piedra", "Papel", "Tijera"};
+
+
+	public Puzzle4(int puntosUsuario, int puntosEnemigo) {
+		this.puntosUsuario = puntosUsuario;
+		this.puntosEnemigo = puntosEnemigo;
+	}
+
+	public Puzzle4() {
+
+	}
 	
 	public boolean PuzzleAcertado() {
 		return puzzle4Acertado;
@@ -33,20 +43,39 @@ public class Puzzle4 {
 		this.puzzle4Acertado = puzzle4Acertado;
 	}
 
+	public int getPuntosEnemigo() {
+		return puntosEnemigo;
+	}
+
+
+
+	public int getPuntosUsuario() {
+		return puntosUsuario;
+	}
+
 
 
 	public boolean iniciarPuzzle4() {
+		//PIEDRA, PAPEL O TIJERA
+		puntosEnemigo = 0;
+	    puntosUsuario = 0;
+	    sc.nextLine();
 		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 4");
-		System.out.println("Puzzle 4: " + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 4"));
-		System.out.println("AQUÍ IRÍA EL TEXTO DE BIENVENIDA DEL PUZZLE 4");
-		System.out.println(conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 4"));
+		System.out.println("Después de vencer al Ent, las ramas de los árboles de alrededor, se giran y entremezclan con un fuerte chasquido hasta formar una puerta blanca.");
+		System.out.println("“La puerta os lleva a una sala blanca y vacía, donde encontráis al fondo una puerta azul.\n"
+				+ "Sin embargo, al adentraros, aparece en el centro un fantasma, este os dice:\n"
+				+ "“Esta es una sala segura donde podéis descansar un rato antes de proseguir vuestra aventura.\n"
+				+ "También puedo ofreceros un poco de ayuda pero para eso debéis demostrar vuestro valor.");
+		System.out.println("\n" + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 4") + ", " + conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 4"));
 		while (puntosEnemigo != 5 && puntosUsuario != 5) {
-			eleccionOponente = random.nextInt(2);
+			eleccionOponente = random.nextInt(3);//tiene que ser 3 para que el enemigo elija las 3 opciones, pero así es más fácil para probrar
+			System.out.println("\n-------------------------");
 			System.out.println("Elige una opción: ");
 			System.out.println("1. Piedra");
 			System.out.println("2. Papel");
 			System.out.println("3. Tijera");
+			System.out.println("-------------------------\n");
 			System.out.println("Tu elección: ");
 			eleccionJugador = sc.nextInt();
 			eleccionJugador = eleccionJugador - 1;
@@ -83,15 +112,13 @@ public class Puzzle4 {
 		    }
 		}	
 		if (puntosUsuario == 5) {
-			System.out.println("¡Felicidades! Has derrotado a tu enemigo y has completado el Puzzle.");
-			System.out.println("Has ganado " + puntosPuzzle + " puntos.");
+			System.out.println("Has ganado |" + puntosPuzzle + "| puntos.");
             puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
 			puzzle4Acertado = true;
 			return true;
 		} 
-		if (puntosEnemigo == 5) {
-			System.out.println("¡Has perdido! Tu enemigo ha ganado el puzzle.");
-			return false;
+		else if (puntosUsuario <= 4 && puntosEnemigo == 5) {
+			return false;			
 		}
 		return puzzle4Acertado;
 	}

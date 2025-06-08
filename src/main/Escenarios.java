@@ -106,6 +106,8 @@ public class Escenarios {
 	
 
 	public void escenariosIniciar() {
+		batalla.setGameOver(false);
+		batalla.setBatallaActual(0);	    	    
 	    for (int j = 1; j <= 10; j++) {
 	    	if (!batalla.isGameOver()) {
 	    		puzzle1.setPuzzle1Acertado(false);
@@ -115,6 +117,7 @@ public class Escenarios {
 		        System.out.println("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\n");
 		        if (numeroIdPuzzles.get(j - 1) != 0) {
 		            switch (numeroIdPuzzles.get(j - 1)) {
+		                //CAMBISES
 		                case 1:
 		                	System.out.println("Tras derrotar al cactus proseguís vuestro camino hacia la pirámide,\n"
 		                			+ "cuando llegáis, os encontráis con un extraño guardián, ¡es Cambises!, pero está momificado,\n"
@@ -128,6 +131,7 @@ public class Escenarios {
 								puzzlesAcertados++;
 							}
 		                    break;
+		                //ESFINGE
 		                case 2:
 		                	System.out.println("Conseguís pasar por la puerta y os adentráis por un oscuro pasillo,\n"
 		                			+ "cuando llegáis al final se encienden unas antorchas y ante vosotros se encuentra una esfinge de 5 metros de altura,\n"
@@ -140,6 +144,7 @@ public class Escenarios {
 								puzzlesAcertados++;
 							}
 		                    break;
+		                //ENT		                    
 		                case 3:
 		                    puzzle3.iniciarPuzzle3();
 		                    puzzle1.setPuzzle1Acertado(true);
@@ -147,8 +152,9 @@ public class Escenarios {
 		                    	Usuarios.sumarPuntosPuzzle3();
 								batalla.Puzzlecambio1();
 								puzzlesAcertados++;
-							}
+		                    }
 		                    break;
+		                //CARLOS
 		                case 4:
 		                    puzzle4.iniciarPuzzle4();
 		                    batalla.Puzzlecambio2();
@@ -156,7 +162,21 @@ public class Escenarios {
 								Usuarios.sumarPuntosPuzzle4();
 								puzzlesAcertados++;
 							}
+							if (puzzle4.getPuntosEnemigo() == 5 && puzzle4.getPuntosUsuario() < 4) {
+								batalla.Puzzle4Final1();
+								System.out.println("“Para continuar pasad por esa puerta azul”");
+							}
+							else if (puzzle4.getPuntosEnemigo() == 5 && puzzle4.getPuntosUsuario() == 4) {
+								batalla.Puzzle4Final2();
+								System.out.println("“Para continuar pasad por esa puerta azul”");
+							}
+							else if (puzzle4.getPuntosUsuario() == 5) {
+								batalla.Puzzle4Final3();
+								System.out.println("“Para continuar pasad por esa puerta azul”");
+							}
+							
 		                    break;
+		                //AMMIT
 		                case 5:
 		                    puzzle5.iniciarPuzzle5();
 		                    batalla.Puzzlecambio2();
@@ -167,6 +187,7 @@ public class Escenarios {
 							if (!puzzle5.isPuzzle5Acertado() && puzzle5.getRespuestasCorrectas() < 3) {
 								batalla.Puzzle5Final1();
 								batalla.setGameOver(true);
+								batalla.setBatallaActual(batalla.getBatallaActual() + 1);
 							}
 							
 							if (!puzzle5.isPuzzle5Acertado() && puzzle5.getRespuestasCorrectas() >= 3 && puzzle5.getRespuestasCorrectas() <= 6) {
@@ -187,17 +208,21 @@ public class Escenarios {
 		            batalla.batallas();
 		        }
 				if (puzzlesAcertados == 5) {
-					System.out.println("SYSO DE ARMA TOCHA");
+					batalla.bendicionAmmit();
 				}
 	    	}
 	    	if (batalla.isGameOver()) {
 	    		j = 11;
 	    	}
 	    }
+	    if (batalla.getBatallaActual() == 6 && batalla.isGameOver()) {
+	    	batalla.muerteBoss();
+	    }
+	    if (batalla.getBatallaActual() == 6 && !batalla.isGameOver()) {
+	    	batalla.muerteBoss();
+	    }
 		if (batalla.isGameOver()) {
 			System.out.println("FIN DE LA PARTIDA");
-		} else {
-			System.out.println("SYSO DE VICTORIA O LO QUE SEA");
 		}
 }
 

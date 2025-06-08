@@ -70,6 +70,14 @@ public class Terrenos {
 	public void setFilaDeTerrenoActual(int filaDeTerrenoActual) {
 		this.filaDeTerrenoActual = filaDeTerrenoActual;
 	}
+	
+	public int getTerrenoActual() {
+		return terrenoActual;
+	}
+
+	public void setTerrenoActual(int terrenoActual) {
+		this.terrenoActual = terrenoActual;
+	}
 
 	public void  creacionTerrenos() {
 		numeroTerrenos = conectarBDD.obtenerNumeroDeFilas("terrenos");

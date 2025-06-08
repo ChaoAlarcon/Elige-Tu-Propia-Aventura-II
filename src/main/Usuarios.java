@@ -57,8 +57,8 @@ public class Usuarios {
 				System.out.println("Las contraseñas no coinciden, intente nuevamente.");
 			}
 		}
-		usuarioCompleto = "'" + nuevoUsuario + "','" + nuevaContrasenia + "'";
-		conectarBDD.insertarDatos("jugador", "nombreJugador, contrasena", usuarioCompleto);
+		usuarioCompleto = "'" + nuevoUsuario + "','" + nuevaContrasenia + "','0'";
+		conectarBDD.insertarDatos("jugador", "nombreJugador, contrasena, puntos", usuarioCompleto);
 		usuario = nuevoUsuario;
 	}
 	
