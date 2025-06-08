@@ -86,4 +86,8 @@ public class Usuarios {
 		puntosPuzzle5 = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 5");
 		conectarBDD.actualizarDatos("jugador", "puntos", puntosPuzzle5, "nombreJugador= '" + usuario + "'");
 	}
+	
+	public void sumar100P() {
+		conectarBDD.actualizarDatos("jugador", "puntos", 100, "nombreJugador= '" + usuario + "'");
+	}
 }

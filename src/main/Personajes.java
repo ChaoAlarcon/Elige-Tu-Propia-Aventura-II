@@ -25,6 +25,7 @@ public class Personajes {
     private String muerteBoss;
     private String victoriaBoss;
     private String bendicionAmmit;
+    private int vidainicial;
     
 
 	public Personajes(int opcionPersonaje, String confirmacionSeleccionPersonaje,
@@ -232,6 +233,14 @@ public class Personajes {
 		this.bendicionAmmit = bendicionAmmit;
 	}
 
+	public int getVidainicial() {
+		return vidainicial;
+	}
+
+	public void setVidainicial(int vidainicial) {
+		this.vidainicial = vidainicial;
+	}
+
 	public void ElejirPersonajes() {
 		System.out.println("La diosa Ammit necesita vuestra ayuda para detener a un nuevo mal que ha surgido en Eazima,\n"
 				+ "un ser que ni la diosa es capaz de entender.\n“Un aprendiz de Taharka, llamado Tahorki, heredó sus"
@@ -263,9 +272,10 @@ public class Personajes {
             confirmacionSeleccionPersonaje = sc.nextLine();
 
             if (confirmacionSeleccionPersonaje.equalsIgnoreCase("S")) {
+            	setVidainicial(ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes =" + opcionPersonaje));
                 setNombrePersonaje(ConectarBDD.consultarDatosString("nombrePersonaje", "personajes", "id_personajes =" + opcionPersonaje));
-                setVida(ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes =" + opcionPersonaje));
-                setVidaMax(ConectarBDD.consultarDatosint("vida", "personajes", "id_personajes =" + opcionPersonaje));
+                vida = vidainicial;
+                vidaMax = vidainicial;
                 setNombreBasico(ConectarBDD.consultarDatosString("nombreBasico", "ataques", "id_ataques =" + opcionPersonaje));
                 setDanoBasico(ConectarBDD.consultarDatosint("danoBasico", "ataques", "id_ataques =" + opcionPersonaje));
                 setDescripcionBasico(ConectarBDD.consultarDatosString("descripcionBasico", "ataques", "id_ataques =" + opcionPersonaje));

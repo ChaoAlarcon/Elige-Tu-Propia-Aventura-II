@@ -209,6 +209,7 @@ public class Escenarios {
 		        }
 				if (puzzlesAcertados == 5) {
 					batalla.bendicionAmmit();
+					Usuarios.sumar100P();
 				}
 	    	}
 	    	if (batalla.isGameOver()) {
@@ -219,8 +220,10 @@ public class Escenarios {
 	    	batalla.muerteBoss();
 	    }
 	    if (batalla.getBatallaActual() == 6 && !batalla.isGameOver()) {
-	    	batalla.muerteBoss();
+	    	batalla.victoriaBoss();
+	    	Usuarios.sumar100P();
 	    }
+	    
 		if (batalla.isGameOver()) {
 			System.out.println("FIN DE LA PARTIDA");
 		}
