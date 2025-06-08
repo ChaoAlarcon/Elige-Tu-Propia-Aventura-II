@@ -1,5 +1,3 @@
-
-
 # Elige tu propia aventura II 🎮
 
 ## Objetivo 📌
