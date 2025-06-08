@@ -10,14 +10,14 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 - **Institución:** Instituto Nebrija Formación Profesional 
 - **Estado:** En desarrollo  
 
-![Portada](Portada_ETPA_II_Remastered.png)
+![Portada](Imágenes/Portada_ETPA_II_Remastered.png)
 
 ## Integrantes del Grupo 👥️
 - Álvaro Santos Calvo
 - Nicolás García-Sampedro Docampo
 - Chao An Alarcón Chen
 
-<img src="Grupo25.jpg" alt="Grupo25" width="250">
+<img src="Imágenes/Grupo25.jpg" alt="Grupo25" width="250">
 
 ## Tecnologías 🛠
 - **Lenguaje:** Java  
@@ -28,6 +28,4 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 - NO TOCAR EL ARCHIVO "classpath"
 - ONTO: Reemplazas todo lo que tiene el main con lo tuyo(Lo tuyo tiene que estar bien) || Es cuando está en la misma línea en GitKraken
 - INTO: Se fusionan ambas Ramas || Es cuando está en una línea diferente en GitKraken
-- Añadir nueva portada de Canva
-- Es mejor tener un juego base sencillo e ir mejorándolo 
-- Explicar los controles del juego en el teclado visualmente
+
