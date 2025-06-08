@@ -1,21 +1,24 @@
 package main;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Scanner;
+
 import main.ConectarBDD;
 public class Escenarios {
 	ConectarBDD conectarBDD = new ConectarBDD();
+	Scanner sc = new Scanner(System.in);
 	Batallas batalla = new Batallas();
 	Puzzle1 puzzle1 = new Puzzle1();
 	Puzzle2 puzzle2 = new Puzzle2();
 	Puzzle3 puzzle3 = new Puzzle3();
 	Puzzle4 puzzle4 = new Puzzle4();
 	Puzzle5 puzzle5 = new Puzzle5();
-	Personajes heroe = new Personajes();
-	Npc npc = new Npc();
+	Usuarios usuario = new Usuarios();
 	Enemigos enemigos = new Enemigos();
 	Climas climas = new Climas();
 	Terrenos terrenos = new Terrenos();
 	HorasDelDia horasDelDia = new HorasDelDia();
+	Usuarios Usuarios = new Usuarios();
 	private ArrayList<String> nombreEscenario = new ArrayList<>();
 	private ArrayList<Integer> numeroIdBatalla = new ArrayList<>();
 	private ArrayList<Integer> numeroIdPuzzles = new ArrayList<>();
@@ -24,13 +27,15 @@ public class Escenarios {
 	private ArrayList<Integer> numeroIdHora = new ArrayList<>();
 	private ArrayList<Integer> numeroIdNpc = new ArrayList<>();
 	private int numeroEscenarios;
+	private int puzzlesAcertados = 0;
+	private int opcionUsuario = 0;
 	
 
-	public Escenarios(Personajes personajes, Puzzle1 puzzle1, Puzzle2 puzzle2, Puzzle3 puzzle3, Puzzle4 puzzle4, Puzzle5 puzzle5,
+	public Escenarios(Puzzle1 puzzle1, Puzzle2 puzzle2, Puzzle3 puzzle3, Puzzle4 puzzle4, Puzzle5 puzzle5,
 	                  ArrayList<String> nombreEscenario, ArrayList<Integer> numeroIdBatalla,
 	                  ArrayList<Integer> numeroIdPuzzles, ArrayList<Integer> numeroIdTerreno,
 	                  ArrayList<Integer> numeroIdClima, ArrayList<Integer> numeroIdHora,
-	                  ArrayList<Integer> numeroIdNpc, int numeroEscenarios) {
+	                  ArrayList<Integer> numeroIdNpc, int numeroEscenarios, int puzzlesAcertados) {
 	    
 	    this.puzzle1 = puzzle1;
 	    this.puzzle2 = puzzle2;
@@ -45,6 +50,7 @@ public class Escenarios {
 	    this.numeroIdHora = numeroIdHora;
 	    this.numeroIdNpc = numeroIdNpc;
 	    this.numeroEscenarios = numeroEscenarios;
+	    this.puzzlesAcertados = puzzlesAcertados;
 	}
 
 	
@@ -61,6 +67,22 @@ public class Escenarios {
 	}
 
 	public void creacionEscenarios() {
+				opcionUsuario = 0;
+				while (opcionUsuario > 2 || opcionUsuario < 1) {
+					System.out.println("--------------------------------");
+					System.out.println("1.Iniciar sesión");
+					System.out.println("2.Registrarse");
+					System.out.println("--------------------------------");
+					opcionUsuario = sc.nextInt();
+					if (opcionUsuario > 2 || opcionUsuario < 1) {
+						System.out.println("Opción no válida");
+					}
+				}
+				if (opcionUsuario == 1) {
+					Usuarios.iniciarSesion();
+				} else if (opcionUsuario == 2) {
+					Usuarios.registrarUsuario();
+				}
 		batalla.creacionBatallas();
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("escenarios");
 	    nombreEscenario.clear();
@@ -85,52 +107,98 @@ public class Escenarios {
 
 	public void escenariosIniciar() {
 	    for (int j = 1; j <= 10; j++) {
-	    	puzzle1.setPuzzle1Acertado(false);
-	    	puzzle3.setPuzzle3Acertado(false);
-	    	System.out.println("\n//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\");
-	        System.out.println("Escenario " + j + ": " + nombreEscenario.get(j-1));
-	        System.out.println("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\n");
-	        if (numeroIdPuzzles.get(j - 1) != 0) {
-	            switch (numeroIdPuzzles.get(j - 1)) {
-	                case 1:
-	                	System.out.println("Tras derrotar al cactus proseguís vuestro camino hacia la pirámide,\n"
-	                			+ "cuando llegáis, os encontráis con un extraño guardián, ¡es Cambises!, pero está momificado,\n"
-	                			+ "parece ser que ha intentado adentrarse él solo a la pirámide y no ha sobrevivido,\n"
-	                			+ "y ahora es solo un espejismo del guerrero que fue. convertido en mero guardián de puerta.\n");
-	                    puzzle1.iniciarPuzzle1();
-	                    puzzle3.setPuzzle3Acertado(true);
-						if (puzzle1.isPuzzle1Acertado()) {
-							batalla.Puzzlecambio1();
-						}
-	                    break;
-	                case 2:
-	                	System.out.println("Conseguís pasar por la puerta y os adentráis por un oscuro pasillo,\n"
-	                			+ "cuando llegáis al final se encienden unas antorchas y ante vosotros se encuentra una esfinge de 5 metros de altura,\n"
-	                			+ "mientras admiráis la belleza de la estructura os sorprende una voz que dice:\n"
-	                			+ "“Si querés continuar tenéis que demostrar vuestra valía resolviendo este acertijo:”");
-	                    puzzle2.iniciarPuzzle2();
-	                    batalla.Puzzlecambio2();
-	                    break;
-	                case 3:
-	                    puzzle3.iniciarPuzzle3();
-	                    puzzle1.setPuzzle1Acertado(true);
-	                    if (puzzle3.isPuzzle3Acertado()) {
-							batalla.Puzzlecambio1();
-						}
-	                    break;
-	                case 4:
-	                    puzzle4.iniciarPuzzle4();
-	                    batalla.Puzzlecambio2();
-	                    break;
-	                case 5:
-	                    puzzle5.iniciarPuzzle5();
-	                    batalla.Puzzlecambio2();
-	                    break;
-	            }
-	        } if (!puzzle1.isPuzzle1Acertado() && numeroIdBatalla.get(j - 1) != 0 || !puzzle3.isPuzzle3Acertado() && numeroIdBatalla.get(j - 1) != 0 ) {
-	            batalla.batallas();
-	        }
+	    	if (!batalla.isGameOver()) {
+	    		puzzle1.setPuzzle1Acertado(false);
+		    	puzzle3.setPuzzle3Acertado(false);
+		    	System.out.println("\n//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\");
+		        System.out.println("Escenario " + j + ": " + nombreEscenario.get(j-1));
+		        System.out.println("\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\\//\n");
+		        if (numeroIdPuzzles.get(j - 1) != 0) {
+		            switch (numeroIdPuzzles.get(j - 1)) {
+		                case 1:
+		                	System.out.println("Tras derrotar al cactus proseguís vuestro camino hacia la pirámide,\n"
+		                			+ "cuando llegáis, os encontráis con un extraño guardián, ¡es Cambises!, pero está momificado,\n"
+		                			+ "parece ser que ha intentado adentrarse él solo a la pirámide y no ha sobrevivido,\n"
+		                			+ "y ahora es solo un espejismo del guerrero que fue. convertido en mero guardián de puerta.\n");
+		                    puzzle1.iniciarPuzzle1();
+		                    puzzle3.setPuzzle3Acertado(true);
+							if (puzzle1.isPuzzle1Acertado()) {
+								Usuarios.sumarPuntosPuzzle1();
+								batalla.Puzzlecambio1();
+								puzzlesAcertados++;
+							}
+		                    break;
+		                case 2:
+		                	System.out.println("Conseguís pasar por la puerta y os adentráis por un oscuro pasillo,\n"
+		                			+ "cuando llegáis al final se encienden unas antorchas y ante vosotros se encuentra una esfinge de 5 metros de altura,\n"
+		                			+ "mientras admiráis la belleza de la estructura os sorprende una voz que dice:\n"
+		                			+ "“Si querés continuar tenéis que demostrar vuestra valía resolviendo este acertijo:”");
+		                    puzzle2.iniciarPuzzle2();
+		                    batalla.Puzzlecambio2();
+							if (puzzle2.isPuzzle2Acertado()) {
+								Usuarios.sumarPuntosPuzzle2();
+								puzzlesAcertados++;
+							}
+		                    break;
+		                case 3:
+		                    puzzle3.iniciarPuzzle3();
+		                    puzzle1.setPuzzle1Acertado(true);
+		                    if (puzzle3.isPuzzle3Acertado()) {
+		                    	Usuarios.sumarPuntosPuzzle3();
+								batalla.Puzzlecambio1();
+								puzzlesAcertados++;
+							}
+		                    break;
+		                case 4:
+		                    puzzle4.iniciarPuzzle4();
+		                    batalla.Puzzlecambio2();
+							if (puzzle4.isPuzzle4Acertado()) {
+								Usuarios.sumarPuntosPuzzle4();
+								puzzlesAcertados++;
+							}
+		                    break;
+		                case 5:
+		                    puzzle5.iniciarPuzzle5();
+		                    batalla.Puzzlecambio2();
+							if (puzzle5.isPuzzle5Acertado()) {
+								Usuarios.sumarPuntosPuzzle5();
+								puzzlesAcertados++;
+							}
+							if (!puzzle5.isPuzzle5Acertado() && puzzle5.getRespuestasCorrectas() < 3) {
+								batalla.Puzzle5Final1();
+								batalla.setGameOver(true);
+							}
+							
+							if (!puzzle5.isPuzzle5Acertado() && puzzle5.getRespuestasCorrectas() >= 3 && puzzle5.getRespuestasCorrectas() <= 6) {
+								batalla.Puzzle5Final2();
+							}
+							
+							if (puzzle5.isPuzzle5Acertado() && puzzlesAcertados != 5) {
+								batalla.Puzzle5Final3();
+							}
+							
+							if (puzzlesAcertados == 5) {
+								batalla.Puzzle5Final4();
+							}
+		                    break;
+		            }
+		        }  
+		        if (!puzzle1.isPuzzle1Acertado() && numeroIdBatalla.get(j - 1) != 0 && puzzlesAcertados != 5 && !batalla.isGameOver() || !puzzle3.isPuzzle3Acertado() && numeroIdBatalla.get(j - 1) != 0 && puzzlesAcertados != 5 && !batalla.isGameOver()) {
+		            batalla.batallas();
+		        }
+				if (puzzlesAcertados == 5) {
+					System.out.println("SYSO DE ARMA TOCHA");
+				}
+	    	}
+	    	if (batalla.isGameOver()) {
+	    		j = 11;
+	    	}
 	    }
+		if (batalla.isGameOver()) {
+			System.out.println("FIN DE LA PARTIDA");
+		} else {
+			System.out.println("SYSO DE VICTORIA O LO QUE SEA");
+		}
 }
 
 }

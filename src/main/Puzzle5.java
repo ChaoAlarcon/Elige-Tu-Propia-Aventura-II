@@ -12,6 +12,14 @@ public class Puzzle5 {
 	private int respuestaUsuario;
 	private int respuestasCorrectas = 0;
 	private boolean juegoPerdido = false;
+	
+	public Puzzle5(int respuestasCorrectas) {
+		this.respuestasCorrectas = respuestasCorrectas;
+	}
+	
+	public Puzzle5() {
+		
+	}
 
 	public boolean PuzzleAcertado() {
 		return puzzle5Acertado;
@@ -23,6 +31,14 @@ public class Puzzle5 {
 
 	public void setPuzzle5Acertado(boolean puzzle5Acertado) {
 		this.puzzle5Acertado = puzzle5Acertado;
+	}
+
+	public int getRespuestasCorrectas() {
+		return respuestasCorrectas;
+	}
+
+	public void setRespuestasCorrectas(int respuestasCorrectas) {
+		this.respuestasCorrectas = respuestasCorrectas;
 	}
 
 	public boolean iniciarPuzzle5() {
@@ -177,11 +193,12 @@ public class Puzzle5 {
 		}
 		if (respuestasCorrectas == 0) {
 			System.out.println("No has acertado ninguna respuesta.");
+			return false;
 		} else if (respuestasCorrectas <= 2 && respuestasCorrectas != 0) {
 			System.out.println("Solamente has acertado " + respuestasCorrectas + " respuesta/s.");
+			return false;
 		}
 		if (respuestasCorrectas <= 2) {
-			System.out.println("TEXTO DE MORIR TU Y EL COMPAÑERO");
 			return false;
 		}
 		else if (respuestasCorrectas >= 3 && respuestasCorrectas <= 6) {
@@ -190,10 +207,8 @@ public class Puzzle5 {
 			return false;
 		} else if (respuestasCorrectas == 7) {
 			System.out.println("¡Felicidades! Has acertado todas las respuestas.");
-			System.out.println("TEXTO DE HABER GANADO EL PUZZLE Y TE CURAS ENTERO");
 			System.out.println("Has ganado " + puntosPuzzle + " puntos.");
 			puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
-			conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle,"nombreJugador= '" + usuario.getUsuario() + "'");
 			puzzle5Acertado = true;
 			return true;
 		}

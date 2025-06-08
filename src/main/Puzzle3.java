@@ -74,7 +74,6 @@ public class Puzzle3 {
 			    System.out.println("¡Felicidades! Has adivinado la palabra: " + palabraSecretaFinal + " y has completado el Puzzle.");
 			    System.out.println("Has ganado " + puntosPuzzle + " puntos.");
 			    puntosPuzzle += puntosTotalesUsuario;
-			    conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
 			    puzzle3Acertado = true;
 			    return true;
 			}

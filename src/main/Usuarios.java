@@ -13,6 +13,11 @@ public class Usuarios {
 	private boolean confirmacionContrasenia = false;
 	boolean inicioExitoso = false;
 	private String usuarioCompleto;
+	private int puntosPuzzle1;
+	private int puntosPuzzle2;
+	private int puntosPuzzle3;
+	private int puntosPuzzle4;
+	private int puntosPuzzle5;
 	Scanner sc = new Scanner(System.in);
 	ConectarBDD conectarBDD = new ConectarBDD();
 	
@@ -30,6 +35,7 @@ public class Usuarios {
 			contrasenia = sc.nextLine();
 			if (conectarBDD.iniciarSesionBDD("nombreJugador = '" + usuario + "' AND contrasena = '" + contrasenia + "'") == true) {
 				System.out.println("Bienvenido " + usuario);
+				System.out.println("");
 				inicioExitoso = true;
 			} else {
 				System.out.println("Usuario o contraseña incorrectos, inténtalo de nuevo");
@@ -54,5 +60,30 @@ public class Usuarios {
 		usuarioCompleto = "'" + nuevoUsuario + "','" + nuevaContrasenia + "'";
 		conectarBDD.insertarDatos("jugador", "nombreJugador, contrasena", usuarioCompleto);
 		usuario = nuevoUsuario;
+	}
+	
+	public void sumarPuntosPuzzle1 () {
+		puntosPuzzle1 = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 1");
+		conectarBDD.actualizarDatos("jugador", "puntos", puntosPuzzle1, "nombreJugador= '" + usuario + "'");
+	}
+	
+	public void sumarPuntosPuzzle2 () {
+		puntosPuzzle2 = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 2");
+		conectarBDD.actualizarDatos("jugador", "puntos", puntosPuzzle2, "nombreJugador= '" + usuario + "'");
+	}
+	
+	public void sumarPuntosPuzzle3 () {
+		puntosPuzzle3 = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 3");
+		conectarBDD.actualizarDatos("jugador", "puntos", puntosPuzzle3, "nombreJugador= '" + usuario + "'");
+	}
+	
+	public void sumarPuntosPuzzle4 () {
+		puntosPuzzle4 = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 4");
+		conectarBDD.actualizarDatos("jugador", "puntos", puntosPuzzle4, "nombreJugador= '" + usuario + "'");
+	}
+	
+	public void sumarPuntosPuzzle5 () {
+		puntosPuzzle5 = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 5");
+		conectarBDD.actualizarDatos("jugador", "puntos", puntosPuzzle5, "nombreJugador= '" + usuario + "'");
 	}
 }

@@ -28,12 +28,15 @@ public class Batallas {
 	private int ataqueFuerteEnemigoActual;
 	private int danoSubidoB;
 	private int danoSubidoF;
+	private boolean gameOver = false;
+	private boolean npcMuerto = false;
 	
 	public Batallas(Personajes heroe, Npc npc, Climas clima,
             Terrenos terreno, HorasDelDia hora, Enemigos enemigos,
             ArrayList<String> nombreBatalla, int batallaActual, int numeroBatallas, int danoConHora,
             int respuestaUsuarioBatalla, int precisionBasicoActual, int precisionFuerteActual,
-            int ataqueNpcAleatorio, int ataqueEnemigoAleatorio, int vidaEnemigoActual) {
+            int ataqueNpcAleatorio, int ataqueEnemigoAleatorio, int vidaEnemigoActual, int ataqueBasicoEnemigoActual,
+            int ataqueFuerteEnemigoActual, int danoSubidoB, int danoSubidoF, boolean gameOver, boolean npcMuerto) {
 
 		this.heroe = heroe;
 		this.npc = npc;
@@ -51,6 +54,12 @@ public class Batallas {
 		this.ataqueNpcAleatorio = ataqueNpcAleatorio;
 		this.ataqueEnemigoAleatorio = ataqueEnemigoAleatorio;
 		this.vidaEnemigoActual = vidaEnemigoActual;
+		this.ataqueBasicoEnemigoActual = ataqueBasicoEnemigoActual;
+		this.ataqueFuerteEnemigoActual = ataqueFuerteEnemigoActual;
+		this.danoSubidoB = danoSubidoB;
+		this.danoSubidoF = danoSubidoF;
+		this.gameOver = gameOver;
+		this.npcMuerto = npcMuerto;
 	}
 	
 	public Batallas() {
@@ -77,6 +86,14 @@ public class Batallas {
 		this.batallaActual = batallaActual;
 	}
 	
+	public boolean isGameOver() {
+		return gameOver;
+	}
+
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
+	}
+
 	public void creacionBatallas() {
 		heroe.ElejirPersonajes();
 		npc.creacionNpc();
@@ -152,185 +169,190 @@ public class Batallas {
 				if (heroe.getVida() > heroe.getVidaMax()) {
 					heroe.setVida(heroe.getVidaMax());
 				}
-				//MENU
-				System.out.println("\nA ~" + enemigos.getEnemigos().get(batallaActual) + "~ le quedan |" + vidaEnemigoActual + "| puntos de vida");
-				System.out.println("Te quedan |" + heroe.getVida() + "| puntos de vida");
-				System.out.println("\n----------------------------");
-				System.out.println("Menu de batalla:\n");
-				System.out.println("1. " + heroe.getNombreBasico() + ": |" + heroe.getDanoBasico() + "| puntos de daño. (" + heroe.getDescripcionBasico() + ")");
-				System.out.println("2. " + heroe.getNombreFuerte() + ": |" + heroe.getDanoFuerte() + "| puntos de daño. (" + heroe.getDescripcionFuerte() + ")");
-				System.out.println("3. " + heroe.getNombreHabilidad() + ": |" + heroe.getDatosHabilidad() + "| puntos de daño. (" + heroe.getDescripcionHabilidad() + ")");
-				System.out.println("----------------------------");
-				respuestaUsuarioBatalla = sc.nextInt();
-				while (respuestaUsuarioBatalla < 1 || respuestaUsuarioBatalla > 3) {
-					System.out.println("Opciones inválida");
+				if (heroe.getVida() <= 0) {
+					gameOver = true;
+				}
+				if (!gameOver) {
+					//MENU
+					System.out.println("\nA ~" + enemigos.getEnemigos().get(batallaActual) + "~ le quedan |" + vidaEnemigoActual + "| puntos de vida");
+					System.out.println("Te quedan |" + heroe.getVida() + "| puntos de vida");
+					System.out.println("\n----------------------------");
+					System.out.println("Menu de batalla:\n");
+					System.out.println("1. " + heroe.getNombreBasico() + ": |" + heroe.getDanoBasico() + "| puntos de daño. (" + heroe.getDescripcionBasico() + ")");
+					System.out.println("2. " + heroe.getNombreFuerte() + ": |" + heroe.getDanoFuerte() + "| puntos de daño. (" + heroe.getDescripcionFuerte() + ")");
+					System.out.println("3. " + heroe.getNombreHabilidad() + ": |" + heroe.getDatosHabilidad() + "| puntos de daño. (" + heroe.getDescripcionHabilidad() + ")");
+					System.out.println("----------------------------");
 					respuestaUsuarioBatalla = sc.nextInt();
-				}
-				//BÁSICO
-				if (respuestaUsuarioBatalla == 1) {
-					precisionBasicoActual = random.nextInt(99) + 1 + clima.efectoClima();
-					danoConHora = danoSubidoB + hora.efectoHoraDelDia();
-					//CRÍTICO
-					if (heroe.getPrecisionBasico() - precisionBasicoActual >= 80) {
-						System.out.println("·Usaste " + heroe.getNombreBasico() + " y le has hecho un daño crítico de |" + danoConHora + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
-						vidaEnemigoActual = vidaEnemigoActual - danoConHora;
+					while (respuestaUsuarioBatalla < 1 || respuestaUsuarioBatalla > 3) {
+						System.out.println("Opciones inválida");
+						respuestaUsuarioBatalla = sc.nextInt();
 					}
-					//NORMAL
-					if (heroe.getPrecisionBasico() - precisionBasicoActual >= 20 && heroe.getPrecisionBasico() - precisionBasicoActual < 80) {
-						System.out.println("·Usaste " + heroe.getNombreBasico() + " y le has hecho un daño de |" + danoConHora/2 + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
-						vidaEnemigoActual = vidaEnemigoActual - (danoConHora/2);
-					} 
-					//FALLIDO
-					else{
-						System.out.println("·Usaste " + heroe.getNombreBasico() + " pero fallaste el ataque.");
-					}
-				}
-				//FUERTE
-				if (respuestaUsuarioBatalla == 2) {
-					precisionFuerteActual = random.nextInt(99) + 1 + clima.efectoClima();
-					danoConHora = danoSubidoF + hora.efectoHoraDelDia();
-					//CRÍTICO
-					if (heroe.getPrecisionFuerte() - precisionFuerteActual >= 80) {
-						System.out.println("·Usaste " + heroe.getNombreFuerte() + " y le has hecho un daño crítico de |" + danoConHora + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
-						vidaEnemigoActual = vidaEnemigoActual - danoConHora;
-					}
-					//NORMAL
-					if (heroe.getPrecisionFuerte() - precisionBasicoActual >= 20 && heroe.getPrecisionFuerte() - precisionFuerteActual < 80) {
-						System.out.println("·Usaste " + heroe.getNombreFuerte() + " y le has hecho un daño de |" + danoConHora/2 + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
-						vidaEnemigoActual = vidaEnemigoActual - (danoConHora/2);
-					} 
-					//FALLIDO
-					else{
-						System.out.println("·Usaste " + heroe.getNombreFuerte() + " pero fallaste el ataque.");
-					}
-				}
-				//HABILIDAD
-				if (respuestaUsuarioBatalla == 3) {
-					//ÁNUKET
-					if (heroe.getOpcionPersonaje() == 1) {
-						ataqueBasicoEnemigoActual = ataqueBasicoEnemigoActual - heroe.getDatosHabilidad();
-						ataqueFuerteEnemigoActual = ataqueFuerteEnemigoActual - heroe.getDatosHabilidad();
-						System.out.println("·Usaste " + heroe.getNombreHabilidad() + " e invocas un escudo que reduce |" + heroe.getDatosHabilidad() + "| puntos de daño.");
-					}
-					//BASTET
-					if (heroe.getOpcionPersonaje() == 2) {
-						heroe.setVida(heroe.getVida() + heroe.getDatosHabilidad());
-						if (heroe.getVida() > heroe.getVidaMax()) {
-							heroe.setVida(heroe.getVidaMax());
-							System.out.println("·Usaste " + heroe.getNombreHabilidad() + " y te curas |" + heroe.getDatosHabilidad() + "| puntos de vida.");
+					//BÁSICO
+					if (respuestaUsuarioBatalla == 1) {
+						precisionBasicoActual = random.nextInt(99) + 1 + clima.efectoClima();
+						danoConHora = danoSubidoB + hora.efectoHoraDelDia();
+						//CRÍTICO
+						if (heroe.getPrecisionBasico() - precisionBasicoActual >= 80) {
+							System.out.println("·Usaste " + heroe.getNombreBasico() + " y le has hecho un daño crítico de |" + danoConHora + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
+							vidaEnemigoActual = vidaEnemigoActual - danoConHora;
+						}
+						//NORMAL
+						if (heroe.getPrecisionBasico() - precisionBasicoActual >= 20 && heroe.getPrecisionBasico() - precisionBasicoActual < 80) {
+							System.out.println("·Usaste " + heroe.getNombreBasico() + " y le has hecho un daño de |" + danoConHora/2 + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
+							vidaEnemigoActual = vidaEnemigoActual - (danoConHora/2);
+						} 
+						//FALLIDO
+						else{
+							System.out.println("·Usaste " + heroe.getNombreBasico() + " pero fallaste el ataque.");
 						}
 					}
-					//GERALD
-					if (heroe.getOpcionPersonaje() == 3) {
-						danoSubidoB = danoSubidoB + heroe.getDatosHabilidad();
-						danoSubidoF = danoSubidoF + heroe.getDatosHabilidad();
-						System.out.println("·Usaste " + heroe.getNombreHabilidad() + " y te subes el ataque |" + heroe.getDatosHabilidad() + "| puntos de daño.");
+					//FUERTE
+					if (respuestaUsuarioBatalla == 2) {
+						precisionFuerteActual = random.nextInt(99) + 1 + clima.efectoClima();
+						danoConHora = danoSubidoF + hora.efectoHoraDelDia();
+						//CRÍTICO
+						if (heroe.getPrecisionFuerte() - precisionFuerteActual >= 80) {
+							System.out.println("·Usaste " + heroe.getNombreFuerte() + " y le has hecho un daño crítico de |" + danoConHora + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
+							vidaEnemigoActual = vidaEnemigoActual - danoConHora;
+						}
+						//NORMAL
+						if (heroe.getPrecisionFuerte() - precisionBasicoActual >= 20 && heroe.getPrecisionFuerte() - precisionFuerteActual < 80) {
+							System.out.println("·Usaste " + heroe.getNombreFuerte() + " y le has hecho un daño de |" + danoConHora/2 + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
+							vidaEnemigoActual = vidaEnemigoActual - (danoConHora/2);
+						} 
+						//FALLIDO
+						else{
+							System.out.println("·Usaste " + heroe.getNombreFuerte() + " pero fallaste el ataque.");
+						}
 					}
-				}
-				if (vidaEnemigoActual <= 0) {
-					vidaEnemigoActual = 0;
-				}
-				System.out.println("\nA ~"+ enemigos.getEnemigos().get(batallaActual) + "~ le quedan |" + vidaEnemigoActual + "| puntos de vida");
-				//COMPAÑERO
-				if (vidaEnemigoActual > 0) {
-					ataqueNpcAleatorio = random.nextInt(2);
-					System.out.println("\n·" + npc.getCompanero() + " dice:");
-					//UNO
-					if (ataqueNpcAleatorio == 0) {
-						System.out.println(npc.getFrase1_companero() + " y le hace |" + npc.getAyuda1_companero() + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
-						vidaEnemigoActual = vidaEnemigoActual - npc.getAyuda1_companero();
-					}
-					//DOS
-					if (ataqueNpcAleatorio == 1) {
-						System.out.println(npc.getFrase2_companero() + " y le hace |" + npc.getAyuda2_companero() + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
-						vidaEnemigoActual = vidaEnemigoActual - npc.getAyuda2_companero();
-					}
-					//TRES
-					if (ataqueNpcAleatorio == 2) {
-						System.out.println(npc.getFrase3_companero() + " y le hace |" + npc.getAyuda3_companero() + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
-						vidaEnemigoActual = vidaEnemigoActual - npc.getAyuda3_companero();
+					//HABILIDAD
+					if (respuestaUsuarioBatalla == 3) {
+						//ÁNUKET
+						if (heroe.getOpcionPersonaje() == 1) {
+							ataqueBasicoEnemigoActual = ataqueBasicoEnemigoActual - heroe.getDatosHabilidad();
+							ataqueFuerteEnemigoActual = ataqueFuerteEnemigoActual - heroe.getDatosHabilidad();
+							System.out.println("·Usaste " + heroe.getNombreHabilidad() + " e invocas un escudo que reduce |" + heroe.getDatosHabilidad() + "| puntos de daño.");
+						}
+						//BASTET
+						if (heroe.getOpcionPersonaje() == 2) {
+							heroe.setVida(heroe.getVida() + heroe.getDatosHabilidad());
+							if (heroe.getVida() > heroe.getVidaMax()) {
+								heroe.setVida(heroe.getVidaMax());
+								System.out.println("·Usaste " + heroe.getNombreHabilidad() + " y te curas |" + heroe.getDatosHabilidad() + "| puntos de vida.");
+							}
+						}
+						//GERALD
+						if (heroe.getOpcionPersonaje() == 3) {
+							danoSubidoB = danoSubidoB + heroe.getDatosHabilidad();
+							danoSubidoF = danoSubidoF + heroe.getDatosHabilidad();
+							System.out.println("·Usaste " + heroe.getNombreHabilidad() + " y te subes el ataque |" + heroe.getDatosHabilidad() + "| puntos de daño.");
+						}
 					}
 					if (vidaEnemigoActual <= 0) {
 						vidaEnemigoActual = 0;
 					}
-					System.out.println("\nA ~"+ enemigos.getEnemigos().get(batallaActual) + "~ le quedan |" + vidaEnemigoActual + "| puntos de vida.\n");
-				}
-				//ENEMIGO BÁSICO
-				if (vidaEnemigoActual > 0) {
-					ataqueEnemigoAleatorio = random.nextInt(2);
-					precisionBasicoActual = random.nextInt(99) + 1;
-					if (ataqueEnemigoAleatorio == 0) {
-						//CRÍTICO
-						if (precisionBasicoActual >= 80) {
-							System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con "+ enemigos.getNombreBasico().get(batallaActual) + "\n(" + enemigos.getDescripcionBasico().get(batallaActual) + ") y te hace un crítico de |" + ataqueBasicoEnemigoActual + "| puntos de daño.");
-							heroe.setVida(heroe.getVida() - ataqueBasicoEnemigoActual);
-							System.out.println("\nTe quedan |" + heroe.getVida() + "| puntos de vida.");	
+					System.out.println("\nA ~"+ enemigos.getEnemigos().get(batallaActual) + "~ le quedan |" + vidaEnemigoActual + "| puntos de vida");
+					//COMPAÑERO
+					if (vidaEnemigoActual > 0 && !npcMuerto) {
+						ataqueNpcAleatorio = random.nextInt(2);
+						System.out.println("\n·" + npc.getCompanero() + " dice:");
+						//UNO
+						if (ataqueNpcAleatorio == 0) {
+							System.out.println(npc.getFrase1_companero() + " y le hace |" + npc.getAyuda1_companero() + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
+							vidaEnemigoActual = vidaEnemigoActual - npc.getAyuda1_companero();
 						}
-						//NORMAL
-						else if (precisionBasicoActual >= 20 && precisionBasicoActual < 80) {
-							System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con "+ enemigos.getNombreBasico().get(batallaActual) + "\n(" + enemigos.getDescripcionBasico().get(batallaActual) + ") y te hace |" + ataqueBasicoEnemigoActual/2 + "| puntos de daño.");
-							heroe.setVida(heroe.getVida() - ataqueBasicoEnemigoActual/2);
-							System.out.println("\nTe quedan |" + heroe.getVida() + "| puntos de vida.");	
-						} 
-						//FALLIDO
-						else if (precisionBasicoActual < 20) {
-							System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ usó "  + enemigos.getNombreBasico().get(batallaActual) + " pero falló el ataque.");
+						//DOS
+						if (ataqueNpcAleatorio == 1) {
+							System.out.println(npc.getFrase2_companero() + " y le hace |" + npc.getAyuda2_companero() + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
+							vidaEnemigoActual = vidaEnemigoActual - npc.getAyuda2_companero();
 						}
+						//TRES
+						if (ataqueNpcAleatorio == 2) {
+							System.out.println(npc.getFrase3_companero() + " y le hace |" + npc.getAyuda3_companero() + "| puntos de daño a ~" + enemigos.getEnemigos().get(batallaActual) + "~.");
+							vidaEnemigoActual = vidaEnemigoActual - npc.getAyuda3_companero();
+						}
+						if (vidaEnemigoActual <= 0) {
+							vidaEnemigoActual = 0;
+						}
+						System.out.println("\nA ~"+ enemigos.getEnemigos().get(batallaActual) + "~ le quedan |" + vidaEnemigoActual + "| puntos de vida.\n");
 					}
-					//ENEMIGO FUERTE
-					 if (ataqueEnemigoAleatorio == 1) {
-						//CRÍTICO
-						if (precisionBasicoActual >= 80) {
-							System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con " + enemigos.getNombreFuerte().get(batallaActual) + "\n(" + enemigos.getDescripcionFuerte().get(batallaActual) + ") y te hace un crítico de |" + ataqueFuerteEnemigoActual + "| puntos de daño.");
-							heroe.setVida(heroe.getVida() - ataqueFuerteEnemigoActual);
-							System.out.println("\nTe quedan |" + heroe.getVida() + "| puntos de vida.");	
+					//ENEMIGO BÁSICO
+					if (vidaEnemigoActual > 0) {
+						ataqueEnemigoAleatorio = random.nextInt(2);
+						precisionBasicoActual = random.nextInt(99) + 1;
+						if (ataqueEnemigoAleatorio == 0) {
+							//CRÍTICO
+							if (precisionBasicoActual >= 80) {
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con "+ enemigos.getNombreBasico().get(batallaActual) + "\n(" + enemigos.getDescripcionBasico().get(batallaActual) + ") y te hace un crítico de |" + ataqueBasicoEnemigoActual + "| puntos de daño.");
+								heroe.setVida(heroe.getVida() - ataqueBasicoEnemigoActual);
+							}
+							//NORMAL
+							else if (precisionBasicoActual >= 20 && precisionBasicoActual < 80) {
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con "+ enemigos.getNombreBasico().get(batallaActual) + "\n(" + enemigos.getDescripcionBasico().get(batallaActual) + ") y te hace |" + ataqueBasicoEnemigoActual/2 + "| puntos de daño.");
+								heroe.setVida(heroe.getVida() - ataqueBasicoEnemigoActual/2);	
+							} 
+							//FALLIDO
+							else if (precisionBasicoActual < 20) {
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ usó "  + enemigos.getNombreBasico().get(batallaActual) + " pero falló el ataque.");
+							}
 						}
-						//NORMAL
-						else if (precisionBasicoActual >= 20 && precisionBasicoActual < 80) {
-							System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con " + enemigos.getNombreFuerte().get(batallaActual) + "\n(" + enemigos.getDescripcionFuerte().get(batallaActual) + ") y te hace |" + ataqueFuerteEnemigoActual/2 + "| puntos de daño.");
-							heroe.setVida(heroe.getVida() - ataqueFuerteEnemigoActual/2);
-							System.out.println("\nTe quedan |" + heroe.getVida() + "| puntos de vida.");	
+						//ENEMIGO FUERTE
+						 if (ataqueEnemigoAleatorio == 1) {
+							//CRÍTICO
+							if (precisionBasicoActual >= 80) {
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con " + enemigos.getNombreFuerte().get(batallaActual) + "\n(" + enemigos.getDescripcionFuerte().get(batallaActual) + ") y te hace un crítico de |" + ataqueFuerteEnemigoActual + "| puntos de daño.");
+								heroe.setVida(heroe.getVida() - ataqueFuerteEnemigoActual);
+							}
+							//NORMAL
+							else if (precisionBasicoActual >= 20 && precisionBasicoActual < 80) {
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + "~ te ataca con " + enemigos.getNombreFuerte().get(batallaActual) + "\n(" + enemigos.getDescripcionFuerte().get(batallaActual) + ") y te hace |" + ataqueFuerteEnemigoActual/2 + "| puntos de daño.");
+								heroe.setVida(heroe.getVida() - ataqueFuerteEnemigoActual/2);	
+							}
+							//FALLIDO
+							else if (precisionBasicoActual < 20) {
+								System.out.println("~" +enemigos.getEnemigos().get(batallaActual) + "~ usó " + enemigos.getNombreFuerte().get(batallaActual) + " pero falló el ataque.");
+							}
 						}
-						//FALLIDO
-						else if (precisionBasicoActual < 20) {
-							System.out.println("~" +enemigos.getEnemigos().get(batallaActual) + "~ usó " + enemigos.getNombreFuerte().get(batallaActual) + " pero falló el ataque.");
+						 //ENEMIGO HABILIDAD
+						if (ataqueEnemigoAleatorio == 2) {
+							//DAÑO
+							if (enemigos.getDatosHabilidad().get(batallaActual) > 3) {
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " te ataca con "+ enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ") y te hace |"+ enemigos.getDatosHabilidad().get(batallaActual) + "| puntos de daño.");
+								heroe.setVida(heroe.getVida() - enemigos.getDatosHabilidad().get(batallaActual));	
+							}
+							//CAMBIO TERRENO
+							else if (enemigos.getDatosHabilidad().get(batallaActual) == 1) {
+								terreno.cambioTerreno();
+								System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa " + enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
+								System.out.println("El terreno ha cambiado");
+							}
+							//CAMBIO TERRENO
+							//CAMBIO CLIMA
+							else if (enemigos.getDatosHabilidad().get(batallaActual) == 2) {
+	                            terreno.cambioTerreno();
+	                            clima.cambioClima();
+	                            System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa " + enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
+								System.out.println("El terreno ha cambiado");
+	                            System.out.println("El clima ha cambiado");
+							}
+							//CAMBIO TERRENO
+							//CAMBIO CLIMA
+							//CAMBIO HORA
+	                        else if (enemigos.getDatosHabilidad().get(batallaActual) == 3) {
+	                            terreno.cambioTerreno();
+	                            clima.cambioClima();
+	                            hora.cambioHora();
+	                            System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa " + enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
+								System.out.println("El terreno ha cambiado");
+								System.out.println("El clima ha cambiado");
+								System.out.println("La hora ha cambiado");
+	                        }
 						}
-					}
-					 //ENEMIGO HABILIDAD
-					if (ataqueEnemigoAleatorio == 2) {
-						//DAÑO
-						if (enemigos.getDatosHabilidad().get(batallaActual) > 3) {
-							System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " te ataca con "+ enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ") y te hace |"+ enemigos.getDatosHabilidad().get(batallaActual) + "| puntos de daño.");
-							heroe.setVida(heroe.getVida() - enemigos.getDatosHabilidad().get(batallaActual));
-							System.out.println("\nTe quedan |" + heroe.getVida() + "| puntos de vida.");	
+						if (heroe.getVida() <= 0) {
+							heroe.setVida(0);
+							gameOver = true;
 						}
-						//CAMBIO TERRENO
-						else if (enemigos.getDatosHabilidad().get(batallaActual) == 1) {
-							terreno.cambioTerreno();
-							System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa " + enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
-							System.out.println("El terreno ha cambiado");
-						}
-						//CAMBIO TERRENO
-						//CAMBIO CLIMA
-						else if (enemigos.getDatosHabilidad().get(batallaActual) == 2) {
-                            terreno.cambioTerreno();
-                            clima.cambioClima();
-                            System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa " + enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
-							System.out.println("El terreno ha cambiado");
-                            System.out.println("El clima ha cambiado");
-						}
-						//CAMBIO TERRENO
-						//CAMBIO CLIMA
-						//CAMBIO HORA
-                        else if (enemigos.getDatosHabilidad().get(batallaActual) == 3) {
-                            terreno.cambioTerreno();
-                            clima.cambioClima();
-                            hora.cambioHora();
-                            System.out.println("~" + enemigos.getEnemigos().get(batallaActual) + " usa " + enemigos.getNombreHabilidad().get(batallaActual) + "\n(" + enemigos.getDescripcionHabilidad().get(batallaActual) + ")");
-							System.out.println("El terreno ha cambiado");
-							System.out.println("El clima ha cambiado");
-							System.out.println("La hora ha cambiado");
-                        }
+						System.out.println("\nTe quedan |" + heroe.getVida() + "| puntos de vida.");
 					}
 				}
 	}
@@ -353,5 +375,38 @@ public class Batallas {
         clima.setFilaDeClimaActual(clima.getFilaDeClimaActual() + 1);
         terreno.setFilaDeTerrenoActual(terreno.getFilaDeTerrenoActual() + 1);
         hora.setFilaDeHoraActual(hora.getFilaDeHoraActual() + 1);
+	}
+	
+	public void Puzzle5Final1() {
+		System.out.println("SYSO MUERTE LOS DOS");
+		System.out.println(npc.getFrase1_npcDios());
+	}
+	
+	public void Puzzle5Final2() {
+		System.out.println("SYSO CURAR PERO SE MUERE EL OTRO");
+		System.out.println(npc.getFrase2_npcDios()+ " " + npc.getAyuda2_npcDios() + " puntos de vida");
+		heroe.setVida(heroe.getVida() + npc.getAyuda2_npcDios());
+		if (heroe.getVida() > heroe.getVidaMax()) {
+			heroe.setVida(heroe.getVidaMax());
+		}
+		npcMuerto = true;
+	}
+	
+	public void Puzzle5Final3() {
+		System.out.println("SYSO CUARAR PERO NO ARMA TOCHA");
+		System.out.println(npc.getFrase3_npcDios()+ " " + npc.getAyuda3_npcDios() + " puntos de vida");
+		heroe.setVida(heroe.getVida() + npc.getAyuda3_npcDios());
+		if (heroe.getVida() > heroe.getVidaMax()) {
+			heroe.setVida(heroe.getVidaMax());
+		}
+	}
+	
+	public void Puzzle5Final4() {
+		System.out.println("SYSO CUARAR y ARMA TOCHA");
+		System.out.println(npc.getFrase4_npcDios()+ " " + npc.getAyuda3_npcDios() + " puntos de vida");
+		heroe.setVida(heroe.getVida() + npc.getAyuda3_npcDios());
+		if (heroe.getVida() > heroe.getVidaMax()) {
+			heroe.setVida(heroe.getVidaMax());
+		}
 	}
 }

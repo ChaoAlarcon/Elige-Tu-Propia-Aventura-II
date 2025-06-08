@@ -7,13 +7,11 @@ public class Puzzle1 {
 	Scanner sc = new Scanner(System.in);
 	Random random = new Random();
 	ConectarBDD conectarBDD = new ConectarBDD();
-	Usuarios usuario = new Usuarios();
 	private int intentosRestantes = 8;
 	private int respuestaUsuario;
 	private int solucionPuzzle1;
 	private String aceptarPista;
 	private int puntosPuzzle;
-	private int puntosTotalesUsuario;
 	private boolean puzzle1Acertado = false;
 	
 	public boolean isPuzzle1Acertado() {
@@ -29,7 +27,6 @@ public class Puzzle1 {
 	}
 	
 	public boolean iniciarPuzzle1() {
-		puntosTotalesUsuario = conectarBDD.consultarDatosint("puntos", "jugador", "nombreJugador = '" + usuario.getUsuario() + "'");
 		puntosPuzzle = conectarBDD.consultarDatosint("puntos", "puzzles", "id_puzzles = 1");
 		System.out.println("\nAl acercaros os dice: “...uoh uh para paaasar por estaaa puerta tendréis que aaadivinar el número secreeeto”");
 		System.out.println("\n" + conectarBDD.consultarDatosString("nombrePuzzle", "puzzles", "id_puzzles = 1") + ", " + conectarBDD.consultarDatosString("descripcion", "puzzles", "id_puzzles = 1"));
@@ -62,8 +59,6 @@ public class Puzzle1 {
 			if (respuestaUsuario == solucionPuzzle1) {
 				System.out.println("\n“Eeese es eel númeroo correctooo oohh, podéis pasaaar.”");
 				System.out.println("\nHas ganado: |" + puntosPuzzle + "| puntos de juego.");
-				puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
-				conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
 				puzzle1Acertado = true;
 				return true;
 			} 

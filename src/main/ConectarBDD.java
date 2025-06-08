@@ -50,16 +50,18 @@ public class ConectarBDD{
 	}
 
 // Método para actualizar datos
-	public boolean actualizarDatos(String tabla, String cambios, String condicion) {
-		String query = "UPDATE " + tabla + " SET " + cambios + " WHERE " + condicion;
-		try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
-			stmt.executeUpdate();
-			return true;
-		} catch (SQLException e) {
-			System.out.println("Ha ocurrido un error al intentar actualizar datos en la base de datos");
-			return false;
-		}
+	public boolean actualizarDatos(String tabla, String columna, int valor, String condicion) {
+	    String query = "UPDATE " + tabla + " SET " + columna + " = " + columna + " + " + valor + " WHERE " + condicion;
+	    try (Connection conn = conectarMySQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+	        stmt.executeUpdate();
+	        return true;
+	    } catch (SQLException e) {
+	        System.out.println("Ha ocurrido un error al intentar sumar el valor: " + e.getMessage());
+	        return false;
+	    }
 	}
+
+
 
 // Método para consultar datos
 	public boolean consultarDatos(String tabla, String columnas, String condicion) {

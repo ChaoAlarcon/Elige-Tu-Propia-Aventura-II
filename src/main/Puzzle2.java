@@ -50,7 +50,6 @@ public class Puzzle2 {
 						+ "pero antes de seguir. sabed que el camino por el que camináis es muy peligroso, tened cuidado.”");
 				System.out.println("Has ganado |" + puntosPuzzle + "| puntos.");
 				puntosPuzzle = puntosPuzzle + puntosTotalesUsuario;
-				conectarBDD.actualizarDatos("jugador", "puntos= " + puntosPuzzle, "nombreJugador= '" + usuario.getUsuario() + "'");
 				puzzle2Acertado = true;
 				return true;
 			} else {
