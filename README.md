@@ -30,3 +30,4 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 - INTO: Se fusionan ambas Ramas || Es cuando está en una línea diferente en GitKraken
 - Añadir nueva portada de Canva
 - Es mejor tener un juego base sencillo e ir mejorándolo 
+- Explicar los controles del juego en el teclado visualmente
