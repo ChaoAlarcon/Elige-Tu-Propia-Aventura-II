@@ -16,7 +16,7 @@ public class HorasDelDia {
 	private int numeroEscenarios;
 	private int horaActual;
 	private int efectoAtaque;
-	private int filaDeHoraActual = 0;
+	private int filaDeHoraActual;
 	
 	public HorasDelDia(ArrayList<String> nombreHora, ArrayList<Integer> buffHora, ArrayList<String> descripcionBuffHora,
 	        ArrayList<Integer> penalizacionHora, ArrayList<String> descripcionPenalizacionHora,
@@ -78,6 +78,7 @@ public class HorasDelDia {
 	}
 
 	public void creacionHorasDelDia() {
+		filaDeHoraActual = 0;
 		numeroHoras = conectarBDD.obtenerNumeroDeFilas("horas_del_dia");
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("escenarios");
 		nombreHora.clear();

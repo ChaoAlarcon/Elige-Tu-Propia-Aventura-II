@@ -15,7 +15,7 @@ public class Climas{
 	private int numeroClimas;
 	private int numeroEscenarios;
 	private int climaActual;
-	private int filaDeClimaActual = 0;
+	private int filaDeClimaActual;
 	private int efectoPrecision;
 	
 	public Climas(ArrayList<String> nombreClima, ArrayList<Integer> buffClima, ArrayList<String> descripcionBuffClima,
@@ -80,6 +80,7 @@ public class Climas{
 	}
 
 	public void creacionClimas() {
+		filaDeClimaActual = 0;
 		numeroClimas = conectarBDD.obtenerNumeroDeFilas("climas");
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("escenarios");
 		nombreClima.clear();

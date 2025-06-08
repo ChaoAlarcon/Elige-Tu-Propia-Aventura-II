@@ -15,7 +15,7 @@ public class Terrenos {
 	private int numeroTerrenos;
 	private int numeroEscenarios;
 	private int terrenoActual;
-	private int filaDeTerrenoActual = 0;
+	private int filaDeTerrenoActual;
 	private int efectoVida;
 	
 
@@ -80,6 +80,7 @@ public class Terrenos {
 	}
 
 	public void  creacionTerrenos() {
+		filaDeTerrenoActual = 0;
 		numeroTerrenos = conectarBDD.obtenerNumeroDeFilas("terrenos");
 		numeroEscenarios = conectarBDD.obtenerNumeroDeFilas("escenarios");
 	    nombreTerreno.clear();
