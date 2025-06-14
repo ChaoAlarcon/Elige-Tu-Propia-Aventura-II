@@ -12,6 +12,8 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 
 ![Portada](Portada_ETPA_II_Remastered.png)
 
+![¡ÉCHALE UN VISTAZO A LA PRESENTACIÓN!](https://gamma.app/docs/WARRIORS-OF-EAZIMA-II-g2kidspg5ewqvm4)
+
 ## Integrantes del Grupo 👥️
 - Álvaro Santos Calvo
 - Nicolás García-Sampedro Docampo
@@ -28,5 +30,5 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 - NO TOCAR EL ARCHIVO "classpath"
 - ONTO: Reemplazas todo lo que tiene el main con lo tuyo(Lo tuyo tiene que estar bien) || Es cuando está en la misma línea en GitKraken
 - INTO: Se fusionan ambas Ramas || Es cuando está en una línea diferente en GitKraken
-- Añadir nueva portada de Canva
-- Es mejor tener un juego base sencillo e ir mejorándolo 
+
+
