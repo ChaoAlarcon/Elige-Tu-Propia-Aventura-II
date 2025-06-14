@@ -12,7 +12,7 @@ Mejorar el juego existente *"Elige tu propia aventura"* o desarrollar una nueva 
 
 ![Portada](Portada_ETPA_II_Remastered.png)
 
-![¡ÉCHALE UN VISTAZO A LA PRESENTACIÓN!](https://gamma.app/docs/WARRIORS-OF-EAZIMA-II-g2kidspg5ewqvm4)
+[¡ÉCHALE UN VISTAZO A LA PRESENTACIÓN!](https://gamma.app/docs/WARRIORS-OF-EAZIMA-II-g2kidspg5ewqvm4)
 
 ## Integrantes del Grupo 👥️
 - Álvaro Santos Calvo
